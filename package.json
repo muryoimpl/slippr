@@ -1,0 +1,12 @@
+{
+  "name": "shamon",
+  "version": "0.0.1",
+  "description": "markdown presentation app by Electron",
+  "main": "main.js",
+  "repository": {
+    "url": "https://github.com/muryoimpl/shamon",
+    "type": "git"
+  },
+  "author": "muryoimpl <k-muryoi@esm.co.jp>",
+  "license": "MIT"
+}
