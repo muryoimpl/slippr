@@ -8,5 +8,8 @@
     "type": "git"
   },
   "author": "muryoimpl <k-muryoi@esm.co.jp>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.4.4"
+  }
 }
