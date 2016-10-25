@@ -9,6 +9,9 @@
   },
   "author": "muryoimpl <k-muryoi@esm.co.jp>",
   "license": "MIT",
+  "scripts": {
+    "electron": "electron ."
+  },
   "dependencies": {
     "electron": "^1.4.4"
   }
