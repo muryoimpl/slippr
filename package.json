@@ -13,6 +13,7 @@
     "electron": "electron ."
   },
   "dependencies": {
-    "electron": "^1.4.4"
+    "electron": "^1.4.4",
+    "photon": "https://github.com/connors/photon"
   }
 }
