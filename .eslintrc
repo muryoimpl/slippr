@@ -1,0 +1,30 @@
+{
+  "extends": ["airbnb"],
+  "globals": {
+      "document": true,
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "mocha": true
+  },
+  "plugins": [
+    "react",
+  ],
+  "ecmaFeatures": {
+    "globalReturn": false
+  },
+  "rules": {
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "react/react-in-jsx-scope": 1,
+    "no-unused-vars": [
+      2,
+      {
+        "varsIgnorePattern": "React",
+        "args": "none",
+        "caughtErrors": "none",
+      }
+    ]
+  }
+}
