@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "electron": "electron .",
-    "build": "webpack --progress --color"
+    "build": "webpack --progress --color --config webpack.config.dev.js"
   },
   "dependencies": {
     "electron": "^1.4.4",
@@ -33,7 +33,6 @@
     "eslint-loader": "^1.6.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
-    "webpack": "^1.13.3"
+    "eslint-plugin-react": "^6.4.1"
   }
 }
