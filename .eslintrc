@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb"],
+  "extends": ["standard"],
   "globals": {
       "document": true,
   },
@@ -10,6 +10,7 @@
   },
   "plugins": [
     "react",
+    "promise"
   ],
   "ecmaFeatures": {
     "globalReturn": false
