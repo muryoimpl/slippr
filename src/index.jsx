@@ -1,10 +1,16 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
-class App extends React.Component {
-  render () {
-    return <p> Hello React!</p>;
-  }
-}
+import routes from './routes'
+import { configureStore } from './stores'
 
-ReactDOM.render(<App />, document.getElementById('shamon'));
+const initialState = {}
+const store = configureStore(initialState)
+
+ReactDOM.render(
+  <Provider store={ store }>
+    { routes }
+  </Provider>,
+  document.getElementById('shamon')
+)
