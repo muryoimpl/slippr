@@ -6,14 +6,16 @@
   "env": {
     "node": true,
     "browser": true,
-    "mocha": true
+    "mocha": true,
+    "es6": true
   },
   "plugins": [
     "react",
     "promise"
   ],
   "ecmaFeatures": {
-    "globalReturn": false
+    "globalReturn": false,
+    "jsx": true
   },
   "rules": {
     "react/jsx-uses-react": 1,
