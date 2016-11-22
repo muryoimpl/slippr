@@ -12,7 +12,7 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-  // for debug
+  // NOTE: for debug
   mainWindow.webContents.openDevTools()
 
   ipcMain.on('show-file-dialog', (event, arg) => {
