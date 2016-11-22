@@ -3,16 +3,14 @@ import { connect } from 'react-redux'
 
 class Home extends React.Component {
   render () {
-    const { markdownText } = this.props
+    const { markdown } = this.props
 
     return (
       <div className="pane-group">
         <div className="pane">
           <form>
             <div className="form-group">
-              <textarea className="form-control" rows="10">
-                { markdownText }
-              </textarea>
+              <textarea className="form-control" rows="10" value={markdown}></textarea>
             </div>
           </form>
         </div>
@@ -25,11 +23,11 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  markdownText: PropTypes.string
+  markdown: PropTypes.string
 }
 
 export default connect((state) => {
   return {
-    markdownText: state.homes.markdownText
+    markdown: state.homes.markdown
   }
 })(Home)

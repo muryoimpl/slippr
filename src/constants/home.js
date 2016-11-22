@@ -1,1 +1,3 @@
 export const SHOW_HOME = 'SHOW_HOME'
+
+export const SET_MARKDOWN_TEXT = 'SET_MARKDOWN_TEXT'
