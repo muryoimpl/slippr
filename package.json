@@ -17,6 +17,7 @@
   "dependencies": {
     "electron": "^1.4.4",
     "immutable": "^3.8.1",
+    "markdown-it": "^8.1.0",
     "photon": "https://github.com/connors/photon",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
