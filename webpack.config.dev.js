@@ -4,7 +4,10 @@ const path = require('path')
 module.exports = {
   target: 'electron',
 
-  entry: path.resolve(__dirname, 'src/index.jsx'),
+  entry: [
+    'babel-polyfill',
+    path.resolve(__dirname, 'src/index.jsx')
+  ],
 
   output: {
     path: path.resolve(__dirname),
