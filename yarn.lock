@@ -1789,6 +1789,10 @@ hawk@~3.1.3:
     hoek "2.x.x"
     sntp "1.x.x"
 
+highlight.js:
+  version "9.8.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.8.0.tgz#38eeef40cd45eaddbec8c9e5238fb7a783a3b685"
+
 history@^3.0.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/history/-/history-3.2.1.tgz#71c7497f4e6090363d19a6713bb52a1bfcdd99aa"
@@ -2237,6 +2241,10 @@ markdown-it:
     linkify-it "^2.0.0"
     mdurl "^1.0.1"
     uc.micro "^1.0.3"
+
+markdown-it-emoji:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-emoji/-/markdown-it-emoji-1.3.0.tgz#903ae1a9968c3f17d4e142f115d4ec575e56d2cb"
 
 mdurl@^1.0.1:
   version "1.0.1"
