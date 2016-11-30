@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+import * as homeActions from '../actions/home'
+import { renderHtml } from '../utils/markdownConverter'
+
 class Home extends React.Component {
   render () {
     const { markdown } = this.props
@@ -15,7 +18,7 @@ class Home extends React.Component {
           </form>
         </div>
         <div className="pane">
-          hi
+          <div dangerouslySetInnerHTML={{__html: renderHtml(markdown)}} />
         </div>
       </div>
     )
