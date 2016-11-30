@@ -5,6 +5,12 @@ import * as homeActions from '../actions/home'
 import { renderHtml } from '../utils/markdownConverter'
 
 class Home extends React.Component {
+  handleTextaraChange (e) {
+    const { store } = this.context
+
+    store.dispatch(homeActions.editTextareaValue(e.target.value))
+  }
+
   render () {
     const { markdown } = this.props
 
@@ -13,7 +19,7 @@ class Home extends React.Component {
         <div className="pane">
           <form>
             <div className="form-group">
-              <textarea className="form-control" rows="10" value={markdown}></textarea>
+              <textarea className="form-control" rows="10" value={markdown} onChange={e => this.handleTextaraChange(e)}></textarea>
             </div>
           </form>
         </div>
@@ -27,6 +33,10 @@ class Home extends React.Component {
 
 Home.propTypes = {
   markdown: PropTypes.string
+}
+
+Home.contextTypes = {
+  store: PropTypes.object
 }
 
 export default connect((state) => {
