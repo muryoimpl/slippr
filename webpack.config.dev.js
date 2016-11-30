@@ -16,7 +16,8 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, loader: 'babel', query: { presets: ['react', 'es2015', 'stage-3'] }, exclude: path.resolve(__dirname, 'node_modules') }
+      { test: /\.jsx?$/, loader: 'babel', query: { presets: ['react', 'es2015', 'stage-3'] }, exclude: path.resolve(__dirname, 'node_modules') },
+      { test: /entities\/maps\/.*\.json$/, loader: 'json' }
     ]
   },
 
