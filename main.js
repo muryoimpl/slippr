@@ -62,6 +62,14 @@ function createWindow () {
     })
   })
 
+  ipcMain.on('full-screen', (event, arg) => {
+    mainWindow.setFullScreen(true)
+  })
+
+  ipcMain.on('normal-screen', (event, arg) => {
+    mainWindow.setFullScreen(false)
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
   })

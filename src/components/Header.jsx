@@ -27,6 +27,14 @@ class Header extends React.Component {
     ipcRenderer.send('save-file-dialog', { markdown: this.props.markdown })
   }
 
+  handleFullScreen (isFullScreen) {
+    const { store } = this.context
+    store.dispatch(headerActions.setFullScreen(isFullScreen))
+
+    const eventName = isFullScreen ? 'full-screen' : 'normal-screen'
+    ipcRenderer.send(eventName)
+  }
+
   render () {
     const existMarkdown = !!this.props.markdown
     // TODO: disabled なときのstyleをボタンに適用する
@@ -47,6 +55,17 @@ class Header extends React.Component {
             <span className="icon icon-doc-text"></span>
             &nbsp;save as
           </button>
+
+          { this.props.fullscreen &&
+            <button className="btn btn-default pull-right" onClick={(e) => this.handleFullScreen(false)}>
+              <span className="icon icon-resize-small"></span>
+            </button>
+          }
+          { !this.props.fullscreen &&
+            <button className="btn btn-default pull-right" onClick={(e) => this.handleFullScreen(true)}>
+              <span className="icon icon-resize-full"></span>
+            </button>
+          }
         </div>
       </header>
     )
@@ -65,6 +84,7 @@ Header.contextTypes = {
 export default connect((state) => {
   return {
     filename: state.headers.filename,
-    markdown: state.homes.markdown
+    markdown: state.homes.markdown,
+    fullscreen: state.headers.fullscreen
   }
 })(Header)
