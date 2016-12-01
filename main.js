@@ -38,6 +38,30 @@ function createWindow () {
     })
   })
 
+  ipcMain.on('save-file-dialog', (event, arg) => {
+    const options = {
+      title: 'save as ...',
+      properties: ['openFile', 'createDirectory'],
+      defaultPath: `${getUserHome()}`,
+      filters: [
+        { name: 'markdown', extensions: ['markdown', 'md', 'mkd', 'mkd', 'mkdn', 'mdown'] }
+      ]
+    }
+
+    dialog.showSaveDialog(mainWindow, options, (filename) => {
+      if (filename) {
+        console.log(filename)
+        fs.writeFile(filename, arg.markdown, 'utf8', (error) => {
+          if (error) {
+            console.log('error: ' + error)
+            return
+          }
+        })
+        event.sender.send('reply-save-dialog', { filename: filename })
+      }
+    })
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
   })
@@ -56,3 +80,7 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+function getUserHome () {
+  return process.env.HOME || process.env.USERPROFILE
+}

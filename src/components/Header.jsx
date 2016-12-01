@@ -13,13 +13,24 @@ class Header extends React.Component {
       store.dispatch(homeActions.setMarkdownText(json.markdown))
       store.dispatch(headerActions.setFileName(json.filename))
     })
+
+    ipcRenderer.on('reply-save-dialog', (event, json) => {
+      store.dispatch(headerActions.setFileName(json.filename))
+    })
   }
 
   handleOpenFile () {
     ipcRenderer.send('show-file-dialog', '')
   }
 
+  handleSaveFileAs () {
+    ipcRenderer.send('save-file-dialog', { markdown: this.props.markdown })
+  }
+
   render () {
+    const existMarkdown = !!this.props.markdown
+    // TODO: disabled なときのstyleをボタンに適用する
+
     return (
       <header className="toolbar toolbar-header">
         <h1 className="title">{ this.props.filename }</h1>
@@ -30,9 +41,9 @@ class Header extends React.Component {
             &nbsp;open
           </button>
 
-          <button className="btn btn-default">
+          <button className="btn btn-default" onClick={(e) => this.handleSaveFileAs()} disabled={!existMarkdown}>
             <span className="icon icon-doc-text"></span>
-            &nbsp;save
+            &nbsp;save as
           </button>
         </div>
       </header>
@@ -41,7 +52,8 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  filename: PropTypes.string
+  filename: PropTypes.string,
+  markdown: PropTypes.string
 }
 
 Header.contextTypes = {
@@ -50,6 +62,7 @@ Header.contextTypes = {
 
 export default connect((state) => {
   return {
-    filename: state.headers.filename
+    filename: state.headers.filename,
+    markdown: state.homes.markdown
   }
 })(Header)
