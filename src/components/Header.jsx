@@ -30,6 +30,8 @@ class Header extends React.Component {
   render () {
     const existMarkdown = !!this.props.markdown
     // TODO: disabled なときのstyleをボタンに適用する
+    // TODO: highlight.js の style の選択をしたい
+    // TODO: page の縦横比を選択できるとうれしいな
 
     return (
       <header className="toolbar toolbar-header">
