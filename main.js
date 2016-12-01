@@ -16,8 +16,9 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-  // NOTE: for debug
-  mainWindow.webContents.openDevTools()
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools()
+  }
 
   ipcMain.on('show-file-dialog', (event, arg) => {
     const options = {
