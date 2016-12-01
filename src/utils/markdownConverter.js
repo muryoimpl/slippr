@@ -3,7 +3,6 @@ import mdEmoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 
 export function renderHtml (markdown) {
-  // TODO: markdown に「--」 への対応を入れる
   const md = new MarkdownIt({
     html: true,
     typographer: true,
@@ -17,5 +16,10 @@ export function renderHtml (markdown) {
     }
   }).use(mdEmoji)
 
-  return md.render(markdown || '')
+  // NOTE: 「---」 で 1 ページとして区切られる
+  md.renderer.rules.hr = (tokens, index, options) => {
+    return `</div><div class="page">`
+  }
+
+  return md.render(`<div class="page">${markdown || ''}</div>`)
 }
