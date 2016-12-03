@@ -40,6 +40,8 @@ class Header extends React.Component {
     // TODO: disabled なときのstyleをボタンに適用する
     // TODO: highlight.js の style の選択をしたい
     // TODO: page の縦横比を選択できるとうれしいな
+    // TODO: スライド自体のthemeも選択したい
+    // TODO: noto font 使いたいなぁ
 
     return (
       <header className="toolbar toolbar-header">
