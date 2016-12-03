@@ -6,6 +6,7 @@ export function renderHtml (markdown) {
   const md = new MarkdownIt({
     html: true,
     typographer: true,
+    linkify: true,
     highlight: (str, lang) => {
       if (lang && hljs.getLanguage(lang)) {
         try {
