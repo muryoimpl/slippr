@@ -1,0 +1,51 @@
+---
+linters:
+  ColorKeyword:
+    enabled: true
+  ColorVariable:
+    enabled: true
+  Comment:
+    enabled: true
+  DeclarationOrder:
+    enabled: true
+  EmptyLineBetweenBlocks:
+    enabled: true
+  HexLength:
+    enabled: true
+  IdSelector:
+    enabled: true
+  ImportPath:
+    enabled: true
+  Indentation:
+    enabled: true
+  LeadingZero:
+    enabled: true
+  MergeableSelector:
+    enabled: true
+  NameFormat:
+    enabled: true
+  PropertySortOrder:
+    enabled: true
+    order: concentric
+  PseudoElement:
+    enabled: true
+  QualifyingElement:
+    enabled: true
+  SelectorFormat:
+    enabled: false
+  SingleLinePerSelector:
+    enabled: true
+  SpaceAfterComma:
+    enabled: true
+  SpaceAfterPropertyColon:
+    enabled: true
+  SpaceBeforeBrace:
+    enabled: true
+  StringQuotes:
+    enabled: true
+  TrailingSemicolon:
+    enabled: true
+  TrailingWhitespace:
+    enabled: true
+  VendorPrefix:
+    enabled: true
