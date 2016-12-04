@@ -34,7 +34,7 @@ linters:
   SelectorFormat:
     enabled: false
   SingleLinePerSelector:
-    enabled: true
+    enabled: false
   SpaceAfterComma:
     enabled: true
   SpaceAfterPropertyColon:
