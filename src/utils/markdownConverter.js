@@ -11,7 +11,9 @@ export function renderHtml (markdown) {
       if (lang && hljs.getLanguage(lang)) {
         try {
           return `<pre class="hljs"><code>${hljs.highlight(lang, str, true).value}</code></pre>`
-        } catch (__) {}
+        } catch (__) {
+          console.log('render error')
+        }
       }
       return ''
     }
@@ -19,8 +21,8 @@ export function renderHtml (markdown) {
 
   // NOTE: 「---」 で 1 ページとして区切られる
   md.renderer.rules.hr = (tokens, index, options) => {
-    return `</div><div class="page">`
+    return `</div></div><div class="separator"></div><div class="p-page theBridge"><div class="p-page__inner">`
   }
 
-  return md.render(`<div class="page">${markdown || ''}</div>`)
+  return md.render(`<div class="p-page theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
 }

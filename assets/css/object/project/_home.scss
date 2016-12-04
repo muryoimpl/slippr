@@ -1,0 +1,24 @@
+// editor
+.p-editor__pane {
+  height: 100%;
+}
+
+.p-editor__textarea {
+  height: 100%;
+}
+
+// preview
+.p-preview {
+  background-color: $gray;
+  height: 98%;
+}
+
+.p-preview__pane {
+  padding: 5 5 5 5px;
+}
+
+.p-preview__separator {
+  background-color: $separator;
+  height: 10px;
+  content: '';
+}

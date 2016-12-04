@@ -17,13 +17,13 @@ class Home extends React.Component {
     return (
       <div className="pane-group">
         <div className="pane">
-          <form>
-            <div className="form-group">
-              <textarea className="form-control" rows="10" value={markdown} onChange={e => this.handleTextaraChange(e)}></textarea>
+          <form className="p-editor__pane">
+            <div className="form-group p-editor__pane">
+              <textarea className="form-control p-editor__textarea" rows="10" value={markdown} onChange={e => this.handleTextaraChange(e)}></textarea>
             </div>
           </form>
         </div>
-        <div className="pane">
+        <div className="pane p-preview">
           <div dangerouslySetInnerHTML={{__html: renderHtml(markdown)}} />
         </div>
       </div>

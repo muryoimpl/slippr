@@ -1,0 +1,9 @@
+// hide scroll bar of window
+html, body {
+  overflow: hidden;
+}
+
+// scroll bar style
+::-webkit-scrollbar {
+  width: 5px;
+}

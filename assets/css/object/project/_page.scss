@@ -1,0 +1,23 @@
+.p-page {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    display: block;
+    padding-top: 75%;
+    content: '';
+  }
+}
+
+.p-page__inner {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+}
