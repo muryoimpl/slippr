@@ -33,6 +33,7 @@ class Header extends React.Component {
 
     const eventName = isFullScreen ? 'full-screen' : 'normal-screen'
     ipcRenderer.send(eventName)
+    // TODO: 'full-screen' の場合は、PageView へのtransitionと、markdown の区切り処理を入れないといけない
   }
 
   render () {
