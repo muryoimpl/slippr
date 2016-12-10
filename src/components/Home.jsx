@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import * as homeActions from '../actions/home'
-import { renderHtml } from '../utils/markdownConverter'
+import { renderHtmlPreview } from '../utils/markdownConverter'
 
 class Home extends React.Component {
   handleTextaraChange (e) {
@@ -24,7 +24,7 @@ class Home extends React.Component {
           </form>
         </div>
         <div className="pane p-preview">
-          <div dangerouslySetInnerHTML={{__html: renderHtml(markdown)}} />
+          <div dangerouslySetInnerHTML={{__html: renderHtmlPreview(markdown)}} />
         </div>
       </div>
     )
