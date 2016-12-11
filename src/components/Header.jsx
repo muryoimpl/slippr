@@ -4,6 +4,7 @@ import { ipcRenderer } from 'electron'
 
 import * as headerActions from '../actions/header'
 import * as homeActions from '../actions/home'
+import * as pageActions from '../actions/page'
 
 class Header extends React.Component {
   componentDidMount () {
@@ -29,11 +30,26 @@ class Header extends React.Component {
 
   handleFullScreen (isFullScreen) {
     const { store } = this.context
+
     store.dispatch(headerActions.setFullScreen(isFullScreen))
 
     const eventName = isFullScreen ? 'full-screen' : 'normal-screen'
+    if (eventName === 'full-screen') {
+      store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
+    }
+    this.transitionTo(eventName)
     ipcRenderer.send(eventName)
-    // TODO: 'full-screen' の場合は、PageView へのtransitionと、markdown の区切り処理を入れないといけない
+  }
+
+  transitionTo (screentype) {
+    const { router } = this.context
+
+    switch (screentype) {
+      case 'full-screen':
+        return router.push({ pathname: '/pages/0' })
+      case 'normal-screen':
+        return router.push({ pathname: '/' })
+    }
   }
 
   render () {
@@ -81,7 +97,8 @@ Header.propTypes = {
 }
 
 Header.contextTypes = {
-  store: PropTypes.object
+  store: PropTypes.object,
+  router: PropTypes.object
 }
 
 export default connect((state) => {
