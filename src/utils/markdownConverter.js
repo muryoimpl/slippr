@@ -3,13 +3,12 @@ import mdEmoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 
 export function renderHtmlPreview (markdown) {
-  const md = getMarkdownInstance()
-  // NOTE: 「---」 で 1 ページとして区切られる
-  md.renderer.rules.hr = (tokens, index, options) => {
-    return `</div></div><div class="separator"></div><div class="p-page theBridge"><div class="p-page__inner">`
-  }
+  return renderHtml(markdown, 'preview')
+}
 
-  return md.render(`<div class="p-page theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
+export function renderHtmlPage (markdown) {
+  console.log('htmlpage')
+  return renderHtml(markdown, 'page')
 }
 
 function getMarkdownInstance () {
@@ -28,4 +27,20 @@ function getMarkdownInstance () {
       return ''
     }
   }).use(mdEmoji)
+}
+
+function renderHtml (markdown, mode) {
+  const md = getMarkdownInstance()
+
+  // NOTE: 「---」 で 1 ページとして区切られる
+  md.renderer.rules.hr = (tokens, index, options) => {
+    switch (mode) {
+      case 'preview':
+        return `</div></div><div class="separator"></div><div class="p-page theBridge"><div class="p-page__inner">`
+      case 'page':
+        return `</div></div><div class="p-page theBridge"><div class="p-page__inner">`
+    }
+  }
+
+  return md.render(`<div class="p-page theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
 }
