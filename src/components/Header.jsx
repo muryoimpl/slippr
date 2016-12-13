@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
@@ -54,11 +55,16 @@ class Header extends React.Component {
 
   render () {
     const existMarkdown = !!this.props.markdown
-    // TODO: disabled なときのstyleをボタンに適用する
     // TODO: highlight.js の style の選択をしたい
-    // TODO: page の縦横比を選択できるとうれしいな
     // TODO: スライド自体のthemeも選択したい
+    // TODO: page の縦横比を選択できるとうれしいな
     // TODO: noto font 使いたいなぁ
+
+    const btnStyle = {
+      'btn': true,
+      'btn-default': true,
+      'c-btn__disabled': !existMarkdown
+    }
 
     return (
       <header className="toolbar toolbar-header">
@@ -66,13 +72,13 @@ class Header extends React.Component {
 
         <div className="toolbar-default">
           <button className="btn btn-default" onClick={(e) => this.handleOpenFile()}>
-            <span className="icon icon-folder"></span>
-            &nbsp;open
+            <span className="icon icon-folder mgr"></span>
+            open
           </button>
 
-          <button className="btn btn-default" onClick={(e) => this.handleSaveFileAs()} disabled={!existMarkdown}>
-            <span className="icon icon-doc-text"></span>
-            &nbsp;save as
+          <button className={classNames(btnStyle)} onClick={(e) => this.handleSaveFileAs()} disabled={!existMarkdown}>
+            <span className="icon icon-doc-text mgr"></span>
+            save as
           </button>
 
           { this.props.fullscreen &&
