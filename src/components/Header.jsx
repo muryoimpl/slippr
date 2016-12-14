@@ -58,7 +58,6 @@ class Header extends React.Component {
     // TODO: highlight.js の style の選択をしたい
     // TODO: スライド自体のthemeも選択したい
     // TODO: page の縦横比を選択できるとうれしいな
-    // TODO: noto font 使いたいなぁ
 
     const btnStyle = {
       'btn': true,
