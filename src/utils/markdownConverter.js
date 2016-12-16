@@ -7,7 +7,6 @@ export function renderHtmlPreview (markdown) {
 }
 
 export function renderHtmlPage (markdown) {
-  console.log('htmlpage')
   return renderHtml(markdown, 'page')
 }
 
