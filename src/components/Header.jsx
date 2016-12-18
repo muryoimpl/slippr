@@ -66,7 +66,7 @@ class Header extends React.Component {
     }
 
     return (
-      <header className="toolbar toolbar-header">
+      <header id="toolbar" className={`toolbar toolbar-header ${this.props.fullscreen ? 'p-header__hidden' : 'p-header__show'}`}>
         <h1 className="title">{ this.props.filename }</h1>
 
         <div className="toolbar-default">
