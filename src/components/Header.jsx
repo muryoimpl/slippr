@@ -98,7 +98,8 @@ class Header extends React.Component {
 
 Header.propTypes = {
   filename: PropTypes.string,
-  markdown: PropTypes.string
+  markdown: PropTypes.string,
+  fullscreen: PropTypes.bool.isRequired
 }
 
 Header.contextTypes = {
