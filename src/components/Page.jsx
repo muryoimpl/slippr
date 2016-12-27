@@ -20,6 +20,10 @@ class Page extends React.Component {
     document.addEventListener('keydown', this.handleOnKeyDown)
   }
 
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.handleOnKeyDown)
+  }
+
   handleOnKeyDown (event) {
     const { markdownPages, idx } = this.props
 
