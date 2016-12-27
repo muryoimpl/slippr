@@ -1,3 +1,51 @@
 .c-btn__disabled {
   opacity: .5;
 }
+
+.c-btn-group__show {
+  display: block;
+}
+
+.c-btn-group__hidden {
+  display: block;
+  opacity: 0;
+  height: 0;
+  min-height: 0;
+
+  &:hover {
+    transition: all .5s;
+    opacity: 1;
+    min-height: 30px;
+  }
+}
+
+.c-btn-group__disappear {
+  display: block;
+  opacity: 0;
+  height: 0;
+  min-height: 0;
+}
+
+.c-footer-btn-group__hidden {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: all .5s;
+  opacity: 0;
+  border-top: 0;
+  height: .1px;
+  min-height: 0;
+
+  &:hover {
+    transition: all .5s;
+    opacity: 1;
+    min-height: 5%;
+  }
+}
+
+.c-footer-btn__show {
+  width: 5%;
+  height: 100%;
+}
