@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import Header from './Header'
+import Footer from './Footer'
 
 class App extends React.Component {
   render () {
@@ -10,6 +11,7 @@ class App extends React.Component {
         <div className="window-content">
           { this.props.children }
         </div>
+        <Footer />
       </div>
     )
   }

@@ -5,7 +5,15 @@ import { Provider } from 'react-redux'
 import routes from './routes'
 import { configureStore } from './stores'
 
-const initialState = {}
+const initialState = {
+  headers: {
+    fullscreen: false
+  },
+  pages: {
+    markdownPages: [],
+    idx: 0
+  }
+}
 const store = configureStore(initialState)
 
 ReactDOM.render(
