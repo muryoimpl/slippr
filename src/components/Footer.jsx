@@ -43,7 +43,6 @@ class Footer extends React.Component {
     const disabledNextClass = idx === markdownPages.length - 1 ? 'c-btn__disabled' : ''
     const disabledPrevClass = idx === 0 ? 'c-btn__disabled' : ''
 
-    // TODO: hover での背景色表示がうまくいってない
     return (
       <footer className={`toolbar toolbar-footer ${fullscreen ? 'c-footer-btn-group__hidden' : 'c-btn-group__disappear'}`}>
         <button className="c-footer-btn__show" onClick={(e) => this.handlePrevPage()}>
