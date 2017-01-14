@@ -57,7 +57,6 @@ class Header extends React.Component {
     const existMarkdown = !!this.props.markdown
     // TODO: highlight.js の style の選択をしたい
     // TODO: スライド自体のthemeも選択したい
-    // TODO: page の縦横比を選択できるとうれしいな
 
     const btnStyle = {
       'btn': true,
