@@ -19,7 +19,7 @@ class Home extends React.Component {
         <div className="pane">
           <form className="p-editor__pane">
             <div className="form-group p-editor__pane">
-              <textarea className="form-control p-editor__textarea" rows="10" value={markdown} onChange={e => this.handleTextaraChange(e)}></textarea>
+              <textarea className="form-control p-editor__textarea" rows="10" value={markdown} autoFocus="true" onChange={e => this.handleTextaraChange(e)}></textarea>
             </div>
           </form>
         </div>
