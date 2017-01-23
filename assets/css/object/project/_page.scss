@@ -1,4 +1,5 @@
 .p-page {
+  @include reset-css;
   position: relative;
   width: 100%;
   overflow: hidden;
