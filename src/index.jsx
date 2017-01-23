@@ -20,5 +20,5 @@ ReactDOM.render(
   <Provider store={ store }>
     { routes }
   </Provider>,
-  document.getElementById('shamon')
+  document.getElementById('slippr')
 )

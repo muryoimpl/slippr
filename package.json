@@ -1,10 +1,10 @@
 {
-  "name": "shamon",
+  "name": "slippr",
   "version": "0.0.1",
   "description": "markdown presentation app by Electron",
   "main": "main.js",
   "repository": {
-    "url": "https://github.com/muryoimpl/shamon",
+    "url": "https://github.com/muryoimpl/slippr",
     "type": "git"
   },
   "author": "muryoimpl <k-muryoi@esm.co.jp>",
