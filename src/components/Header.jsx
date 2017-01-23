@@ -66,7 +66,9 @@ class Header extends React.Component {
 
     return (
       <header className={`toolbar toolbar-header ${this.props.fullscreen ? 'c-btn-group__hidden' : 'c-btn-group__show'}`}>
-        <h1 className="title">{ this.props.filename }</h1>
+        <h1 className="title">
+          { !this.props.fullscreen && this.props.filename }
+        </h1>
 
         <div className="toolbar-default">
           <button className="btn btn-default" onClick={(e) => this.handleOpenFile()}>
