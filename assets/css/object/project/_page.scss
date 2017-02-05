@@ -1,8 +1,23 @@
+.p-page-preview {
+  @include reset-css;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: $preview-font-size;
+
+  &::before {
+    display: block;
+    padding-top: 75%;
+    content: '';
+  }
+}
+
 .p-page {
   @include reset-css;
   position: relative;
   width: 100%;
   overflow: hidden;
+  font-size: $page-font-size;
 
   &::before {
     display: block;
@@ -26,5 +41,4 @@
   margin: auto;
   width: 90%;
   height: 90%;
-  font-size: 3em;
 }
