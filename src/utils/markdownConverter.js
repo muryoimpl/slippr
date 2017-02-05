@@ -6,10 +6,10 @@ export function renderHtmlPreview (markdown) {
   const md = getMarkdownInstance()
 
   md.renderer.rules.hr = (tokens, index, options) => {
-    return `</div></div><div class="separator"></div><div class="p-page theBridge"><div class="p-page__inner">`
+    return `</div></div><div class="separator"></div><div class="p-page-preview theBridge"><div class="p-page__inner">`
   }
 
-  return md.render(`<div class="p-page theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
+  return md.render(`<div class="p-page-preview theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
 }
 
 export function renderHtmlPage (markdown) {
