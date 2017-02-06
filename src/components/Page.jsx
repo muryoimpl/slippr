@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { ipcRenderer } from 'electron'
 
 import { renderHtmlPage } from '../utils/markdownConverter'
 import * as pageActions from '../actions/page'
+import * as headerActions from '../actions/header'
 
 const KEY_LEFT_ARROW = 37
 const KEY_UP_ARROW = 38
 const KEY_RIGHT_ARROW = 39
 const KEY_DOWN_ARROW = 40
+const KEY_ESCAPE = 27
 
 class Page extends React.Component {
   constructor () {
@@ -37,6 +40,14 @@ class Page extends React.Component {
       const prevIdx = idx - 1
       this.updatePageIndex(prevIdx)
       this.transitionTo(prevIdx)
+    }
+
+    if (event.keyCode === KEY_ESCAPE) {
+      const { store, router } = this.context
+      store.dispatch(headerActions.setFullScreen(false))
+
+      router.push({ pathname: '/' })
+      ipcRenderer.send('normal-screen')
     }
   }
 
