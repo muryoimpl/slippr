@@ -4,13 +4,14 @@ import hljs from 'highlight.js'
 
 export function renderHtmlPreview (markdown) {
   const md = getMarkdownInstance()
+  const dblEvent = "document.getElementById('pv').dataset.index = this.dataset.index; document.getElementById('pv').click();"
 
   md.renderer.rules.hr = (tokens, index, options) => {
     options.idx += 1
-    return `</div></div><div class="separator"></div><div data-index="${options.idx}" class="p-page-preview theBridge"><div class="p-page__inner">`
+    return `</div></div><div class="separator"></div><div data-index="${options.idx}" class="p-page-preview theBridge" ondblclick="${dblEvent}"><div class="p-page__inner">`
   }
 
-  return md.render(`<div data-index="${md.options.idx}" class="p-page-preview theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
+  return md.render(`<div data-index="${md.options.idx}" class="p-page-preview theBridge" ondblclick="${dblEvent}"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
 }
 
 export function renderHtmlPage (markdown) {

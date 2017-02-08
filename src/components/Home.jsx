@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { ipcRenderer } from 'electron'
 
 import * as homeActions from '../actions/home'
+import * as pageActions from '../actions/page'
+import * as headerActions from '../actions/header'
 import { renderHtmlPreview } from '../utils/markdownConverter'
 
 class Home extends React.Component {
@@ -9,6 +12,18 @@ class Home extends React.Component {
     const { store } = this.context
 
     store.dispatch(homeActions.editTextareaValue(e.target.value))
+  }
+
+  handlePreviewClick (e) {
+    const { store, router } = this.context
+    const idx = e.target.dataset.index
+
+    store.dispatch(headerActions.setFullScreen(true))
+    store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
+    store.dispatch(pageActions.updatePageIndex(idx))
+
+    router.push({ pathname: `/pages/${idx}` })
+    ipcRenderer.send('full-screen')
   }
 
   render () {
@@ -25,6 +40,7 @@ class Home extends React.Component {
         </div>
         <div className="pane p-preview">
           <div dangerouslySetInnerHTML={{__html: renderHtmlPreview(markdown)}} />
+          <button data-index id="pv" className="hidden" onClick={e => this.handlePreviewClick(e)}></button>
         </div>
       </div>
     )
@@ -36,7 +52,8 @@ Home.propTypes = {
 }
 
 Home.contextTypes = {
-  store: PropTypes.object
+  store: PropTypes.object,
+  router: PropTypes.object
 }
 
 export default connect((state) => {
