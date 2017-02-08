@@ -6,10 +6,11 @@ export function renderHtmlPreview (markdown) {
   const md = getMarkdownInstance()
 
   md.renderer.rules.hr = (tokens, index, options) => {
-    return `</div></div><div class="separator"></div><div class="p-page-preview theBridge"><div class="p-page__inner">`
+    options.idx += 1
+    return `</div></div><div class="separator"></div><div data-index="${options.idx}" class="p-page-preview theBridge"><div class="p-page__inner">`
   }
 
-  return md.render(`<div class="p-page-preview theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
+  return md.render(`<div data-index="${md.options.idx}" class="p-page-preview theBridge"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
 }
 
 export function renderHtmlPage (markdown) {
@@ -33,5 +34,5 @@ function getMarkdownInstance () {
       }
       return ''
     }
-  }).use(mdEmoji)
+  }).use(mdEmoji).set({ idx: 0 })
 }
