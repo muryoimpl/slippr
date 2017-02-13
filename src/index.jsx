@@ -12,6 +12,9 @@ const initialState = {
   pages: {
     markdownPages: [],
     idx: 0
+  },
+  themes: {
+    selected: 'theBridge'
   }
 }
 const store = configureStore(initialState)

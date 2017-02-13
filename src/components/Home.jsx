@@ -54,7 +54,7 @@ class Home extends React.Component {
   }
 
   render () {
-    const { markdown } = this.props
+    const { markdown, selected } = this.props
 
     return (
       <div className="pane-group">
@@ -74,7 +74,7 @@ class Home extends React.Component {
           </form>
         </div>
         <div className="pane p-preview">
-          <div dangerouslySetInnerHTML={{__html: renderHtmlPreview(markdown)}} />
+          <div dangerouslySetInnerHTML={{__html: renderHtmlPreview(markdown, selected)}} />
           <button data-index id="pv" className="hidden" onClick={e => this.handlePreviewClick(e)}></button>
         </div>
       </div>
@@ -83,7 +83,8 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  markdown: PropTypes.string
+  markdown: PropTypes.string,
+  selected: PropTypes.string
 }
 
 Home.contextTypes = {
@@ -93,6 +94,7 @@ Home.contextTypes = {
 
 export default connect((state) => {
   return {
-    markdown: state.homes.markdown
+    markdown: state.homes.markdown,
+    selected: state.themes.selected
   }
 })(Home)

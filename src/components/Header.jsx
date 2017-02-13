@@ -6,6 +6,7 @@ import { ipcRenderer } from 'electron'
 import * as headerActions from '../actions/header'
 import * as homeActions from '../actions/home'
 import * as pageActions from '../actions/page'
+import Theme from './Theme'
 
 class Header extends React.Component {
   componentDidMount () {
@@ -81,6 +82,8 @@ class Header extends React.Component {
             <span className="icon icon-doc-text mgr"></span>
             save as
           </button>
+
+          <Theme />
 
           { this.props.fullscreen &&
             <button className="btn btn-default pull-right" onClick={(e) => this.handleFullScreen(false)}>
