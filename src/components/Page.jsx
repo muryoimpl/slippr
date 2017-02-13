@@ -75,10 +75,10 @@ class Page extends React.Component {
   }
 
   render () {
-    const { markdownPages, idx } = this.props
+    const { markdownPages, idx, theme } = this.props
 
     return (
-      <div className="p-page theBridge" onKeyDown={(e) => this.handleOnKeyDown}>
+      <div className={`p-page ${theme}`} onKeyDown={(e) => this.handleOnKeyDown}>
         <div className="p-page__inner" dangerouslySetInnerHTML={ {__html: renderHtmlPage(markdownPages[idx])} } />
       </div>
     )
@@ -88,7 +88,8 @@ class Page extends React.Component {
 Page.propTypes = {
   markdown: PropTypes.string,
   markdownPages: PropTypes.array,
-  idx: PropTypes.number
+  idx: PropTypes.number,
+  theme: PropTypes.string
 }
 
 Page.contextTypes = {
@@ -100,6 +101,7 @@ export default connect((state) => {
   return {
     markdown: state.homes.markdown,
     markdownPages: state.pages.markdownPages,
-    idx: state.pages.idx
+    idx: state.pages.idx,
+    theme: state.themes.selected
   }
 })(Page)

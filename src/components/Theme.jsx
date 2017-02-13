@@ -18,7 +18,7 @@ class Theme extends React.Component {
       <select className="form-control p-theme__selectbox" value={selected} onChange={e => this.handleSelectTheme(e)}>
         {ThemeClasses.map((theme) => {
           return (
-            <option value={theme} key={theme}>{theme}</option>
+            <option value={theme} key={theme}>theme: {theme}</option>
           )
         })}
       </select>
