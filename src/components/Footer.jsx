@@ -10,7 +10,6 @@ class Footer extends React.Component {
     if (idx < markdownPages.length - 1) {
       const nextIdx = idx + 1
       this.updatePageIndex(nextIdx)
-      this.transitionTo(nextIdx)
     }
   }
 
@@ -20,7 +19,6 @@ class Footer extends React.Component {
     if (idx > 0) {
       const nextIdx = idx - 1
       this.updatePageIndex(nextIdx)
-      this.transitionTo(nextIdx)
     }
   }
 
@@ -29,13 +27,6 @@ class Footer extends React.Component {
 
     const idxToNumber = Number(idx)
     store.dispatch(pageActions.updatePageIndex(idxToNumber))
-  }
-
-  transitionTo (nextIdx) {
-    const { router } = this.context
-
-    this.updatePageIndex(nextIdx)
-    return router.push({ pathname: `/pages/${nextIdx}` })
   }
 
   render () {

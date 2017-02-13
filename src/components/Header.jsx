@@ -38,7 +38,7 @@ class Header extends React.Component {
     if (eventName === 'full-screen') {
       store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
     }
-    store.dispatch(pageActions.updatePageIndex(0))
+
     this.transitionTo(eventName)
     ipcRenderer.send(eventName)
   }

@@ -20,6 +20,7 @@ class Page extends React.Component {
   }
 
   componentDidMount () {
+    pageActions.updatePageIndex(this.props.params.idx)
     document.addEventListener('keydown', this.handleOnKeyDown)
   }
 
