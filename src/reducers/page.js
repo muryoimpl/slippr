@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import * as Types from '../constants/pages'
+import * as Types from '../constants'
 
 const initialState = Immutable.Map({ idx: 0, markdownPages: [] })
 

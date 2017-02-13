@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import * as Types from '../constants/home'
+import * as Types from '../constants'
 
 const initialState = Immutable.Map({ markdown: '', html: '' })
 

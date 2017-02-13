@@ -1,4 +1,4 @@
-import * as Types from '../constants/pages'
+import * as Types from '../constants'
 
 export function splitMarkdownAsPages (text) {
   const splitMarkdown = text.split(/(?:\*|\-){3,}/)
