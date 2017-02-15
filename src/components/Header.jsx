@@ -49,9 +49,6 @@ class Header extends React.Component {
 
   render () {
     const existMarkdown = !!this.props.markdown
-    // TODO: highlight.js の style の選択をしたい
-    // TODO: スライド自体のthemeも選択したい
-
     const btnStyle = {
       'btn': true,
       'btn-default': true,
