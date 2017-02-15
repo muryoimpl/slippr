@@ -18,7 +18,7 @@ class CodeStyle extends React.Component {
       <select className="form-control p-code-highlight__selectbox" value={selected} onChange={e => this.handleSelectHighlightTheme(e)}>
         {HighlightTheme.map((theme) => {
           return (
-            <option value={theme} key={theme}>highlight theme: {theme}</option>
+            <option value={theme} key={theme}>{theme}</option>
           )
         })}
       </select>

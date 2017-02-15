@@ -84,8 +84,8 @@ class Header extends React.Component {
             save as
           </button>
 
-          <Theme />
-          <CodeStyle />
+          <span className="mgl">theme:</span><Theme />
+          <span className="mgl">highlight:</span><CodeStyle />
 
           { this.props.fullscreen &&
             <button className="btn btn-default pull-right" onClick={(e) => this.handleFullScreen(false)}>
