@@ -32,27 +32,18 @@ class Header extends React.Component {
   }
 
   handleFullScreen (isFullScreen) {
-    const { store } = this.context
+    const { store, router } = this.context
 
     store.dispatch(headerActions.setFullScreen(isFullScreen))
 
-    const eventName = isFullScreen ? 'full-screen' : 'normal-screen'
-    if (eventName === 'full-screen') {
+    if (isFullScreen) {
       store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
-    }
 
-    this.transitionTo(eventName)
-    ipcRenderer.send(eventName)
-  }
-
-  transitionTo (screentype) {
-    const { router } = this.context
-
-    switch (screentype) {
-      case 'full-screen':
-        return router.push({ pathname: '/pages/0' })
-      case 'normal-screen':
-        return router.push({ pathname: '/' })
+      router.push({ pathname: '/pages/0' })
+      ipcRenderer.send('full-screen')
+    } else {
+      router.push({ pathname: '/' })
+      ipcRenderer.send('normal-screen')
     }
   }
 
