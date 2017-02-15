@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { ipcRenderer } from 'electron'
 
 import * as pageActions from '../actions/page'
+import * as headerActions from '../actions/header'
 
 class Footer extends React.Component {
   handleNextPage () {
@@ -29,6 +31,14 @@ class Footer extends React.Component {
     store.dispatch(pageActions.updatePageIndex(idxToNumber))
   }
 
+  handleNormalScreen (isFullScreen) {
+    const { store, router } = this.context
+
+    store.dispatch(headerActions.setFullScreen(isFullScreen))
+    router.push({ pathname: '/' })
+    ipcRenderer.send('normal-screen')
+  }
+
   render () {
     const { markdownPages, idx, fullscreen } = this.props
     const disabledNextClass = idx === markdownPages.length - 1 ? 'c-btn__disabled' : ''
@@ -36,10 +46,15 @@ class Footer extends React.Component {
 
     return (
       <footer className={`toolbar toolbar-footer ${fullscreen ? 'c-footer-btn-group__hidden' : 'c-btn-group__disappear'}`}>
-        <button className="c-footer-btn__show" onClick={(e) => this.handlePrevPage()}>
+        <button className="c-footer-btn__show" onClick={(e) => this.handlePrevPage()} title="Previous page">
           <span className={`icon icon-left ${disabledPrevClass}`}></span>
         </button>
-        <button className="c-footer-btn__show pull-right" onClick={(e) => this.handleNextPage()}>
+
+        <button className="c-footer-btn__center ma" onClick={e => this.handleNormalScreen(e)} title="Finish full screen">
+          <span className="icon icon-down-bold"></span>
+        </button>
+
+        <button className="c-footer-btn__show pull-right" onClick={(e) => this.handleNextPage()} title="Next page">
           <span className={`icon icon-right ${disabledNextClass}`}></span>
         </button>
       </footer>
