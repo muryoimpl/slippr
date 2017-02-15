@@ -93,7 +93,7 @@ class Header extends React.Component {
             </button>
           }
           { !this.props.fullscreen &&
-            <button className="btn btn-default pull-right" onClick={(e) => this.handleFullScreen(true)}>
+            <button className={`${classNames(btnStyle)} pull-right`} onClick={(e) => this.handleFullScreen(true)} disabled={!existMarkdown}>
               <span className="icon icon-resize-full"></span>
             </button>
           }
