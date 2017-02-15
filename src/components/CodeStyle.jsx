@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import { connect } from 'react-redux'
-import { HighlightTheme } from '../constants/themeClass'
+import { HighlightTheme } from '../constants/HightlightClass'
 
 import * as codeStyleActions from '../actions/codeStyle'
 
