@@ -15,6 +15,9 @@ const initialState = {
   },
   themes: {
     selected: 'theBridge'
+  },
+  codeStyles: {
+    selected: 'default'
   }
 }
 const store = configureStore(initialState)

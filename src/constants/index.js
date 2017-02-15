@@ -14,3 +14,6 @@ export const UPDATE_PAGE_INDEX = 'UPDATE_PAGE_INDEX'
 
 // theme
 export const SELECT_THEME = 'SELECT_THEME'
+
+// codeStyle
+export const SELECT_HIGHLIGHT_THEME = 'SELECT_HIGHLIGHT_THEME'
