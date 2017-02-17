@@ -33,13 +33,11 @@ class Page extends React.Component {
 
     if (this.isNextPageKey(event.keyCode) && idx < markdownPages.length - 1) {
       const nextIdx = idx + 1
-      this.updatePageIndex(nextIdx)
       this.transitionTo(nextIdx)
     }
 
     if (this.isPrevPageKey(event.keyCode) && idx > 0) {
       const prevIdx = idx - 1
-      this.updatePageIndex(prevIdx)
       this.transitionTo(prevIdx)
     }
 
