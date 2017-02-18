@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
+import ProgressBar from './ProgressBar'
 import { renderHtmlPage } from '../utils/markdownConverter'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
+import * as progressBarActions from '../actions/progressBar'
 
 const KEY_LEFT_ARROW = 37
 const KEY_UP_ARROW = 38
@@ -21,6 +23,7 @@ class Page extends React.Component {
 
   componentDidMount () {
     this.updatePageIndex(this.props.params.idx)
+    this.updateProgress(this.props.params.idx)
     document.addEventListener('keydown', this.handleOnKeyDown)
   }
 
@@ -33,11 +36,13 @@ class Page extends React.Component {
 
     if (this.isNextPageKey(event.keyCode) && idx < markdownPages.length - 1) {
       const nextIdx = idx + 1
+      this.updateProgress(nextIdx)
       this.transitionTo(nextIdx)
     }
 
     if (this.isPrevPageKey(event.keyCode) && idx > 0) {
       const prevIdx = idx - 1
+      this.updateProgress(prevIdx)
       this.transitionTo(prevIdx)
     }
 
@@ -53,8 +58,14 @@ class Page extends React.Component {
   updatePageIndex (idx) {
     const { store } = this.context
 
-    const idxToNumber = Number(idx)
-    store.dispatch(pageActions.updatePageIndex(idxToNumber))
+    store.dispatch(pageActions.updatePageIndex(Number(idx)))
+  }
+
+  updateProgress (idx) {
+    const { store } = this.context
+    const { markdownPages } = this.props
+
+    store.dispatch(progressBarActions.updateProgress(Number(idx), markdownPages.length))
   }
 
   transitionTo (nextIdx) {
@@ -78,6 +89,7 @@ class Page extends React.Component {
     return (
       <div className={`p-page ${theme}`} onKeyDown={(e) => this.handleOnKeyDown}>
         <div className="p-page__inner" dangerouslySetInnerHTML={ {__html: renderHtmlPage(markdownPages[idx])} } />
+        <ProgressBar />
       </div>
     )
   }

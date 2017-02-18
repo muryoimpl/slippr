@@ -17,3 +17,7 @@ export const SELECT_THEME = 'SELECT_THEME'
 
 // codeStyle
 export const SELECT_HIGHLIGHT_THEME = 'SELECT_HIGHLIGHT_THEME'
+
+// progressBar
+export const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
+export const MAXIMUM_PROGRESS = 100
