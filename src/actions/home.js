@@ -1,4 +1,4 @@
-import * as Types from '../constants'
+import * as Types from '../constants/actions'
 
 export function setMarkdownText (text) {
   return { type: Types.SET_MARKDOWN_TEXT, markdown: text }

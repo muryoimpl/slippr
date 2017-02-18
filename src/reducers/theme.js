@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import * as Types from '../constants'
+import * as Types from '../constants/actions'
 
 const initialState = Immutable.Map({ selected: 'theBridge' })
 
