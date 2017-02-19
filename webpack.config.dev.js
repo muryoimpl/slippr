@@ -1,17 +1,19 @@
+require('babel-polyfill')
+
 const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
   target: 'electron',
 
-  entry: [
-    'babel-polyfill',
-    path.resolve(__dirname, 'src/index.jsx')
-  ],
+  entry: {
+    'app': path.resolve(__dirname, 'src/index.jsx'),
+    'child': path.resolve(__dirname, 'src/child.jsx')
+  },
 
   output: {
     path: path.resolve(__dirname),
-    filename: './dist/app.bundle.js'
+    filename: './dist/[name].bundle.js'
   },
 
   module: {
