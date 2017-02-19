@@ -45,6 +45,10 @@ class Header extends React.Component {
     }
   }
 
+  handleOpenChildWindow (e) {
+    ipcRenderer.send('open-child-window')
+  }
+
   render () {
     const existMarkdown = !!this.props.markdown
     const btnStyle = {
@@ -70,16 +74,23 @@ class Header extends React.Component {
             save as
           </button>
 
-          { this.props.fullscreen &&
-            <button className="btn btn-default pull-right" onClick={(e) => this.handleFullScreen(false)}>
-              <span className="icon icon-resize-small"></span>
+          <div className="pull-right">
+            <button className="btn btn-default mgr-one-btn" onClick={(e) => this.handleOpenChildWindow(e)} title="Open timer">
+              <span className="icon icon-clock mgr"></span>
+              open timer
             </button>
-          }
-          { !this.props.fullscreen &&
-            <button className={`${classNames(btnStyle)} pull-right`} onClick={(e) => this.handleFullScreen(true)} disabled={!existMarkdown}>
-              <span className="icon icon-resize-full"></span>
-            </button>
-          }
+
+            { this.props.fullscreen &&
+              <button className="btn btn-default" onClick={(e) => this.handleFullScreen(false)} title="Normal screen">
+                <span className="icon icon-resize-small"></span>
+              </button>
+            }
+            { !this.props.fullscreen &&
+              <button className={`${classNames(btnStyle)}`} onClick={(e) => this.handleFullScreen(true)} disabled={!existMarkdown} title="Full screen">
+                <span className="icon icon-resize-full"></span>
+              </button>
+            }
+          </div>
         </div>
       </header>
     )

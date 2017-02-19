@@ -5,7 +5,7 @@ const fs = require('fs')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
-let mainWindow
+let mainWindow, childWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -75,8 +75,19 @@ function createWindow () {
     mainWindow.setFullScreen(false)
   })
 
+  ipcMain.on('open-child-window', (event, arg) => {
+    if (!childWindow || childWindow.isDestroyed()) {
+      childWindow = new BrowserWindow({ parent: mainWindow })
+      childWindow.loadURL(`file://${__dirname}/child.html`)
+      childWindow.show()
+    } else {
+      childWindow.show()
+    }
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
+    childWindow = null
   })
 }
 
