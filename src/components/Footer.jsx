@@ -50,7 +50,7 @@ class Footer extends React.Component {
           <span className={`icon icon-left ${disabledPrevClass}`}></span>
         </button>
 
-        <button className="c-footer-btn__center ma" onClick={e => this.handleNormalScreen(e)} title="Finish full screen">
+        <button className="c-footer-btn__center ma" onClick={e => this.handleNormalScreen(false)} title="Finish full screen">
           <span className="icon icon-down-bold"></span>
         </button>
 
