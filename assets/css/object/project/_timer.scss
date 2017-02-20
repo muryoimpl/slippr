@@ -1,0 +1,25 @@
+.p-timer {
+  background-color: $gray;
+  width: 100%;
+}
+
+.p-timer__time {
+  width: 100%;
+  text-align: center;
+}
+
+.p-timer__input {
+  width: 200px;
+}
+
+.p-timer__display {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  font-size: 12em;
+  font-weight: bold;
+}
+
+.p-timer__start {
+  margin-left: 15%;
+}

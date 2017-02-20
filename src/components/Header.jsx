@@ -75,7 +75,7 @@ class Header extends React.Component {
           </button>
 
           <div className="pull-right">
-            <button className="btn btn-default mgr-one-btn" onClick={(e) => this.handleOpenChildWindow(e)} title="Open timer">
+            <button className={`${classNames(btnStyle)} mgr-one-btn`} onClick={(e) => this.handleOpenChildWindow(e)} title="Open timer" disabled={!existMarkdown}>
               <span className="icon icon-clock mgr"></span>
               open timer
             </button>
