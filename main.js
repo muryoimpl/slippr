@@ -77,7 +77,7 @@ function createWindow () {
 
   ipcMain.on('open-child-window', (event, arg) => {
     if (!childWindow || childWindow.isDestroyed()) {
-      childWindow = new BrowserWindow({ parent: mainWindow })
+      childWindow = new BrowserWindow({ parent: mainWindow, resizable: true })
       childWindow.loadURL(`file://${__dirname}/child.html`)
       childWindow.show()
     } else {
