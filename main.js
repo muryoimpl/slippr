@@ -30,7 +30,6 @@ function createWindow () {
 
     dialog.showOpenDialog(mainWindow, options, (filenames) => {
       if (filenames) {
-        console.log(filenames[0])
         fs.readFile(filenames[0], 'utf8', (error, text) => {
           if (error != null) {
             console.log('error: ' + error)
@@ -55,7 +54,6 @@ function createWindow () {
 
     dialog.showSaveDialog(mainWindow, options, (filename) => {
       if (filename) {
-        console.log(filename)
         fs.writeFile(filename, arg.markdown, 'utf8', (error) => {
           if (error) {
             console.log('error: ' + error)
