@@ -4,13 +4,13 @@ export function zeroPad (value) {
 
 export function convertTimeToNumber (timeValue) {
   const time = String(timeValue).split(':')
-  return time.length === 2 ? time.map(e => Number(e)) : [0, 0]
+  return time.length === 3 ? time.map(e => Number(e)) : [0, 0, 0]
 }
 
-export function timerCalculator (minutes, seconds) {
-  if (minutes === 0 && seconds === 0) return [minutes, seconds]
-  if (minutes > 0 && seconds === 0) return [minutes - 1, 59]
+export function timerCalculator (hours, minutes, seconds) {
+  if (seconds > 0) return [hours, minutes, seconds - 1]
+  if (minutes > 0 && seconds === 0) return [hours, minutes - 1, 59]
+  if (hours > 0 && minutes === 0 && seconds === 0) return [hours - 1, 59, 59]
 
-  if (minutes === 0 && seconds > 0) return [minutes, seconds - 1]
-  if (minutes > 0 && seconds > 0) return [minutes, seconds - 1]
+  return [hours, minutes, seconds]
 }

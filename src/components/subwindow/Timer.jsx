@@ -18,8 +18,10 @@ class Timer extends React.Component {
   handleTimerStart (e) {
     e.preventDefault()
 
-    const intervalId = setInterval(() => this.tick(), 1000)
-    this.context.store.dispatch(timerActions.startTimer(intervalId))
+    if (this.props.limit.split(':').length === 3) {
+      const intervalId = setInterval(() => this.tick(), 1000)
+      this.context.store.dispatch(timerActions.startTimer(intervalId))
+    }
   }
 
   handleTimerStop (e) {
@@ -30,22 +32,24 @@ class Timer extends React.Component {
 
   tick () {
     const { store } = this.context
-    const { minutes, seconds, intervalId } = this.props
+    const { hours, minutes, seconds, intervalId } = this.props
 
-    if (minutes === 0 && seconds === 0) {
+    if (hours === 0 && minutes === 0 && seconds === 0) {
       store.dispatch(timerActions.stopTimer(intervalId))
     } else {
-      store.dispatch(timerActions.runTicker(minutes, seconds))
+      store.dispatch(timerActions.runTicker(hours, minutes, seconds))
     }
   }
 
   render () {
-    const { limit, minutes, seconds, started } = this.props
+    const { limit, hours, minutes, seconds, started } = this.props
+
+    const isLimitInvalid = limit.split(':').length !== 3
 
     return (
       <div className="p-timer">
         <div className="p-timer__display">
-          {zeroPad(minutes)}:{zeroPad(seconds)}
+          {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
         </div>
 
         <form className="p-timer__time mgl">
@@ -59,10 +63,12 @@ class Timer extends React.Component {
               onChange={e => this.handleChangeValue(e)}
               autoFocus="true"
               disabled={started}
+              ref="limit"
+              step="1"
             />
             <button className="btn btn-default mgl" onClick={e => this.handleTimerReset(e)} disabled={started}>RESET</button>
             <button className="btn btn-negative mgl" onClick={e => this.handleTimerStop(e)} disabled={!started}>STOP</button>
-            <button className="btn btn-primary mgl p-timer__start" onClick={e => this.handleTimerStart(e)} disabled={started}>START</button>
+            <button className="btn btn-primary mgl p-timer__start" onClick={e => this.handleTimerStart(e)} disabled={started || isLimitInvalid}>START</button>
           </div>
         </form>
       </div>
@@ -72,6 +78,7 @@ class Timer extends React.Component {
 
 Timer.propTypes = {
   limit: PropTypes.string,
+  hours: PropTypes.number,
   minutes: PropTypes.number,
   seconds: PropTypes.number,
   started: PropTypes.bool,
@@ -85,6 +92,7 @@ Timer.contextTypes = {
 export default connect((state) => {
   return {
     limit: state.timers.limit,
+    hours: state.timers.hours,
     minutes: state.timers.minutes,
     seconds: state.timers.seconds,
     started: state.timers.started,

@@ -12,8 +12,9 @@ let time = convertTimeToNumber(Settings.DEFAULT_TIMER_VALUE)
 const initialState = {
   timers: {
     limit: Settings.DEFAULT_TIMER_VALUE,
-    minutes: Number(time[0]),
-    seconds: Number(time[1]),
+    hours: time[0],
+    minutes: time[1],
+    seconds: time[2],
     started: false,
     intervalId: null
   }

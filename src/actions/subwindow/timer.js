@@ -7,15 +7,15 @@ export function resetTimer () {
 
 export function changeValue (value) {
   const time = convertTimeToNumber(value)
-  return { type: Types.CHANGE_VALUE, limit: value, minutes: time[0], seconds: time[1] }
+  return { type: Types.CHANGE_VALUE, limit: value, hours: time[0], minutes: time[1], seconds: time[2] }
 }
 
 export function startTimer (intervalId) {
   return { type: Types.START_TIMER, intervalId: intervalId }
 }
 
-export function runTicker (minutes, seconds) {
-  return { type: Types.RUN_TICKER, minutes: minutes, seconds: seconds }
+export function runTicker (hours, minutes, seconds) {
+  return { type: Types.RUN_TICKER, hours: hours, minutes: minutes, seconds: seconds }
 }
 
 export function stopTimer (intervalId) {
