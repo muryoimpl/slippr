@@ -13,7 +13,9 @@ const initialState = {
   timers: {
     limit: Settings.DEFAULT_TIMER_VALUE,
     minutes: Number(time[0]),
-    seconds: Number(time[1])
+    seconds: Number(time[1]),
+    started: false,
+    intervalId: null
   }
 }
 
