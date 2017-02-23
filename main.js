@@ -83,6 +83,10 @@ function createWindow () {
     }
   })
 
+  ipcMain.on('alert-time-limit', (event, arg) => {
+    mainWindow.webContents.send('blink-page')
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
     childWindow = null

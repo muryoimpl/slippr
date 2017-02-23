@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { ipcRenderer } from 'electron'
 
 import * as timerActions from '../../actions/subwindow/timer'
 import { zeroPad } from '../../utils/timeConverter'
@@ -36,6 +37,7 @@ class Timer extends React.Component {
 
     if (hours === 0 && minutes === 0 && seconds === 0) {
       store.dispatch(timerActions.stopTimer(intervalId))
+      ipcRenderer.send('alert-time-limit')
     } else {
       store.dispatch(timerActions.runTicker(hours, minutes, seconds))
     }

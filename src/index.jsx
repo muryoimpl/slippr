@@ -11,7 +11,8 @@ const initialState = {
   },
   pages: {
     markdownPages: [],
-    idx: 0
+    idx: 0,
+    blink: false
   },
   themes: {
     selected: 'theBridge'

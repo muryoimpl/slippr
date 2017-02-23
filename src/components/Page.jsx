@@ -22,9 +22,19 @@ class Page extends React.Component {
   }
 
   componentDidMount () {
+    const { store } = this.context
+
     this.updatePageIndex(this.props.params.idx)
     this.updateProgress(this.props.params.idx)
     document.addEventListener('keydown', this.handleOnKeyDown)
+
+    ipcRenderer.on('blink-page', (_event) => {
+      store.dispatch(pageActions.startBlinkPage())
+
+      setTimeout(() => {
+        store.dispatch(pageActions.stopBlinkPage())
+      }, 5000)
+    })
   }
 
   componentWillUnmount () {
@@ -84,10 +94,10 @@ class Page extends React.Component {
   }
 
   render () {
-    const { markdownPages, idx, theme } = this.props
+    const { markdownPages, idx, theme, blink } = this.props
 
     return (
-      <div className={`p-page ${theme}`} onKeyDown={(e) => this.handleOnKeyDown}>
+      <div className={`p-page ${theme} ${blink ? 'p-page__blink' : ''}`} onKeyDown={(e) => this.handleOnKeyDown}>
         <div className="p-page__inner" dangerouslySetInnerHTML={ {__html: renderHtmlPage(markdownPages[idx])} } />
         <ProgressBar />
       </div>
@@ -99,7 +109,8 @@ Page.propTypes = {
   markdown: PropTypes.string,
   markdownPages: PropTypes.array,
   idx: PropTypes.number,
-  theme: PropTypes.string
+  theme: PropTypes.string,
+  blink: PropTypes.bool
 }
 
 Page.contextTypes = {
@@ -112,6 +123,7 @@ export default connect((state) => {
     markdown: state.homes.markdown,
     markdownPages: state.pages.markdownPages,
     idx: state.pages.idx,
-    theme: state.themes.selected
+    theme: state.themes.selected,
+    blink: state.pages.blink
   }
 })(Page)
