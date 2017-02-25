@@ -73,8 +73,12 @@ class Timer extends React.Component {
               step="1"
             />
             <button className="btn btn-default mgl" onClick={e => this.handleTimerReset(e)} disabled={started}>RESET</button>
-            <button className="btn btn-negative mgl" onClick={e => this.handleTimerStop(e)} disabled={!started}>STOP</button>
-            <button className="btn btn-primary mgl p-timer__start" onClick={e => this.handleTimerStart(e)} disabled={started || isLimitInvalid}>START</button>
+            { !started &&
+              <button className="btn btn-primary mgl p-timer__start" onClick={e => this.handleTimerStart(e)}>START</button>
+            }
+            { started &&
+              <button className="btn btn-negative mgl" onClick={e => this.handleTimerStop(e)}>STOP</button>
+            }
           </div>
         </form>
       </div>
