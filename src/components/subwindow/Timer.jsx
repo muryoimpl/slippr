@@ -37,10 +37,14 @@ class Timer extends React.Component {
 
     if (hours === 0 && minutes === 0 && seconds === 0) {
       store.dispatch(timerActions.stopTimer(intervalId))
-      ipcRenderer.send('alert-time-limit')
+      this.notifyTimeIsUp()
     } else {
       store.dispatch(timerActions.runTicker(hours, minutes, seconds))
     }
+  }
+
+  notifyTimeIsUp () {
+    ipcRenderer.send('alert-time-limit')
   }
 
   render () {
