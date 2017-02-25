@@ -17,11 +17,17 @@ class Page extends React.Component {
   }
 
   componentDidMount () {
-    const { store } = this.context
-
     this.updatePageIndex(this.props.params.idx)
-    this.updateProgress(this.props.params.idx)
+    this.registerIpcEvents()
     document.addEventListener('keydown', this.handleOnKeyDown)
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.handleOnKeyDown)
+  }
+
+  registerIpcEvents () {
+    const { store } = this.context
 
     ipcRenderer.on('blink-page', (_event) => {
       store.dispatch(pageActions.startBlinkPage())
@@ -32,44 +38,33 @@ class Page extends React.Component {
     })
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.handleOnKeyDown)
+  handleOnKeyDown (event) {
+    this.handleKeyAction(event.keyCode)
   }
 
-  handleOnKeyDown (event) {
+  handleKeyAction (keyCode) {
     const { markdownPages, idx } = this.props
 
-    if (this.isNextPageKey(event.keyCode) && idx < markdownPages.length - 1) {
+    if (this.isNextPageKey(keyCode) && idx < markdownPages.length - 1) {
       const nextIdx = idx + 1
-      this.updateProgress(nextIdx)
       this.transitionTo(nextIdx)
     }
 
-    if (this.isPrevPageKey(event.keyCode) && idx > 0) {
+    if (this.isPrevPageKey(keyCode) && idx > 0) {
       const prevIdx = idx - 1
-      this.updateProgress(prevIdx)
       this.transitionTo(prevIdx)
     }
 
-    if (event.keyCode === keyCodeConst.ESCAPE) {
-      const { store, router } = this.context
-      store.dispatch(headerActions.setFullScreen(false))
-
-      router.push({ pathname: '/' })
-      ipcRenderer.send('normal-screen')
+    if (keyCode === keyCodeConst.ESCAPE) {
+      this.backToHome()
     }
   }
 
   updatePageIndex (idx) {
     const { store } = this.context
-
-    store.dispatch(pageActions.updatePageIndex(Number(idx)))
-  }
-
-  updateProgress (idx) {
-    const { store } = this.context
     const { markdownPages } = this.props
 
+    store.dispatch(pageActions.updatePageIndex(Number(idx)))
     store.dispatch(progressBarActions.updateProgress(Number(idx), markdownPages.length))
   }
 
@@ -86,6 +81,14 @@ class Page extends React.Component {
 
   isPrevPageKey (keyCode) {
     return keyCode === keyCodeConst.LEFT_ARROW || keyCode === keyCodeConst.UP_ARROW
+  }
+
+  backToHome () {
+    const { store, router } = this.context
+
+    store.dispatch(headerActions.setFullScreen(false))
+    router.push({ pathname: '/' })
+    ipcRenderer.send('normal-screen')
   }
 
   render () {
