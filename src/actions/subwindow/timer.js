@@ -21,3 +21,7 @@ export function runTicker (hours, minutes, seconds) {
 export function stopTimer (intervalId) {
   return { type: Types.STOP_TIMER, intervalId: intervalId }
 }
+
+export function clearTimer () {
+  return { type: Types.CLEAR_TIMER }
+}

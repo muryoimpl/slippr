@@ -29,6 +29,8 @@ export default function timers (state = initialState, action) {
     case Types.STOP_TIMER:
       clearInterval(action.intervalId)
       return Immutable.fromJS(state).merge({ intevalId: null, started: false }).toJS()
+    case Types.CLEAR_TIMER:
+      return Immutable.fromJS(state).merge({ limit: Settings.TIMER_CLEARED_VALUE, hours: 0, minutes: 0, seconds: 0 }).toJS()
     default:
       return state
   }

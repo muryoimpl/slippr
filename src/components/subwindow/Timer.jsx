@@ -16,6 +16,12 @@ class Timer extends React.Component {
     this.context.store.dispatch(timerActions.resetTimer())
   }
 
+  handleClearTimer (e) {
+    e.preventDefault()
+
+    this.context.store.dispatch(timerActions.clearTimer())
+  }
+
   handleTimerStart (e) {
     e.preventDefault()
 
@@ -73,8 +79,9 @@ class Timer extends React.Component {
               step="1"
             />
             <button className="btn btn-default mgl" onClick={e => this.handleTimerReset(e)} disabled={started}>RESET</button>
+            <button className="btn btn-default mgl" onClick={e => this.handleClearTimer(e)} disabled={started}>Clear</button>
             { !started &&
-              <button className="btn btn-primary mgl p-timer__start" onClick={e => this.handleTimerStart(e)}>START</button>
+              <button className="btn btn-primary mgl p-timer__start" onClick={e => this.handleTimerStart(e)} disabled={isLimitInvalid}>START</button>
             }
             { started &&
               <button className="btn btn-negative mgl" onClick={e => this.handleTimerStop(e)}>STOP</button>
