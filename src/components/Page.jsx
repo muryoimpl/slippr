@@ -81,11 +81,11 @@ class Page extends React.Component {
   }
 
   isNextPageKey (pressedKeyCode) {
-    return pressedKeyCode === keyCode.RIGHT_ARROW || pressedKeyCode === keyCode.KEY_UP_ARROW
+    return pressedKeyCode === keyCode.RIGHT_ARROW || pressedKeyCode === keyCode.DOWN_ARROW
   }
 
   isPrevPageKey (pressedKeyCode) {
-    return pressedKeyCode === keyCode.LEFT_ARROW || pressedKeyCode === keyCode.DOWN_ARROW
+    return pressedKeyCode === keyCode.LEFT_ARROW || pressedKeyCode === keyCode.UP_ARROW
   }
 
   render () {
