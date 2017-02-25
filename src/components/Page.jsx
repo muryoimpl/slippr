@@ -36,6 +36,10 @@ class Page extends React.Component {
         store.dispatch(pageActions.stopBlinkPage())
       }, 5000)
     })
+
+    ipcRenderer.on('transition-page', (_event, json) => {
+      this.handleKeyAction(json.keyCode)
+    })
   }
 
   handleOnKeyDown (event) {

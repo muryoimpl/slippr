@@ -87,6 +87,10 @@ function createWindow () {
     mainWindow.webContents.send('blink-page')
   })
 
+  ipcMain.on('transition-page', (event, arg) => {
+    mainWindow.webContents.send('transition-page', { keyCode: arg.keyCode })
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
     childWindow = null
