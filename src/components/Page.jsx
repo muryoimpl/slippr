@@ -7,7 +7,7 @@ import { renderHtmlPage } from '../utils/markdownConverter'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
 import * as progressBarActions from '../actions/progressBar'
-import * as keyCode from '../constants/keyCode'
+import * as keyCodeConst from '../constants/keyCode'
 
 class Page extends React.Component {
   constructor () {
@@ -51,7 +51,7 @@ class Page extends React.Component {
       this.transitionTo(prevIdx)
     }
 
-    if (event.keyCode === keyCode.ESCAPE) {
+    if (event.keyCode === keyCodeConst.ESCAPE) {
       const { store, router } = this.context
       store.dispatch(headerActions.setFullScreen(false))
 
@@ -80,12 +80,12 @@ class Page extends React.Component {
     return router.push({ pathname: `/pages/${nextIdx}` })
   }
 
-  isNextPageKey (pressedKeyCode) {
-    return pressedKeyCode === keyCode.RIGHT_ARROW || pressedKeyCode === keyCode.DOWN_ARROW
+  isNextPageKey (keyCode) {
+    return keyCode === keyCodeConst.RIGHT_ARROW || keyCode === keyCodeConst.DOWN_ARROW
   }
 
-  isPrevPageKey (pressedKeyCode) {
-    return pressedKeyCode === keyCode.LEFT_ARROW || pressedKeyCode === keyCode.UP_ARROW
+  isPrevPageKey (keyCode) {
+    return keyCode === keyCodeConst.LEFT_ARROW || keyCode === keyCodeConst.UP_ARROW
   }
 
   render () {
