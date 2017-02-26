@@ -31,8 +31,11 @@
 .silverSurfer,
 .returnToAir,
 .ice {
-  text-shadow: 0 3px 7px $txt-shadow-white;
   color: $txt-black;
+
+  h1, h2, h3, h4, h5 {
+    text-shadow: 0 3px 7px $txt-shadow-white;
+  }
 }
 
 .blueHour,
@@ -51,6 +54,9 @@
 .graphite,
 .cosmos,
 .comet {
-  text-shadow: 0 3px 7px $txt-shadow-black;
   color: $txt-white;
+
+  h1, h2, h3, h4, h5 {
+    text-shadow: 0 3px 7px $txt-shadow-black;
+  }
 }
