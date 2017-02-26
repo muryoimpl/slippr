@@ -1,8 +1,16 @@
-# 1
+# 1 ページ目のタイトル
+
+account or name: ○○○○○○○
 
 ----
 
-# 2
+<h2 class="title-header">2nd page title h2 tag</h2>
+
+あいうえおかきくけこさしすせそなにぬねのはひふへほまみむめもやゆよらりるれろ
+わをん
+
+アイウエオカキクケコサシスセソナニヌネノハヒフヘホマミムメモヤユヨラリルレロ
+ワオン
 
 ```ruby
 class Foo
@@ -12,9 +20,23 @@ class Foo
 end
 ```
 
------
+---
 
-# 3
+## aaaaaa
+
+- foo 
+- bar
+
+1. hoge
+2. fuga
+
+**bold**
+*italic*
+
+
+---
+
+<h4 class="title-header"> 4th title h4 tag</h3>
 
 ```js
 class App extends React.Component {
