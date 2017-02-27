@@ -2,6 +2,7 @@ const electron = require('electron')
 const { dialog, ipcMain } = require('electron')
 const fs = require('fs')
 
+const Menu = electron.Menu
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
@@ -75,8 +76,10 @@ function createWindow () {
 
   ipcMain.on('open-child-window', (event, arg) => {
     if (!childWindow || childWindow.isDestroyed()) {
+      const menu = Menu.buildFromTemplate([{}])
       childWindow = new BrowserWindow({ frame: true, resizable: true })
       childWindow.loadURL(`file://${__dirname}/child.html`)
+      childWindow.setMenu(menu)
       childWindow.show()
     } else {
       childWindow.show()
