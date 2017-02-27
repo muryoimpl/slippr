@@ -35,6 +35,22 @@
   }
 
   h5 {
-    font-size: 1em;
+    font-size: 1.5em;
+  }
+
+  ul, ol {
+    //margin-right: 2em;
+    //margin-left: 2em;
+    margin: .5em 2em;
+    width: 75%;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-right: 2em;
+    margin-left: 2em;
+    width: 90%;
+    font-size: 1.5rem;
   }
 }
