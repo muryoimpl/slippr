@@ -6,6 +6,7 @@ import { ipcRenderer } from 'electron'
 import * as headerActions from '../actions/header'
 import * as homeActions from '../actions/home'
 import PageButtons from '../components/PageButtons'
+import * as styleHandler from '../utils/styleHandler'
 
 class Header extends React.Component {
   componentDidMount () {
@@ -31,11 +32,7 @@ class Header extends React.Component {
 
   render () {
     const existMarkdown = !!this.props.markdown
-    const btnStyle = {
-      'btn': true,
-      'btn-default': true,
-      'c-btn__disabled': !existMarkdown
-    }
+    const btnStyle = styleHandler.buttonDisabledStyle(existMarkdown)
 
     return (
       <header className={`toolbar toolbar-header ${this.props.fullscreen ? 'hidden' : 'c-btn-group__show'}`}>

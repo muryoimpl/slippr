@@ -4,6 +4,7 @@ import { ipcRenderer } from 'electron'
 
 import * as headerActions from '../actions/header'
 import * as pageActions from '../actions/page'
+import * as styleHandler from '../utils/styleHandler'
 
 export default class PageButtons extends React.Component {
   handleFullScreen (isFullScreen) {
@@ -28,11 +29,7 @@ export default class PageButtons extends React.Component {
 
   render () {
     const { existMarkdown } = this.props
-    const btnStyle = {
-      'btn': true,
-      'btn-default': true,
-      'c-btn__disabled': !existMarkdown
-    }
+    const btnStyle = styleHandler.buttonDisabledStyle(existMarkdown)
 
     return (
       <div className="pull-right">
