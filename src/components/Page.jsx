@@ -6,8 +6,7 @@ import ProgressBar from './ProgressBar'
 import { renderHtmlPage } from '../utils/markdownConverter'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
-import * as progressBarActions from '../actions/progressBar'
-import * as keyCodeConst from '../constants/keyCode'
+import * as keyCodeChecker from '../utils/keyCodeChecker'
 
 class Page extends React.Component {
   constructor () {
@@ -49,17 +48,17 @@ class Page extends React.Component {
   handleKeyAction (keyCode) {
     const { markdownPages, idx } = this.props
 
-    if (this.isNextPageKey(keyCode) && idx < markdownPages.length - 1) {
+    if (keyCodeChecker.isNextPageKey(keyCode) && idx < markdownPages.length - 1) {
       const nextIdx = idx + 1
       this.transitionTo(nextIdx)
     }
 
-    if (this.isPrevPageKey(keyCode) && idx > 0) {
+    if (keyCodeChecker.isPrevPageKey(keyCode) && idx > 0) {
       const prevIdx = idx - 1
       this.transitionTo(prevIdx)
     }
 
-    if (keyCode === keyCodeConst.ESCAPE) {
+    if (keyCodeChecker.isEscapeKey(keyCode)) {
       this.backToHome()
     }
   }
@@ -69,7 +68,7 @@ class Page extends React.Component {
     const { markdownPages } = this.props
 
     store.dispatch(pageActions.updatePageIndex(Number(idx)))
-    store.dispatch(progressBarActions.updateProgress(Number(idx), markdownPages.length))
+    store.dispatch(pageActions.updateProgress(Number(idx), markdownPages.length))
   }
 
   transitionTo (nextIdx) {
@@ -77,14 +76,6 @@ class Page extends React.Component {
 
     this.updatePageIndex(nextIdx)
     return router.push({ pathname: `/pages/${nextIdx}` })
-  }
-
-  isNextPageKey (keyCode) {
-    return keyCode === keyCodeConst.RIGHT_ARROW || keyCode === keyCodeConst.DOWN_ARROW
-  }
-
-  isPrevPageKey (keyCode) {
-    return keyCode === keyCodeConst.LEFT_ARROW || keyCode === keyCodeConst.UP_ARROW
   }
 
   backToHome () {
@@ -96,12 +87,12 @@ class Page extends React.Component {
   }
 
   render () {
-    const { markdownPages, idx, theme, blink } = this.props
+    const { markdownPages, idx, theme, blink, progress } = this.props
 
     return (
       <div className={`p-page ${theme} ${blink ? 'p-page__blink' : ''}`} onKeyDown={(e) => this.handleOnKeyDown}>
         <div className="p-page__inner" dangerouslySetInnerHTML={ {__html: renderHtmlPage(markdownPages[idx])} } />
-        <ProgressBar />
+        <ProgressBar progress={progress} />
       </div>
     )
   }
@@ -112,7 +103,8 @@ Page.propTypes = {
   markdownPages: PropTypes.array,
   idx: PropTypes.number,
   theme: PropTypes.string,
-  blink: PropTypes.bool
+  blink: PropTypes.bool,
+  progress: PropTypes.number
 }
 
 Page.contextTypes = {
@@ -126,6 +118,7 @@ export default connect((state) => {
     markdownPages: state.pages.markdownPages,
     idx: state.pages.idx,
     theme: state.themes.selected,
-    blink: state.pages.blink
+    blink: state.pages.blink,
+    progress: state.pages.progress
   }
 })(Page)
