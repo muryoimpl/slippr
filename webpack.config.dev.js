@@ -1,5 +1,3 @@
-require('babel-polyfill')
-
 const webpack = require('webpack')
 const path = require('path')
 
