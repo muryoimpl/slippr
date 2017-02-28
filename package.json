@@ -24,7 +24,7 @@
     "immutable": "^3.8.1",
     "markdown-it": "^8.1.0",
     "markdown-it-emoji": "^1.3.0",
-    "node-sass": "^3.13.0",
+    "node-sass": "^4.5.0",
     "photon": "https://github.com/connors/photon",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
