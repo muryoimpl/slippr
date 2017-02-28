@@ -10,11 +10,12 @@ import CodeStyle from './CodeStyle'
 class DesignSelectors extends React.Component {
   handleFullScreen (isFullScreen) {
     const { store, router } = this.context
+    const { markdown } = this.props
 
     store.dispatch(headerActions.setFullScreen(isFullScreen))
 
     if (isFullScreen) {
-      store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
+      store.dispatch(pageActions.splitMarkdownAsPages(markdown))
 
       router.push({ pathname: '/pages/0' })
       ipcRenderer.send('full-screen')
@@ -25,8 +26,10 @@ class DesignSelectors extends React.Component {
   }
 
   render () {
+    const { fullscreen } = this.props
+
     return (
-      <header className={`toolbar toolbar-header ${this.props.fullscreen ? 'hidden' : 'c-btn-group__show'}`}>
+      <header className={`toolbar toolbar-header ${fullscreen ? 'hidden' : 'c-btn-group__show'}`}>
         <div className="toolbar-default">
           <span className="mgl">theme:</span><Theme />
           <span className="mgl">highlight:</span><CodeStyle />

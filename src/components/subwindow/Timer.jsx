@@ -7,34 +7,39 @@ import { zeroPad } from '../../utils/timeConverter'
 
 class Timer extends React.Component {
   handleChangeValue (e) {
-    this.context.store.dispatch(timerActions.changeValue(e.target.value))
+    const { store } = this.context
+    store.dispatch(timerActions.changeValue(e.target.value))
   }
 
   handleTimerReset (e) {
     e.preventDefault()
-
-    this.context.store.dispatch(timerActions.resetTimer())
+    const { store } = this.context
+    store.dispatch(timerActions.resetTimer())
   }
 
   handleClearTimer (e) {
     e.preventDefault()
-
-    this.context.store.dispatch(timerActions.clearTimer())
+    const { store } = this.context
+    store.dispatch(timerActions.clearTimer())
   }
 
   handleTimerStart (e) {
     e.preventDefault()
+    const { store } = this.context
+    const { limit } = this.props
 
-    if (this.props.limit.split(':').length === 3) {
+    if (limit.split(':').length === 3) {
       const intervalId = setInterval(() => this.tick(), 1000)
-      this.context.store.dispatch(timerActions.startTimer(intervalId))
+      store.dispatch(timerActions.startTimer(intervalId))
     }
   }
 
   handleTimerStop (e) {
     e.preventDefault()
+    const { store } = this.context
+    const { intervalId } = this.props
 
-    this.context.store.dispatch(timerActions.stopTimer(this.props.intervalId))
+    store.dispatch(timerActions.stopTimer(intervalId))
   }
 
   tick () {
@@ -55,7 +60,6 @@ class Timer extends React.Component {
 
   render () {
     const { limit, hours, minutes, seconds, started } = this.props
-
     const isLimitInvalid = limit.split(':').length !== 3
 
     return (
@@ -75,7 +79,6 @@ class Timer extends React.Component {
               onChange={e => this.handleChangeValue(e)}
               autoFocus="true"
               disabled={started}
-              ref="limit"
               step="1"
             />
             <button className="btn btn-default mgl" onClick={e => this.handleTimerReset(e)} disabled={started}>RESET</button>
