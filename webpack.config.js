@@ -1,7 +1,10 @@
 const webpack = require('webpack')
+const merge = require('webpack-merge')
 const path = require('path')
 
-module.exports = {
+const nodeEnv = process.env.NODE_ENV
+
+const common = {
   target: 'electron-renderer',
 
   entry: {
@@ -31,11 +34,34 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json']
   },
 
-  devtool: 'inline-source-map',
-
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
+}
+
+if (nodeEnv === 'production') {
+  module.exports = merge.smart(common, {
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    ]
+  })
+} else {
+  module.exports = merge.smart(common, {
+    devtool: 'inline-source-map',
+
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('development')
+      })
+    ]
+  })
 }
