@@ -7,8 +7,8 @@
 
   &::before {
     display: block;
-    padding-top: 75%;
     content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
   }
 
   .hljs {
@@ -25,8 +25,8 @@
 
   &::before {
     display: block;
-    padding-top: 75%;
     content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
   }
 
   .hljs {

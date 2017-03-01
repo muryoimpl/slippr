@@ -22,21 +22,21 @@ end
 
 ---
 
-## aaaaaa
+## 3ページ目のタイトルです :see_no_evil:
 
-- foo 
-- bar
+- Enable to use emoji like this, ex) `:see_no_evil:`
+- 絵文字は GitHub と同じようにして使えます `:see_no_evil:` :see_no_evil:
 
-1. hoge
-2. fuga
+1. :tada::tada::tada::tada::tada::tada::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball:
+2. :christmas_tree::santa::gift::christmas_tree::santa::gift::christmas_tree::santa::gift::christmas_tree::santa::gift:
 
-**bold**
-*italic*
+**bold strings**
+*italic strings*
 
 
 ---
 
-<h4 class="title-header"> 4th title h4 tag</h3>
+<h4 class=""> 4th page h4 tag</h3>
 
 ```js
 class App extends React.Component {
