@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it'
 import mdEmoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
+import emojify from 'emojify.js'
 
 export function renderHtmlPreview (markdown, theme) {
   const md = getMarkdownInstance()
@@ -11,13 +12,18 @@ export function renderHtmlPreview (markdown, theme) {
     return (`</div></div><div class="p-preview__separator"></div><div data-index="${options.idx}" class="p-page-preview ${theme}" ondblclick="${dblEvent}"><div class="p-page__inner">`)
   }
 
-  return md.render(`<div data-index="${md.options.idx}" class="p-page-preview ${theme}" ondblclick="${dblEvent}"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`)
+  return md.render(emojifyInstance().replace(`<div data-index="${md.options.idx}" class="p-page-preview ${theme}" ondblclick="${dblEvent}"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`))
 }
 
 export function renderHtmlPage (markdown) {
   const md = getMarkdownInstance()
 
-  return md.render(markdown)
+  return md.render(emojifyInstance().replace(markdown))
+}
+
+function emojifyInstance () {
+  emojify.setConfig({img_dir: 'assets/images/emoji'})
+  return emojify
 }
 
 function getMarkdownInstance () {
