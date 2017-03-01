@@ -8,15 +8,11 @@
   }
 }
 
-// FIXME: change them proper value
 @mixin slide-page {
   h1,h2,h3,h4,h5 {
     font-weight: bold;
   }
-  // TODO: vw で書き直しかな？
-  // TODO:: http://coliss.com/articles/build-websites/operation/css/font-size-used-responsive-scales.html
-  // TODO: http://codepen.io/nicetransition/pen/OyRwKq
-  // TODO: https://github.com/modularscale/modularscale-sass#responsive-scales
+
   h1 {
     text-align: center;
     font-size: 4em;
@@ -39,8 +35,6 @@
   }
 
   ul, ol {
-    //margin-right: 2em;
-    //margin-left: 2em;
     margin: .5em 2em;
     width: 75%;
     font-size: 1.8em;
