@@ -1,6 +1,4 @@
 .p-aspect-ratio__selectbox {
-  margin: auto 2px;
-  padding: 2px 6px;
+  @include selectbox;
   width: 5%;
-  font-size: 12px;
 }
