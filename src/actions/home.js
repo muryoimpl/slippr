@@ -5,5 +5,9 @@ export function setMarkdownText (text) {
 }
 
 export function editTextareaValue (text) {
-  return { type: Types.EDIT_TEXTAREA_VALUE, markdown: text }
+  return (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: Types.EDIT_TEXTAREA_VALUE, markdown: text })
+    })
+  }
 }
