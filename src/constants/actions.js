@@ -22,3 +22,6 @@ export const SELECT_HIGHLIGHT_THEME = 'SELECT_HIGHLIGHT_THEME'
 
 // progressBar
 export const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
+
+// aspectRatio
+export const SELECT_RATIO = 'SELECT_RATIO'

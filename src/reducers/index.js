@@ -5,13 +5,15 @@ import headers from './header'
 import pages from './page'
 import themes from './theme'
 import codeStyles from './codeStyle'
+import aspectRatio from './aspectRatio'
 
 const rootReducer = combineReducers({
   headers,
   homes,
   pages,
   themes,
-  codeStyles
+  codeStyles,
+  aspectRatio
 })
 
 export default rootReducer

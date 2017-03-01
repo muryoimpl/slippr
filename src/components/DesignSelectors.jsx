@@ -6,6 +6,7 @@ import * as headerActions from '../actions/header'
 import * as pageActions from '../actions/page'
 import Theme from './Theme'
 import CodeStyle from './CodeStyle'
+import AspectRatio from './AspectRatio'
 
 class DesignSelectors extends React.Component {
   handleFullScreen (isFullScreen) {
@@ -31,6 +32,7 @@ class DesignSelectors extends React.Component {
     return (
       <header className={`toolbar toolbar-header ${fullscreen ? 'hidden' : 'c-btn-group__show'}`}>
         <div className="toolbar-default">
+          <span className="mgl">aspect ratio</span><AspectRatio />
           <span className="mgl">theme:</span><Theme />
           <span className="mgl">highlight:</span><CodeStyle />
         </div>

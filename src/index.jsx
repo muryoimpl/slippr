@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 import routes from './routes'
 import { configureStore } from './stores'
+import * as Settings from './constants/settings'
 
 const initialState = {
   headers: {
@@ -20,6 +21,9 @@ const initialState = {
   },
   codeStyles: {
     selected: 'default'
+  },
+  aspectRatio: {
+    ratio: Settings.ASPECT_RATIO[0].value
   }
 }
 const store = configureStore(initialState)
