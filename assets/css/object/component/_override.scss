@@ -3,3 +3,21 @@
     opacity: .3;
   }
 }
+
+.emoji {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  margin-bottom: -0.25em;
+  background-size: contain;
+}
+
+h1,h2,h3,h4,h5 {
+  .emoji {
+    width: .9em !important;
+    height: .9em !important;
+    display: inline-block !important;
+    margin-bottom: .2em !important;
+    background-size: contain !important;
+  }
+}
