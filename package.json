@@ -25,6 +25,7 @@
     "electron": "^1.4.4",
     "emojify.js": "^1.1.0",
     "highlight.js": "^9.8.0",
+    "horsey": "^4.2.2",
     "immutable": "^3.8.1",
     "markdown-it": "^8.1.0",
     "markdown-it-emoji": "^1.3.0",
