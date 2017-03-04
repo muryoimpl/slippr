@@ -22,7 +22,7 @@ export function renderHtmlPage (markdown) {
 }
 
 function emojifyInstance () {
-  emojify.setConfig({img_dir: 'assets/images/emoji'})
+  emojify.setConfig({img_dir: 'assets/images/emoji', ignore_emoticons: true})
   return emojify
 }
 
