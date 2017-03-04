@@ -41,3 +41,4 @@ app.bundle.js
 dist
 
 assets/images/emoji/*
+src/constants/emojiConst.js

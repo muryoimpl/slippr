@@ -6,8 +6,13 @@ import * as homeActions from '../actions/home'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
 import { renderHtmlPreview } from '../utils/markdownConverter'
+import { registerEmojiSuggestion } from '../utils/emojiSuggestion'
 
 class Home extends React.Component {
+  componentDidMount () {
+    registerEmojiSuggestion()
+  }
+
   handleTextaraChange (e) {
     const { store } = this.context
 

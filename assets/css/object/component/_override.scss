@@ -4,20 +4,28 @@
   }
 }
 
-.emoji {
-  width: 1.5em;
-  height: 1.5em;
-  display: inline-block;
-  margin-bottom: -0.25em;
-  background-size: contain;
+.p-page__inner {
+  h1,h2,h3,h4,h5 {
+    .emoji {
+      display: inline-block;
+      margin-bottom: .2em;
+      background-size: contain;
+      width: .9em;
+      height: .9em;
+    }
+  }
+
+  p,span,li,ol,ul,article,section {
+    .emoji {
+      display: inline-block;
+      margin-bottom: -.25em;
+      background-size: contain;
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
 }
 
-h1,h2,h3,h4,h5 {
-  .emoji {
-    width: .9em !important;
-    height: .9em !important;
-    display: inline-block !important;
-    margin-bottom: .2em !important;
-    background-size: contain !important;
-  }
+.sey-char {
+  font-size: 1.2em;
 }
