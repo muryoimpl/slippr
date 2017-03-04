@@ -8,7 +8,7 @@ export function registerEmojiSuggestion () {
       list: emojiList
     }],
     getText: 'text',
-    getValue: (s) => `:${s.text}:`,
+    getValue: (source) => `:${source.text}:`,
     renderItem: function (li, suggestion) {
       const img = `<img class="p-editor__emoji-candidate" src="assets/images/emoji/${suggestion.text}.png" />`
       li.innerHTML = `${img}${suggestion.text}`
@@ -17,7 +17,7 @@ export function registerEmojiSuggestion () {
     blankSearch: false,
     noMatches: null,
     anchor: ':',
-    debouce: 10,
+    debouce: 5,
     cache: {
       duration: true
     }
