@@ -14,10 +14,12 @@
     "lint": "eslint --ext .jsx, .js --color",
     "scss": "node-sass --source-map-embed assets/css/main.scss dist/main.css",
     "postcss": "postcss --use autoprefixer -o dist/main.css dist/main.css",
-    "build": "yarn run scss && yarn run postcss && yarn run image && webpack --progress --color --config webpack.config.js",
     "image": "rm -rf assets/images/emoji && mkdir -p assets/images/emoji && cp -rf ./node_modules/emojify.js/dist/images/basic/** ./assets/images/emoji/",
-    "start": "yarn run scss && yarn run postcss && yarn run image && webpack --progress --color --config webpack.config.js && yarn run electron",
-    "release:build": "yarn run scss && yarn run postcss && yarn run image && NODE_ENV=production webpack --progress --color --config webpack.config.js"
+    "generate": "node tasks/emojiConst.js",
+    "prepare": "yarn run scss && yarn run postcss && yarn run image && yarn run generate",
+    "build": "yarn run prepare && webpack --progress --color --config webpack.config.js",
+    "start": "yarn run build && yarn run electron",
+    "release:build": "yarn run prepare && NODE_ENV=production webpack --progress --color --config webpack.config.js"
   },
   "dependencies": {
     "babel": "^6.23.0",
