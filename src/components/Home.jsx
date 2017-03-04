@@ -1,13 +1,37 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import horsey from 'horsey'
 
 import * as homeActions from '../actions/home'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
 import { renderHtmlPreview } from '../utils/markdownConverter'
+import { emojiList } from '../constants/emojiConst'
 
 class Home extends React.Component {
+  componentDidMount () {
+    horsey(document.querySelector('textarea#markdown-textarea'), {
+      source: [{
+        list: emojiList
+      }],
+      getText: 'text',
+      getValue: (s) => `:${s.text}:`,
+      renderItem: function (li, suggestion) {
+        const img = `<img class="p-editor__emoji-candidate" src="assets/images/emoji/${suggestion.text}.png" />`
+        li.innerHTML = `${img}${suggestion.text}`
+      },
+      limit: 5,
+      blankSearch: false,
+      noMatches: null,
+      anchor: ':',
+      debouce: 20,
+      cache: {
+        duration: true
+      }
+    })
+  }
+
   handleTextaraChange (e) {
     const { store } = this.context
 
