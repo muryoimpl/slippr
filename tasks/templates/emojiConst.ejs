@@ -1,0 +1,10 @@
+export const emojiList = [
+<% emojiFiles.forEach((file, idx) => { -%>
+<% const name = file.replace(/\.png/, '')  -%>
+<% if (idx + 1 === emojiFiles.length) { -%>
+  { text: '<%= name %>' }
+<% } else { -%>
+  { text: '<%= name %>' },
+<% } -%>
+<% }) -%>
+]
