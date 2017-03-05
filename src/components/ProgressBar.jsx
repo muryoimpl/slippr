@@ -7,7 +7,10 @@ const ProgressBar = React.createClass({
     const { progress } = this.props
 
     return (
-      <progress className="p-progress-bar" max={Settings.MAXIMUM_PROGRESS} value={progress}></progress>
+      <div className="p-proggress-area">
+        <span className="p-progress-icon-area" style={{width: `${progress}%`}}><img src="assets/images/emoji/koko.png" className="p-progress-icon" /></span>
+        <progress className="p-progress-bar" max={Settings.MAXIMUM_PROGRESS} value={progress}></progress>
+      </div>
     )
   }
 })
