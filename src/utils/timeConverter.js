@@ -4,7 +4,13 @@ export function zeroPad (value) {
 
 export function convertTimeToNumber (timeValue) {
   const time = String(timeValue).split(':')
-  return time.length === 3 ? time.map(e => Number(e)) : [0, 0, 0]
+
+  const filled = time.concat([0, 0])
+  const ret = filled.map((elm) => {
+    return elm ? Number(elm) : 0
+  })
+
+  return ret.slice(0, 3)
 }
 
 export function timerCalculator (hours, minutes, seconds) {
