@@ -5,13 +5,17 @@ export function setTotalSeconds (totalSeconds) {
 }
 
 export function setElapsedIntervalId (intervalId) {
-  return { type: Types.SET_INTERVAL_ID, intervalId: intervalId }
+  return { type: Types.SET_ELAPSED_INTERVAL_ID, intervalId: intervalId }
 }
 
-export function updateElapsedSeconds () {
-  return { type: Types.UPDATE_ELAPSED_SECONDS }
+export function updateElapsedSeconds (elapsedSeconds) {
+  return { type: Types.UPDATE_ELAPSED_SECONDS, elapsedSeconds: elapsedSeconds }
 }
 
 export function updateProgress (progress, totalSize) {
   return { type: Types.UPDATE_PROGRESS, index: progress, size: totalSize }
+}
+
+export function stopElapsedTimeRunning (intervalId) {
+  return { type: Types.STOP_ELAPSED_TIME_RUNNING, intervalId: intervalId }
 }

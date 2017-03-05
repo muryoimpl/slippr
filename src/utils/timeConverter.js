@@ -15,6 +15,10 @@ export function timerCalculator (hours, minutes, seconds) {
   return [hours, minutes, seconds]
 }
 
-export function calcTimeProgress (elapsedTime, totalSeconds) {
-  return (totalSeconds / 100 * elapsedTime)
+export function calcTimeProgress (elapsedSeconds, totalSeconds) {
+  return elapsedSeconds / totalSeconds * 100
+}
+
+export function calcTotalSeconds (hours, minutes, seconds) {
+  return hours * (60 * 60) + minutes * 60 + seconds
 }

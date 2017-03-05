@@ -19,14 +19,22 @@ class ProgressBar extends React.Component {
       const intervalId = setInterval(() => this.tick(), 1000)
       store.dispatch(progressBarActions.setElapsedIntervalId(intervalId))
     })
+
+    ipcRenderer.on('stop-timer-in-page', (_event, json) => {
+      store.dispatch(progressBarActions.stopElapsedTimeRunning(this.props.intervalId))
+    })
   }
 
   tick () {
     const { store } = this.context
-    const { totalSeconds, elapsedSeconds } = this.props
+    const { totalSeconds, elapsedSeconds, intervalId } = this.props
 
     if (totalSeconds > elapsedSeconds) {
-      store.dispatch(progressBarActions.updateElapsedSeconds())
+      store.dispatch(progressBarActions.updateElapsedSeconds(elapsedSeconds))
+    }
+
+    if (totalSeconds !== 0 && totalSeconds === elapsedSeconds) {
+      store.dispatch(progressBarActions.stopElapsedTimeRunning(intervalId))
     }
   }
 
@@ -36,7 +44,9 @@ class ProgressBar extends React.Component {
     return (
       <div className="p-proggress-area">
         <span className="p-progress-icon-area" style={{width: `${progress}%`}}><img src="assets/images/emoji/koko.png" className="p-progress-icon" /></span>
-        <span className="p-progress-icon-area" style={{width: `${calcTimeProgress(elapsedSeconds, totalSeconds)}%`}}><img src="assets/images/emoji/hourglass_flowing_sand.png" className="p-progress-icon" /></span>
+        { totalSeconds !== 0 &&
+          <span className="p-progress-icon-area" style={{width: `${calcTimeProgress(elapsedSeconds, totalSeconds)}%`}}><img src="assets/images/emoji/hourglass_flowing_sand.png" className="p-progress-icon" /></span>
+        }
         <progress className="p-progress-bar" max={Settings.MAXIMUM_PROGRESS} value={progress}></progress>
       </div>
     )

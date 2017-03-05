@@ -94,6 +94,14 @@ function createWindow () {
     mainWindow.webContents.send('transition-page', { keyCode: arg.keyCode })
   })
 
+  ipcMain.on('send-total-seconds', (event, arg) => {
+    mainWindow.webContents.send('start-timer-in-page', { totalSeconds: arg.totalSeconds })
+  })
+
+  ipcMain.on('stop-timer-in-page', (event, arg) => {
+    mainWindow.webContents.send('stop-timer-in-page')
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
     childWindow = null

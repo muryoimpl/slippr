@@ -28,7 +28,8 @@ const initialState = {
   progressBar: {
     progress: 0,
     elapsedSeconds: 0,
-    totalSeconds: 0
+    totalSeconds: 0,
+    intervalId: null
   }
 }
 const store = configureStore(initialState)
