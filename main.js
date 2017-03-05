@@ -17,7 +17,7 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-  if (process.env.NODE_ENV === 'development') {
+  if (!process.env.NODE_ENV) {
     mainWindow.webContents.openDevTools()
   }
 
@@ -80,6 +80,9 @@ function createWindow () {
       childWindow = new BrowserWindow({ frame: true, resizable: true })
       childWindow.loadURL(`file://${__dirname}/child.html`)
       childWindow.setMenu(menu)
+      if (!process.env.NODE_ENV) {
+        childWindow.webContents.openDevTools()
+      }
       childWindow.show()
     } else {
       childWindow.show()
@@ -92,6 +95,14 @@ function createWindow () {
 
   ipcMain.on('transition-page', (event, arg) => {
     mainWindow.webContents.send('transition-page', { keyCode: arg.keyCode })
+  })
+
+  ipcMain.on('send-total-seconds', (event, arg) => {
+    mainWindow.webContents.send('start-timer-in-page', { totalSeconds: arg.totalSeconds })
+  })
+
+  ipcMain.on('stop-timer-in-page', (event, arg) => {
+    mainWindow.webContents.send('stop-timer-in-page')
   })
 
   mainWindow.on('closed', () => {

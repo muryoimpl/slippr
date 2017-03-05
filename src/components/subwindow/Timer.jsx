@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
 import * as timerActions from '../../actions/subwindow/timer'
-import { zeroPad } from '../../utils/timeConverter'
+import { zeroPad, calcTotalSeconds } from '../../utils/timeConverter'
 
 class Timer extends React.Component {
   handleChangeValue (e) {
@@ -29,6 +29,7 @@ class Timer extends React.Component {
     const { limit } = this.props
 
     if (limit.split(':').length === 3) {
+      this.sendTotalSeconds()
       const intervalId = setInterval(() => this.tick(), 1000)
       store.dispatch(timerActions.startTimer(intervalId))
     }
@@ -39,6 +40,7 @@ class Timer extends React.Component {
     const { store } = this.context
     const { intervalId } = this.props
 
+    this.stopTimerInPage()
     store.dispatch(timerActions.stopTimer(intervalId))
   }
 
@@ -56,6 +58,15 @@ class Timer extends React.Component {
 
   notifyTimeIsUp () {
     ipcRenderer.send('alert-time-limit')
+  }
+
+  sendTotalSeconds () {
+    const { hours, minutes, seconds } = this.props
+    ipcRenderer.send('send-total-seconds', { totalSeconds: calcTotalSeconds(hours, minutes, seconds) })
+  }
+
+  stopTimerInPage () {
+    ipcRenderer.send('stop-timer-in-page')
   }
 
   render () {
