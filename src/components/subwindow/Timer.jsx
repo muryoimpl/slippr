@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
 import * as timerActions from '../../actions/subwindow/timer'
-import { zeroPad, calcTotalSeconds } from '../../utils/timeConverter'
+import { zeroPad, calcTotalSeconds, convertTimeToNumber } from '../../utils/timeConverter'
 
 class Timer extends React.Component {
   handleChangeValue (e) {
@@ -28,7 +28,7 @@ class Timer extends React.Component {
     const { store } = this.context
     const { limit } = this.props
 
-    if (limit.split(':').length === 3) {
+    if (convertTimeToNumber(limit).length === 3) {
       this.sendTotalSeconds()
       const intervalId = setInterval(() => this.tick(), 1000)
       store.dispatch(timerActions.startTimer(intervalId))
@@ -71,7 +71,8 @@ class Timer extends React.Component {
 
   render () {
     const { limit, hours, minutes, seconds, started } = this.props
-    const isLimitInvalid = limit.split(':').length !== 3
+    // const isLimitInvalid = limit.split(':').length !== 3
+    const isLimitInvalid = (convertTimeToNumber(limit).length !== 3)
 
     return (
       <div className="p-timer">
