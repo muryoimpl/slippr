@@ -16,7 +16,3 @@ export function startBlinkPage () {
 export function stopBlinkPage () {
   return { type: Types.STOP_BLINK_PAGE }
 }
-
-export function updateProgress (progress, totalSize) {
-  return { type: Types.UPDATE_PROGRESS, index: progress, size: totalSize }
-}

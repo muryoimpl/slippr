@@ -6,6 +6,7 @@ import ProgressBar from './ProgressBar'
 import { renderHtmlPage } from '../utils/markdownConverter'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
+import * as progressBarActions from '../actions/progressBar'
 import * as keyCodeChecker from '../utils/keyCodeChecker'
 
 class Page extends React.Component {
@@ -68,7 +69,7 @@ class Page extends React.Component {
     const { markdownPages } = this.props
 
     store.dispatch(pageActions.updatePageIndex(Number(idx)))
-    store.dispatch(pageActions.updateProgress(Number(idx), markdownPages.length))
+    store.dispatch(progressBarActions.updateProgress(Number(idx), markdownPages.length))
   }
 
   transitionTo (nextIdx) {
@@ -87,12 +88,12 @@ class Page extends React.Component {
   }
 
   render () {
-    const { markdownPages, idx, theme, blink, progress } = this.props
+    const { markdownPages, idx, theme, blink } = this.props
 
     return (
       <div className={`p-page ${theme} ${blink ? 'p-page__blink' : ''}`} onKeyDown={(e) => this.handleOnKeyDown}>
         <div className="p-page__inner" dangerouslySetInnerHTML={ {__html: renderHtmlPage(markdownPages[idx])} } />
-        <ProgressBar progress={progress} />
+        <ProgressBar />
       </div>
     )
   }
@@ -103,8 +104,7 @@ Page.propTypes = {
   markdownPages: PropTypes.array,
   idx: PropTypes.number,
   theme: PropTypes.string,
-  blink: PropTypes.bool,
-  progress: PropTypes.number
+  blink: PropTypes.bool
 }
 
 Page.contextTypes = {
@@ -118,7 +118,6 @@ export default connect((state) => {
     markdownPages: state.pages.markdownPages,
     idx: state.pages.idx,
     theme: state.themes.selected,
-    blink: state.pages.blink,
-    progress: state.pages.progress
+    blink: state.pages.blink
   }
 })(Page)
