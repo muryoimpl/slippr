@@ -6,6 +6,7 @@ import pages from './page'
 import themes from './theme'
 import codeStyles from './codeStyle'
 import aspectRatio from './aspectRatio'
+import progressBar from './progressBar'
 
 const rootReducer = combineReducers({
   headers,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   pages,
   themes,
   codeStyles,
-  aspectRatio
+  aspectRatio,
+  progressBar
 })
 
 export default rootReducer

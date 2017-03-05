@@ -14,3 +14,7 @@ export function timerCalculator (hours, minutes, seconds) {
 
   return [hours, minutes, seconds]
 }
+
+export function calcTimeProgress (elapsedTime, totalSeconds) {
+  return (totalSeconds / 100 * elapsedTime)
+}

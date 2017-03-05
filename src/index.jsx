@@ -24,6 +24,11 @@ const initialState = {
   },
   aspectRatio: {
     ratio: Settings.ASPECT_RATIO[0].value
+  },
+  progressBar: {
+    progress: 0,
+    elapsedSeconds: 0,
+    totalSeconds: 0
   }
 }
 const store = configureStore(initialState)

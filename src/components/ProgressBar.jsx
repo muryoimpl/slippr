@@ -1,22 +1,64 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { ipcRenderer } from 'electron'
 
 import * as Settings from '../constants/settings'
+import { calcTimeProgress } from '../utils/timeConverter'
+import * as progressBarActions from '../actions/progressBar'
 
-const ProgressBar = React.createClass({
+class ProgressBar extends React.Component {
+  componentDidMount () {
+    this.registerIpcEvents()
+  }
+
+  registerIpcEvents () {
+    const { store } = this.context
+
+    ipcRenderer.on('start-timer-in-page', (_event, json) => {
+      store.dispatch(progressBarActions.setTotalSeconds(json.totalSeconds))
+      const intervalId = setInterval(() => this.tick(), 1000)
+      store.dispatch(progressBarActions.setElapsedIntervalId(intervalId))
+    })
+  }
+
+  tick () {
+    const { store } = this.context
+    const { totalSeconds, elapsedSeconds } = this.props
+
+    if (totalSeconds > elapsedSeconds) {
+      store.dispatch(progressBarActions.updateElapsedSeconds())
+    }
+  }
+
   render () {
-    const { progress } = this.props
+    const { progress, elapsedSeconds, totalSeconds } = this.props
 
     return (
       <div className="p-proggress-area">
         <span className="p-progress-icon-area" style={{width: `${progress}%`}}><img src="assets/images/emoji/koko.png" className="p-progress-icon" /></span>
+        <span className="p-progress-icon-area" style={{width: `${calcTimeProgress(elapsedSeconds, totalSeconds)}%`}}><img src="assets/images/emoji/hourglass_flowing_sand.png" className="p-progress-icon" /></span>
         <progress className="p-progress-bar" max={Settings.MAXIMUM_PROGRESS} value={progress}></progress>
       </div>
     )
   }
-})
-
-ProgressBar.propTypes = {
-  progress: PropTypes.number
 }
 
-export default ProgressBar
+ProgressBar.propTypes = {
+  progress: PropTypes.number,
+  elapsedSeconds: PropTypes.number,
+  totalSeconds: PropTypes.number,
+  intervalId: PropTypes.node
+}
+
+ProgressBar.contextTypes = {
+  store: PropTypes.object
+}
+
+export default connect((state) => {
+  return {
+    progress: state.progressBar.progress,
+    elapsedSeconds: state.progressBar.elapsedSeconds,
+    totalSeconds: state.progressBar.totalSeconds,
+    intervalId: state.progressBar.intervalId
+  }
+})(ProgressBar)
