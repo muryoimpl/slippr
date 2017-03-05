@@ -17,7 +17,7 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-  if (process.env.NODE_ENV === 'development') {
+  if (!process.env.NODE_ENV) {
     mainWindow.webContents.openDevTools()
   }
 
@@ -80,6 +80,9 @@ function createWindow () {
       childWindow = new BrowserWindow({ frame: true, resizable: true })
       childWindow.loadURL(`file://${__dirname}/child.html`)
       childWindow.setMenu(menu)
+      if (!process.env.NODE_ENV) {
+        childWindow.webContents.openDevTools()
+      }
       childWindow.show()
     } else {
       childWindow.show()
