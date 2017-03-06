@@ -16,3 +16,7 @@ export function startBlinkPage () {
 export function stopBlinkPage () {
   return { type: Types.STOP_BLINK_PAGE }
 }
+
+export function clearPages () {
+  return { type: Types.CLEAR_PAGES }
+}
