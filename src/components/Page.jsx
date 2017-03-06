@@ -47,6 +47,7 @@ class Page extends React.Component {
   }
 
   handleKeyAction (keyCode) {
+    const { store } = this.context
     const { markdownPages, idx } = this.props
 
     if (keyCodeChecker.isNextPageKey(keyCode) && idx < markdownPages.length - 1) {
@@ -60,6 +61,7 @@ class Page extends React.Component {
     }
 
     if (keyCodeChecker.isEscapeKey(keyCode)) {
+      store.dispatch(pageActions.clearPages())
       this.backToHome()
     }
   }
