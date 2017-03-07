@@ -40,6 +40,10 @@ class Home extends React.Component {
     const { store, router } = this.context
     const idx = e.target.dataset.index
 
+    if (!this.props.markdown) {
+      return false
+    }
+
     store.dispatch(headerActions.setFullScreen(true))
     store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
 
