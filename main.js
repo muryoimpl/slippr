@@ -90,19 +90,27 @@ function createWindow () {
   })
 
   ipcMain.on('alert-time-limit', (event, arg) => {
-    mainWindow.webContents.send('blink-page')
+    if (mainWindow) {
+      mainWindow.webContents.send('blink-page')
+    }
   })
 
   ipcMain.on('transition-page', (event, arg) => {
-    mainWindow.webContents.send('transition-page', { keyCode: arg.keyCode })
+    if (mainWindow) {
+      mainWindow.webContents.send('transition-page', { keyCode: arg.keyCode })
+    }
   })
 
   ipcMain.on('send-total-seconds', (event, arg) => {
-    mainWindow.webContents.send('start-timer-in-page', { totalSeconds: arg.totalSeconds })
+    if (mainWindow) {
+      mainWindow.webContents.send('start-timer-in-page', { totalSeconds: arg.totalSeconds })
+    }
   })
 
   ipcMain.on('stop-timer-in-page', (event, arg) => {
-    mainWindow.webContents.send('stop-timer-in-page')
+    if (mainWindow) {
+      mainWindow.webContents.send('stop-timer-in-page')
+    }
   })
 
   mainWindow.on('closed', () => {
