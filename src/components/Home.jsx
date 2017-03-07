@@ -13,6 +13,21 @@ class Home extends React.Component {
     if (!document.querySelector('.sey-container')) {
       registerEmojiSuggestion()
     }
+
+    const dom = document.querySelector('.pane.p-preview')
+    dom.addEventListener('drop', this.disableEvent)
+    dom.addEventListener('dragover', this.disableEvent)
+  }
+
+  componentWillUnmount (e) {
+    const dom = document.querySelector('.pane.p-preview')
+    dom.removeEventListener('drop', this.disableEvent)
+    dom.removeEventListener('dragover', this.disableEvent)
+  }
+
+  disableEvent (e) {
+    e.preventDefault()
+    return false
   }
 
   handleTextaraChange (e) {
