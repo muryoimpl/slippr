@@ -36,6 +36,17 @@
   h1, h2, h3, h4, h5 {
     text-shadow: 0 3px 7px $txt-shadow-white;
   }
+
+  a {
+    &:link, &:visited, &:hover, &:active {
+      color: $txt-black;
+    }
+
+    &:hover {
+      opacity: .5;
+      cursor: pointer;
+    }
+  }
 }
 
 .blueHour,
@@ -58,5 +69,16 @@
 
   h1, h2, h3, h4, h5 {
     text-shadow: 0 3px 7px $txt-shadow-black;
+  }
+
+  a {
+    &:link, &:visited, &:hover, &:active {
+      color: $txt-white;
+    }
+
+    &:hover {
+      opacity: .5;
+      cursor: pointer;
+    }
   }
 }
