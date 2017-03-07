@@ -10,7 +10,9 @@ import { registerEmojiSuggestion } from '../utils/emojiSuggestion'
 
 class Home extends React.Component {
   componentDidMount () {
-    registerEmojiSuggestion()
+    if (!document.querySelector('.sey-container')) {
+      registerEmojiSuggestion()
+    }
   }
 
   handleTextaraChange (e) {
