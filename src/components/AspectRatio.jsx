@@ -3,11 +3,22 @@ import { connect } from 'react-redux'
 
 import * as ratioActions from '../actions/aspectRatio'
 import * as Settings from '../constants/settings'
+import * as storage from '../utils/localStorage'
 
 class AspectRatio extends React.Component {
+  componentDidMount () {
+    const { store } = this.context
+
+    const previousSelected = storage.get('ratio')
+    if (previousSelected) {
+      store.dispatch(ratioActions.selectRatio(previousSelected))
+    }
+  }
+
   handleSelectRatio (e) {
     const { store } = this.context
 
+    storage.set('ratio', e.target.value)
     store.dispatch(ratioActions.selectRatio(e.target.value))
   }
 

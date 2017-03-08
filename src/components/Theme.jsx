@@ -3,11 +3,22 @@ import { connect } from 'react-redux'
 
 import { ThemeClasses } from '../constants/themeClass'
 import * as themeActions from '../actions/theme'
+import * as storage from '../utils/localStorage'
 
 class Theme extends React.Component {
+  componentDidMount () {
+    const { store } = this.context
+
+    const previousSelected = storage.get('theme')
+    if (previousSelected) {
+      store.dispatch(themeActions.selectTheme(previousSelected))
+    }
+  }
+
   handleSelectTheme (e) {
     const { store } = this.context
 
+    localStorage.setItem('theme', e.target.value)
     store.dispatch(themeActions.selectTheme(e.target.value))
   }
 

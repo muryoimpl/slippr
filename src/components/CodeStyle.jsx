@@ -3,11 +3,22 @@ import { connect } from 'react-redux'
 import { HighlightTheme } from '../constants/highlightClass'
 
 import * as codeStyleActions from '../actions/codeStyle'
+import * as storage from '../utils/localStorage'
 
 class CodeStyle extends React.Component {
+  componentDidMount () {
+    const { store } = this.context
+
+    const previousSelected = storage.get('highlight')
+    if (previousSelected) {
+      store.dispatch(codeStyleActions.selectHighlightTheme(previousSelected))
+    }
+  }
+
   handleSelectHighlightTheme (e) {
     const { store } = this.context
 
+    storage.set('highlight', e.target.value)
     store.dispatch(codeStyleActions.selectHighlightTheme(e.target.value))
   }
 
