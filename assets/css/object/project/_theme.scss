@@ -1,4 +1,5 @@
 .p-theme__selectbox {
   @include selectbox;
   width: 10%;
+  min-width: 120px;
 }
