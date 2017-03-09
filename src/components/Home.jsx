@@ -7,6 +7,7 @@ import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
 import { renderHtmlPreview } from '../utils/markdownConverter'
 import { registerEmojiSuggestion } from '../utils/emojiSuggestion'
+import * as storage from '../utils/localStorage'
 
 class Home extends React.Component {
   componentDidMount () {
@@ -17,12 +18,19 @@ class Home extends React.Component {
     const dom = document.querySelector('.pane.p-preview')
     dom.addEventListener('drop', this.disableEvent)
     dom.addEventListener('dragover', this.disableEvent)
+
+    const previousValue = storage.get('markdown')
+    if (!document.querySelector('#markdown-textarea').value && previousValue) {
+      this.context.store.dispatch(homeActions.editTextareaValue(previousValue))
+    }
   }
 
   componentWillUnmount (e) {
     const dom = document.querySelector('.pane.p-preview')
     dom.removeEventListener('drop', this.disableEvent)
     dom.removeEventListener('dragover', this.disableEvent)
+
+    storage.set('markdown', this.props.markdown)
   }
 
   disableEvent (e) {
