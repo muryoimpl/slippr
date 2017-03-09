@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
 import * as headerActions from '../actions/header'
-import * as homeActions from '../actions/home'
+import * as textareaActions from '../actions/textarea'
 import PageButtons from '../components/PageButtons'
 import * as styleHandler from '../utils/styleHandler'
 
@@ -13,7 +13,7 @@ class Header extends React.Component {
     const { store } = this.context
 
     ipcRenderer.on('reply-file-dialog', (event, json) => {
-      store.dispatch(homeActions.setMarkdownText(json.markdown))
+      store.dispatch(textareaActions.setMarkdownText(json.markdown))
       store.dispatch(headerActions.setFileName(json.filename))
     })
 

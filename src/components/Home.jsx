@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
-import * as homeActions from '../actions/home'
+import * as textareaActions from '../actions/textarea'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
 import { renderHtmlPreview } from '../utils/markdownConverter'
@@ -21,7 +21,7 @@ class Home extends React.Component {
 
     const previousValue = storage.get('markdown')
     if (!document.querySelector('#markdown-textarea').value && previousValue) {
-      this.context.store.dispatch(homeActions.editTextareaValue(previousValue))
+      this.context.store.dispatch(textareaActions.editTextareaValue(previousValue))
     }
   }
 
@@ -41,7 +41,7 @@ class Home extends React.Component {
   handleTextaraChange (e) {
     const { store } = this.context
 
-    store.dispatch(homeActions.editTextareaValue(e.target.value))
+    store.dispatch(textareaActions.editTextareaValue(e.target.value))
   }
 
   handlePreviewClick (e) {
