@@ -6,14 +6,9 @@ import Textarea from './Textarea'
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
 import { renderHtmlPreview } from '../utils/markdownConverter'
-import { registerEmojiSuggestion } from '../utils/emojiSuggestion'
 
 class Home extends React.Component {
   componentDidMount () {
-    if (!document.querySelector('.sey-container')) {
-      registerEmojiSuggestion()
-    }
-
     const dom = document.querySelector('.pane.p-preview')
     dom.addEventListener('drop', this.disableEvent)
     dom.addEventListener('dragover', this.disableEvent)
