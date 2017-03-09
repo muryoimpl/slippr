@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 import * as Types from '../constants/actions'
 
-const initialState = Immutable.Map({ markdown: '', html: '' })
+const initialState = Immutable.Map({ markdown: '' })
 
 export default function homes (state = initialState, action) {
   switch (action.type) {
