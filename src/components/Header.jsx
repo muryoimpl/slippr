@@ -72,7 +72,7 @@ Header.contextTypes = {
 export default connect((state) => {
   return {
     filename: state.headers.filename,
-    markdown: state.homes.markdown,
+    markdown: state.textareas.markdown,
     fullscreen: state.headers.fullscreen
   }
 })(Header)

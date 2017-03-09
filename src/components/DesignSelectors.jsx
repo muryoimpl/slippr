@@ -53,7 +53,7 @@ DesignSelectors.contextTypes = {
 
 export default connect((state) => {
   return {
-    markdown: state.homes.markdown,
+    markdown: state.textareas.markdown,
     fullscreen: state.headers.fullscreen
   }
 })(DesignSelectors)
