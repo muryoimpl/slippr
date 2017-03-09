@@ -116,7 +116,7 @@ Page.contextTypes = {
 
 export default connect((state) => {
   return {
-    markdown: state.homes.markdown,
+    markdown: state.textareas.markdown,
     markdownPages: state.pages.markdownPages,
     idx: state.pages.idx,
     theme: state.themes.selected,

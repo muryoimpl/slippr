@@ -1,9 +1,9 @@
 import Immutable from 'immutable'
 import * as Types from '../constants/actions'
 
-const initialState = Immutable.Map({ markdown: '', html: '' })
+const initialState = Immutable.Map({ markdown: '' })
 
-export default function homes (state = initialState, action) {
+export default function textareas (state = initialState, action) {
   switch (action.type) {
     case Types.SET_MARKDOWN_TEXT:
     case Types.EDIT_TEXTAREA_VALUE:

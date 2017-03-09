@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import homes from './home'
+import textareas from './textarea'
 import headers from './header'
 import pages from './page'
 import themes from './theme'
@@ -10,7 +10,7 @@ import progressBar from './progressBar'
 
 const rootReducer = combineReducers({
   headers,
-  homes,
+  textareas,
   pages,
   themes,
   codeStyles,

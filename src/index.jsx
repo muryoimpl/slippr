@@ -30,6 +30,9 @@ const initialState = {
     elapsedSeconds: 0,
     totalSeconds: 0,
     intervalId: null
+  },
+  textareas: {
+    markdown: ''
   }
 }
 const store = configureStore(initialState)

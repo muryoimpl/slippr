@@ -1,4 +1,4 @@
-// home
+// textarea
 export const SHOW_HOME = 'SHOW_HOME'
 export const SET_MARKDOWN_TEXT = 'SET_MARKDOWN_TEXT'
 export const EDIT_TEXTAREA_VALUE = 'EDIT_TEXTAREA_VALUE'
