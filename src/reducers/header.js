@@ -1,17 +1,17 @@
 import Immutable from 'immutable'
 import * as Types from '../constants/actions'
 
-const initialState = Immutable.Map({
+const initialState = new Immutable.Record({
   filename: '',
   fullscreen: false
-})
+})()
 
 export default function headers (state = initialState, action) {
   switch (action.type) {
     case Types.SET_FILE_NAME:
-      return Immutable.fromJS(state).merge({ filename: action.filename }).toJS()
+      return state.merge({filename: action.filename})
     case Types.SET_FULL_SCREEN:
-      return Immutable.fromJS(state).merge({ fullscreen: action.fullscreen }).toJS()
+      return state.merge({fullscreen: action.fullscreen})
     case Types.SHOW_DEFAULT:
     default:
       return state

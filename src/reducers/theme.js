@@ -1,12 +1,12 @@
 import Immutable from 'immutable'
 import * as Types from '../constants/actions'
 
-const initialState = Immutable.Map({ selected: 'theBridge' })
+const initialState = new Immutable.Record({ selected: 'theBridge' })()
 
 export default function themes (state = initialState, action) {
   switch (action.type) {
     case Types.SELECT_THEME:
-      return Immutable.fromJS(state).merge({ selected: action.theme }).toJS()
+      return state.merge({selected: action.theme})
     default:
       return state
   }
