@@ -5,32 +5,35 @@ import * as Settings from '../../constants/settings'
 import { convertTimeToNumber, timerCalculator } from '../../utils/timeConverter'
 
 const initialTime = convertTimeToNumber(Settings.DEFAULT_TIMER_VALUE)
-const initialState = Immutable.Map({
+const initialState = new Immutable.Record({
   limit: Settings.DEFAULT_TIMER_VALUE,
   hours: initialTime[0],
   minutes: initialTime[1],
   seconds: initialTime[2],
   started: false,
   intervalId: null
-})
+})()
 
 export default function timers (state = initialState, action) {
   switch (action.type) {
     case Types.RESET_TIMER:
       const time = convertTimeToNumber(Settings.DEFAULT_TIMER_VALUE)
-      return Immutable.fromJS(state).merge({ limit: Settings.DEFAULT_TIMER_VALUE, hours: time[0], minutes: time[1], seconds: time[2] }).toJS()
+
+      return state.merge({limit: Settings.DEFAULT_TIMER_VALUE, hours: time[0], minutes: time[1], seconds: time[2]})
     case Types.CHANGE_VALUE:
-      return Immutable.fromJS(state).merge({ limit: action.limit, hours: action.hours, minutes: action.minutes, seconds: action.seconds }).toJS()
+      return state.merge({limit: action.limit, hours: action.hours, minutes: action.minutes, seconds: action.seconds})
     case Types.RUN_TICKER:
       const calculated = timerCalculator(action.hours, action.minutes, action.seconds)
-      return Immutable.fromJS(state).merge({ hours: calculated[0], minutes: calculated[1], seconds: calculated[2] }).toJS()
+
+      return state.merge({hours: calculated[0], minutes: calculated[1], seconds: calculated[2]})
     case Types.START_TIMER:
-      return Immutable.fromJS(state).merge({ started: true, intervalId: action.intervalId }).toJS()
+      return state.merge({started: true, intervalId: action.intervalId})
     case Types.STOP_TIMER:
       clearInterval(action.intervalId)
-      return Immutable.fromJS(state).merge({ intevalId: null, started: false }).toJS()
+
+      return state.merge({intervalId: null, started: false})
     case Types.CLEAR_TIMER:
-      return Immutable.fromJS(state).merge({ limit: Settings.TIMER_CLEARED_VALUE, hours: 0, minutes: 0, seconds: 0 }).toJS()
+      return state.merge({limit: Settings.TIMER_CLEARED_VALUE, hours: 0, minutes: 0, seconds: 0})
     default:
       return state
   }
