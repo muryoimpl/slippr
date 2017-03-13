@@ -66,6 +66,16 @@ function createWindow () {
     })
   })
 
+  ipcMain.on('overwrite-file', (event, arg) => {
+    fs.writeFile(arg.filename, arg.markdown, 'utf8', (error) => {
+      if (error) {
+        console.log('error: ' + error)
+        return
+      }
+    })
+    event.sender.send('reply-overwrite-file')
+  })
+
   ipcMain.on('full-screen', (event, arg) => {
     mainWindow.setFullScreen(true)
   })

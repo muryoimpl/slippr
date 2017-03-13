@@ -20,6 +20,17 @@ class Header extends React.Component {
     ipcRenderer.on('reply-save-dialog', (event, json) => {
       store.dispatch(headerActions.setFileName(json.filename))
     })
+
+    ipcRenderer.on('reply-overwrite-file', (event, json) => {
+      console.log('hi')
+      const dom = document.getElementById('saved')
+      dom.classList.remove('hidden')
+      dom.classList.add('c-btn__saved')
+      setTimeout(() => {
+        dom.classList.add('hidden')
+        dom.classList.remove('c-btn__saved')
+      }, 3000)
+    })
   }
 
   handleOpenFile () {
@@ -30,9 +41,15 @@ class Header extends React.Component {
     ipcRenderer.send('save-file-dialog', { markdown: this.props.markdown })
   }
 
+  handleOverwriteFileAs () {
+    ipcRenderer.send('overwrite-file', { markdown: this.props.markdown, filename: this.props.filename })
+  }
+
   render () {
     const existMarkdown = !!this.props.markdown
     const btnStyle = styleHandler.buttonDisabledStyle(existMarkdown)
+    const existFilename = !!this.props.filename
+    const overwriteBtnStyle = styleHandler.buttonDisabledStyle(existFilename)
 
     return (
       <header className={`toolbar toolbar-header ${this.props.fullscreen ? 'hidden' : 'c-btn-group__show'}`}>
@@ -50,6 +67,13 @@ class Header extends React.Component {
             <span className="icon icon-doc-text mgr"></span>
             save as
           </button>
+
+          <button className={classNames(overwriteBtnStyle)} onClick={(e) => this.handleOverwriteFileAs()} disabled={!existFilename}>
+            <span className="icon icon-doc-text mgr"></span>
+            overwrite
+          </button>
+
+          <span id="saved" className="mgl hidden">Saved!!</span>
 
           <PageButtons existMarkdown={!!existMarkdown} markdown={this.props.markdown}/>
         </div>
