@@ -34,7 +34,7 @@
   color: $txt-black;
 
   h1, h2, h3, h4, h5 {
-    text-shadow: 0 3px 7px $txt-shadow-white;
+    text-shadow: .03em .03em $txt-shadow-white;
   }
 
   a {
@@ -68,7 +68,7 @@
   color: $txt-white;
 
   h1, h2, h3, h4, h5 {
-    text-shadow: 0 3px 7px $txt-shadow-black;
+    text-shadow: .03em .03em $txt-shadow-black;
   }
 
   a {
