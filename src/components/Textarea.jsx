@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
-require('jquery-textcomplete') // TODO: なんかいい書き方ないのん？
+import 'jquery-textcomplete'
 
 import * as textareaActions from '../actions/textarea'
 import * as storage from '../utils/localStorage'
