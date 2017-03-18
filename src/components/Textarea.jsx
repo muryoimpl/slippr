@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import $ from 'jquery'
-import 'jquery-textcomplete'
 
 import * as textareaActions from '../actions/textarea'
 import * as storage from '../utils/localStorage'
-import { emojiList } from '../constants/emojiConst'
+import { registerEmojiAutoComplete, removeEmojiAutoComplete } from '../utils/emojiAutoComplete'
 
 class Textarea extends React.Component {
   componentDidMount () {
@@ -14,29 +12,12 @@ class Textarea extends React.Component {
       this.context.store.dispatch(textareaActions.editTextareaValue(previousValue))
     }
 
-    // emoji autocomplete
-    $('#markdown-textarea').textcomplete([
-      {
-        match: /\B:([-+\w]*)$/,
-        search: (term, callback) => {
-          callback($.map(emojiList, (emoji) => {
-            return emoji.text.indexOf(term) === 0 ? emoji.text : null
-          }))
-        },
-        template: (emojiName) => {
-          return `<img class="p-editor__emoji-candidate" src="assets/images/emoji/${emojiName}.png" /> ${emojiName}`
-        },
-        replace: (emojiName) => {
-          return `:${emojiName}: `
-        },
-        index: 1
-      }
-    ])
+    registerEmojiAutoComplete('#markdown-textarea')
   }
 
   componentWillUnmount () {
     storage.set('markdown', this.props.markdown)
-    $('ul.dropdown-menu.textcomplete-dropdown').remove()
+    removeEmojiAutoComplete('ul.dropdown-menu.textcomplete-dropdown')
   }
 
   handleTextaraChange (e) {
