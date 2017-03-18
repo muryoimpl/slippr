@@ -15,14 +15,12 @@
     }
   }
 
-  p,span,li,ol,ul,article,section {
-    .emoji {
-      display: inline-block;
-      margin-bottom: -.25em;
-      background-size: contain;
-      width: 1.5em;
-      height: 1.5em;
-    }
+  .emoji {
+    display: inline-block;
+    margin-bottom: -.25em;
+    background-size: contain;
+    width: 1.5em;
+    height: 1.5em;
   }
 }
 
