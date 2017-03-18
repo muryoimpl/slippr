@@ -35,8 +35,8 @@
   }
 
   ul, ol {
-    margin: .2em 2em;
-    width: 80%;
+    margin: .2em 1em;
+    min-width: 50%;
     font-size: 1.8em;
     font-weight: 700;
 
@@ -45,13 +45,14 @@
       width: 100%;
       font-size: 1em;
       font-weight: 700;
+      -webkit-padding-start: 1vw; // TODO: これをなんとかする
     }
   }
 
   p {
     margin: .3em 2em;
     width: 90%;
-    font-size: 1.5em;
+    max-width: 85%;
   }
 }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import * as textareaActions from '../actions/textarea'
 import * as storage from '../utils/localStorage'
+import { registerEmojiAutoComplete, removeEmojiAutoComplete } from '../utils/emojiAutoComplete'
 
 class Textarea extends React.Component {
   componentDidMount () {
@@ -10,10 +11,13 @@ class Textarea extends React.Component {
     if (!document.querySelector('#markdown-textarea').value && previousValue) {
       this.context.store.dispatch(textareaActions.editTextareaValue(previousValue))
     }
+
+    registerEmojiAutoComplete('#markdown-textarea')
   }
 
   componentWillUnmount () {
     storage.set('markdown', this.props.markdown)
+    removeEmojiAutoComplete('ul.dropdown-menu.textcomplete-dropdown')
   }
 
   handleTextaraChange (e) {

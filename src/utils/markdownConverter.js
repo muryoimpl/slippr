@@ -1,5 +1,4 @@
 import MarkdownIt from 'markdown-it'
-import mdEmoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 import emojify from 'emojify.js'
 import markdownitLinkTarget from 'markdown-it-link-target'
@@ -42,5 +41,5 @@ function getMarkdownInstance () {
       }
       return ''
     }
-  }).use(mdEmoji).use(markdownitLinkTarget).set({ idx: 0 })
+  }).use(markdownitLinkTarget).set({ idx: 0 })
 }
