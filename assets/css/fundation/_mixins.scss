@@ -36,7 +36,7 @@
 
   ul, ol {
     margin: .2em 2em;
-    width: 80%;
+    min-width: 50%;
     font-size: 1.8em;
     font-weight: 700;
 
@@ -45,6 +45,7 @@
       width: 100%;
       font-size: 1em;
       font-weight: 700;
+      -webkit-padding-start: 1em;
     }
   }
 
