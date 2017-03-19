@@ -1,0 +1,57 @@
+// textcomplete colors
+$color-dove-gray-approx: #6e6e6e;
+$black-20: rgba(0, 0, 0, .2);
+
+.dropdown-menu {
+  margin: 0;
+  border: 1px solid $color-dove-gray-approx;
+  box-shadow: 3px 3px 3px $black-20;
+  background-color: $txt-white;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  letter-spacing: .025em;
+  font-size: inherit;
+
+  li {
+    display: block;
+    float: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    letter-spacing: 0;
+
+    &::before {
+      display: none;
+    }
+
+    a {
+      display: block;
+      padding: 0 1.54em 0 .615em;
+      height: 100%;
+      line-height: 1.8em;
+    }
+
+    &:hover {
+      background: $color-dove-gray-approx;
+      color: $txt-white;
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+
+  .active {
+    background: $color-dove-gray-approx;
+    color: $txt-white;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+}
