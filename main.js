@@ -1,6 +1,7 @@
 const electron = require('electron')
 const { dialog, ipcMain } = require('electron')
 const fs = require('fs')
+const path = require('path')
 
 const Menu = electron.Menu
 const app = electron.app
@@ -12,7 +13,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
-    resizable: true
+    resizable: true,
+    icon: path.join(__dirname, 'assets/images/icons/png/1024x1024.png')
   })
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
@@ -58,7 +60,6 @@ function createWindow () {
         fs.writeFile(filename, arg.markdown, 'utf8', (error) => {
           if (error) {
             console.log('error: ' + error)
-            return
           }
         })
         event.sender.send('reply-save-dialog', { filename: filename })
@@ -70,7 +71,6 @@ function createWindow () {
     fs.writeFile(arg.filename, arg.markdown, 'utf8', (error) => {
       if (error) {
         console.log('error: ' + error)
-        return
       }
     })
     event.sender.send('reply-overwrite-file')
