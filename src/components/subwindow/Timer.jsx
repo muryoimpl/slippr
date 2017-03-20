@@ -50,14 +50,14 @@ class Timer extends React.Component {
 
     if (hours === 0 && minutes === 0 && seconds === 0) {
       store.dispatch(timerActions.stopTimer(intervalId))
-      this.notifyTimeIsUp()
+
+      store.dispatch(timerActions.startBlinkPage())
+      setTimeout(() => {
+        store.dispatch(timerActions.stopBlinkPage())
+      }, 5000)
     } else {
       store.dispatch(timerActions.runTicker(hours, minutes, seconds))
     }
-  }
-
-  notifyTimeIsUp () {
-    ipcRenderer.send('alert-time-limit')
   }
 
   sendTotalSeconds () {
@@ -70,12 +70,11 @@ class Timer extends React.Component {
   }
 
   render () {
-    const { limit, hours, minutes, seconds, started } = this.props
-    // const isLimitInvalid = limit.split(':').length !== 3
+    const { limit, hours, minutes, seconds, started, blink } = this.props
     const isLimitInvalid = (convertTimeToNumber(limit).length !== 3)
 
     return (
-      <div className="p-timer">
+      <div className={`p-timer ${blink ? 'p-timer__blink' : ''}`}>
         <div className="p-timer__display">
           {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
         </div>
@@ -114,7 +113,8 @@ Timer.propTypes = {
   minutes: PropTypes.number,
   seconds: PropTypes.number,
   started: PropTypes.bool,
-  intervalId: PropTypes.node
+  intervalId: PropTypes.node,
+  blink: PropTypes.bool
 }
 
 Timer.contextTypes = {
@@ -128,6 +128,7 @@ export default connect((state) => {
     minutes: state.timers.minutes,
     seconds: state.timers.seconds,
     started: state.timers.started,
-    intervalId: state.timers.intervalId
+    intervalId: state.timers.intervalId,
+    blink: state.timers.blink
   }
 })(Timer)

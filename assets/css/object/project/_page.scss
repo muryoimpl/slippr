@@ -55,22 +55,3 @@
     width: 90%;
   }
 }
-
-@keyframes pulse {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: .5;
-  }
-}
-
-.p-page__blink {
-  animation-name: pulse;
-  animation-duration: .3s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}

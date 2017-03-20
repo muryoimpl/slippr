@@ -9,14 +9,6 @@ export function updatePageIndex (idx) {
   return { type: Types.UPDATE_PAGE_INDEX, idx: idx }
 }
 
-export function startBlinkPage () {
-  return { type: Types.START_BLINK_PAGE }
-}
-
-export function stopBlinkPage () {
-  return { type: Types.STOP_BLINK_PAGE }
-}
-
 export function clearPages () {
   return { type: Types.CLEAR_PAGES }
 }

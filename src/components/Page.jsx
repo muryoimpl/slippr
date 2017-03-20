@@ -27,16 +27,6 @@ class Page extends React.Component {
   }
 
   registerIpcEvents () {
-    const { store } = this.context
-
-    ipcRenderer.on('blink-page', (_event) => {
-      store.dispatch(pageActions.startBlinkPage())
-
-      setTimeout(() => {
-        store.dispatch(pageActions.stopBlinkPage())
-      }, 5000)
-    })
-
     ipcRenderer.on('transition-page', (_event, json) => {
       this.handleKeyAction(json.keyCode)
     })
@@ -90,10 +80,10 @@ class Page extends React.Component {
   }
 
   render () {
-    const { markdownPages, idx, theme, blink } = this.props
+    const { markdownPages, idx, theme } = this.props
 
     return (
-      <div className={`p-page ${theme} ${blink ? 'p-page__blink' : ''}`} onKeyDown={(e) => this.handleOnKeyDown}>
+      <div className={`p-page ${theme}`} onKeyDown={(e) => this.handleOnKeyDown}>
         <div className="p-page__inner" dangerouslySetInnerHTML={ {__html: renderHtmlPage(markdownPages[idx])} } />
         <ProgressBar />
       </div>
@@ -105,8 +95,7 @@ Page.propTypes = {
   markdown: PropTypes.string,
   markdownPages: PropTypes.array,
   idx: PropTypes.number,
-  theme: PropTypes.string,
-  blink: PropTypes.bool
+  theme: PropTypes.string
 }
 
 Page.contextTypes = {
@@ -119,7 +108,6 @@ export default connect((state) => {
     markdown: state.textareas.markdown,
     markdownPages: state.pages.markdownPages,
     idx: state.pages.idx,
-    theme: state.themes.selected,
-    blink: state.pages.blink
+    theme: state.themes.selected
   }
 })(Page)
