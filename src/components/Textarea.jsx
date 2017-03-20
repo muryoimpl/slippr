@@ -13,6 +13,10 @@ class Textarea extends React.Component {
     }
 
     registerEmojiAutoComplete('#markdown-textarea')
+
+    window.onbeforeunload = () => {
+      storage.set('markdown', this.props.markdown)
+    }
   }
 
   componentWillUnmount () {
