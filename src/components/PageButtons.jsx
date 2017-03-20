@@ -4,6 +4,7 @@ import { ipcRenderer } from 'electron'
 
 import * as headerActions from '../actions/header'
 import * as pageActions from '../actions/page'
+import * as progressBarActions from '../actions/progressBar'
 import * as styleHandler from '../utils/styleHandler'
 
 export default class PageButtons extends React.Component {
@@ -27,12 +28,30 @@ export default class PageButtons extends React.Component {
     ipcRenderer.send('open-child-window')
   }
 
+  handleToggleIcons (toShow) {
+    const { store } = this.context
+    store.dispatch(progressBarActions.toggleIcons(toShow))
+  }
+
   render () {
     const { existMarkdown } = this.props
     const btnStyle = styleHandler.buttonDisabledStyle(existMarkdown)
 
     return (
       <div className="pull-right">
+        { this.props.showIcons &&
+          <button className={`btn btn-default mgr-one-btn`} onClick={(e) => this.handleToggleIcons(false) } title="Hide icons in slide">
+            <span className="icon icon-hourglass mgr"></span>
+            hide icons
+          </button>
+        }
+        { !this.props.showIcons &&
+          <button className={`btn btn-default mgr-one-btn`} onClick={(e) => this.handleToggleIcons(true) } title="Show icons in slide">
+            <span className="icon icon-hourglass mgr"></span>
+            show icons
+          </button>
+        }
+
         <button className={`${classNames(btnStyle)} mgr-one-btn`} onClick={(e) => this.handleOpenChildWindow(e)} title="Open timer" disabled={!existMarkdown}>
           <span className="icon icon-clock mgr"></span>
           open timer
@@ -55,7 +74,8 @@ export default class PageButtons extends React.Component {
 
 PageButtons.propTypes = {
   existMarkdown: PropTypes.bool,
-  markdown: PropTypes.string
+  markdown: PropTypes.string,
+  showIcons: PropTypes.bool
 }
 
 PageButtons.contextTypes = {

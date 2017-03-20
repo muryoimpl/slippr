@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 import * as Types from '../constants/actions'
 
-const initialState = new Immutable.Record({ progress: 0, elapsedSeconds: 0, totalSeconds: 0, intervalId: null })()
+const initialState = new Immutable.Record({ progress: 0, elapsedSeconds: 0, totalSeconds: 0, intervalId: null, showIcons: true })()
 
 export default function progressBar (state = initialState, action) {
   switch (action.type) {
@@ -17,6 +17,8 @@ export default function progressBar (state = initialState, action) {
     case Types.STOP_ELAPSED_TIME_RUNNING:
       clearInterval(action.intervalId)
       return state.merge({intervalId: null})
+    case Types.TOGGLE_ICONS:
+      return state.merge({showIcons: action.show})
     default:
       return state
   }

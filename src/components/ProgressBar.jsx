@@ -39,12 +39,14 @@ class ProgressBar extends React.Component {
   }
 
   render () {
-    const { progress, elapsedSeconds, totalSeconds } = this.props
+    const { progress, elapsedSeconds, totalSeconds, showIcons } = this.props
 
     return (
       <div className="p-proggress-area">
-        <span className="p-progress-icon-area" style={{width: `${progress}%`}}><img src="assets/images/emoji/koko.png" className="p-progress-icon" /></span>
-        { totalSeconds !== 0 &&
+        { totalSeconds !== 0 && showIcons &&
+          <span className="p-progress-icon-area" style={{width: `${progress}%`}}><img src="assets/images/emoji/koko.png" className="p-progress-icon" /></span>
+        }
+        { totalSeconds !== 0 && showIcons &&
           <span className="p-progress-icon-area" style={{width: `${calcTimeProgress(elapsedSeconds, totalSeconds)}%`}}><img src="assets/images/emoji/hourglass_flowing_sand.png" className="p-progress-icon" /></span>
         }
         <progress className="p-progress-bar" max={Settings.MAXIMUM_PROGRESS} value={progress}></progress>
@@ -57,7 +59,8 @@ ProgressBar.propTypes = {
   progress: PropTypes.number,
   elapsedSeconds: PropTypes.number,
   totalSeconds: PropTypes.number,
-  intervalId: PropTypes.node
+  intervalId: PropTypes.node,
+  showIcons: PropTypes.bool
 }
 
 ProgressBar.contextTypes = {
@@ -69,6 +72,7 @@ export default connect((state) => {
     progress: state.progressBar.progress,
     elapsedSeconds: state.progressBar.elapsedSeconds,
     totalSeconds: state.progressBar.totalSeconds,
-    intervalId: state.progressBar.intervalId
+    intervalId: state.progressBar.intervalId,
+    showIcons: state.progressBar.showIcons
   }
 })(ProgressBar)

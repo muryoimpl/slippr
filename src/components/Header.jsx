@@ -75,7 +75,7 @@ class Header extends React.Component {
 
           <span id="saved" className="mgl hidden">Saved!!</span>
 
-          <PageButtons existMarkdown={!!existMarkdown} markdown={this.props.markdown}/>
+          <PageButtons existMarkdown={!!existMarkdown} markdown={this.props.markdown} showIcons={this.props.showIcons}/>
         </div>
       </header>
     )
@@ -85,7 +85,8 @@ class Header extends React.Component {
 Header.propTypes = {
   filename: PropTypes.string,
   markdown: PropTypes.string,
-  fullscreen: PropTypes.bool.isRequired
+  fullscreen: PropTypes.bool.isRequired,
+  showIcons: PropTypes.bool.isRequired
 }
 
 Header.contextTypes = {
@@ -97,6 +98,7 @@ export default connect((state) => {
   return {
     filename: state.headers.filename,
     markdown: state.textareas.markdown,
-    fullscreen: state.headers.fullscreen
+    fullscreen: state.headers.fullscreen,
+    showIcons: state.progressBar.showIcons
   }
 })(Header)
