@@ -7,7 +7,7 @@ const Menu = electron.Menu
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
-let mainWindow, timerWindow
+let mainWindow, timerWindow, printWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -108,6 +108,15 @@ function createWindow () {
   ipcMain.on('stop-timer-in-page', (event, arg) => {
     if (mainWindow) {
       mainWindow.webContents.send('stop-timer-in-page')
+    }
+  })
+
+  ipcMain.on('open-print-window', (event, arg) => {
+    if (!printWindow || printWindow.isDestroyed()) {
+      printWindow = createChildWindow(printWindow, 'print')
+      printWindow.show()
+    } else {
+      printWindow.show()
     }
   })
 

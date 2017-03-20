@@ -9,7 +9,8 @@ const common = {
 
   entry: {
     'app': path.resolve(__dirname, 'src/index.jsx'),
-    'timer': path.resolve(__dirname, 'src/timer.jsx')
+    'timer': path.resolve(__dirname, 'src/timer.jsx'),
+    'print': path.resolve(__dirname, 'src/print.jsx')
   },
 
   output: {
