@@ -33,12 +33,22 @@ export default class PageButtons extends React.Component {
     store.dispatch(progressBarActions.toggleIcons(toShow))
   }
 
+  handlePrintPDF () {
+    const { markdown, theme, ratio } = this.props
+    ipcRenderer.send('open-print-window', { markdown: markdown, theme: theme, ratio: ratio })
+  }
+
   render () {
     const { existMarkdown } = this.props
     const btnStyle = styleHandler.buttonDisabledStyle(existMarkdown)
 
     return (
       <div className="pull-right">
+        <button className={`btn btn-default mgr-one-btn`} onClick={(e) => this.handlePrintPDF() } title="Print PDF">
+          <span className="icon icon-print mgr"></span>
+          print
+        </button>
+
         { this.props.showIcons &&
           <button className={`btn btn-default mgr-one-btn`} onClick={(e) => this.handleToggleIcons(false) } title="Hide icons in slide">
             <span className="icon icon-hourglass mgr"></span>
@@ -75,7 +85,9 @@ export default class PageButtons extends React.Component {
 PageButtons.propTypes = {
   existMarkdown: PropTypes.bool,
   markdown: PropTypes.string,
-  showIcons: PropTypes.bool
+  showIcons: PropTypes.bool,
+  theme: PropTypes.string,
+  ratio: PropTypes.number
 }
 
 PageButtons.contextTypes = {

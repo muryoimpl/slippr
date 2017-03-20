@@ -21,6 +21,17 @@ export function renderHtmlPage (markdown) {
   return md.render(emojifyInstance().replace(markdown))
 }
 
+export function renderPrintHtmlPage (markdown, theme) {
+  const md = getMarkdownInstance()
+
+  md.renderer.rules.hr = (tokens, index, options) => {
+    options.idx += 1
+    return (`</div></div><div data-index="${options.idx}" class="p-page-preview ${theme} page-break"><div class="p-page__inner">`)
+  }
+
+  return md.render(emojifyInstance().replace(`<div data-index="${md.options.idx}" class="p-page-preview ${theme} page-break"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`))
+}
+
 function emojifyInstance () {
   emojify.setConfig({img_dir: 'assets/images/emoji', ignore_emoticons: true})
   return emojify

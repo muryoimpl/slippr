@@ -8,6 +8,11 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 let mainWindow, timerWindow, printWindow
+let printTargetObject = {
+  markdown: '',
+  theme: '',
+  ratio: 60
+}
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -112,6 +117,8 @@ function createWindow () {
   })
 
   ipcMain.on('open-print-window', (event, arg) => {
+    printTargetObject = Object.assign(printTargetObject, {markdown: arg.markdown, theme: arg.theme, ratio: arg.ratio})
+
     if (!printWindow || printWindow.isDestroyed()) {
       printWindow = createChildWindow(printWindow, 'print')
       printWindow.show()
@@ -120,9 +127,56 @@ function createWindow () {
     }
   })
 
+  ipcMain.on('print-pdf', (event, arg) => {
+    const option = {
+      printBackground: true,
+      marginsType: 1,
+      landscape: true,
+      printSelectionOnly: false,
+      pageSize: {width: 297000, height: (21000 * 4)}
+    }
+
+    printWindow.webContents.printToPDF(option, (error, data) => {
+      if (error) console.log('error: ' + error)
+
+      fs.writeFile('/home/muryoimpl/Desktop/hi3.pdf', data, (error) => {
+        if (error) throw error
+
+        console.log('hi3')
+      })
+      printWindow.close()
+    })
+
+      // const options = {
+      //   title: 'save as ...',
+      //   properties: ['openFile', 'createDirectory'],
+      //   defaultPath: `${getUserHome()}`,
+      //   filters: [
+      //     { name: 'pdf', extensions: ['pdf'] }
+      //   ]
+      // }
+      //
+      // dialog.showSaveDialog(printWindow, options, (filename) => {
+      //   if (filename) {
+      //     fs.writeFile(filename, data, (error) => {
+      //       if (error) {
+      //         console.log('error: ' + error)
+      //       }
+      //     })
+      //     event.sender.send('reply-print-page', { filename: filename })
+      //   }
+      // })
+    // })
+  })
+
+  ipcMain.on('get-print-target', (event, arg) => {
+    printWindow.webContents.send('reply-get-print-target', printTargetObject)
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
     timerWindow = null
+    printWindow = null
   })
 }
 

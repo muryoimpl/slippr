@@ -55,3 +55,8 @@
     width: 90%;
   }
 }
+
+.p-page__separator {
+  content: '';
+  page-break-before: always;
+}
