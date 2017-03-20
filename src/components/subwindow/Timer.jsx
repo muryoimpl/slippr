@@ -48,14 +48,15 @@ class Timer extends React.Component {
 
   tick () {
     const { store } = this.context
-    const { hours, minutes, seconds, intervalId } = this.props
+    const { hours, minutes, seconds, intervalId, limit } = this.props
 
     if (hours === 0 && minutes === 0 && seconds === 0) {
       store.dispatch(timerActions.stopTimer(intervalId))
-
       store.dispatch(timerActions.startBlinkPage())
+
       setTimeout(() => {
         store.dispatch(timerActions.stopBlinkPage())
+        store.dispatch(timerActions.changeValue(limit))
       }, 5000)
     } else {
       store.dispatch(timerActions.runTicker(hours, minutes, seconds))
