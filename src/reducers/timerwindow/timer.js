@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import * as Types from '../../constants/subwindow/actions'
+import * as Types from '../../constants/timerwindow/actions'
 import * as Settings from '../../constants/settings'
 
 import { convertTimeToNumber, timerCalculator } from '../../utils/timeConverter'

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import { configureStore } from './stores/child'
-import ChildApp from './components/subwindow/ChildApp'
+import ChildApp from './components/timerwindow/ChildApp'
 
 const store = configureStore()
 

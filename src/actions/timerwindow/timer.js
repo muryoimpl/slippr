@@ -1,4 +1,4 @@
-import * as Types from '../../constants/subwindow/actions'
+import * as Types from '../../constants/timerwindow/actions'
 import { convertTimeToNumber } from '../../utils/timeConverter'
 
 export function resetTimer () {
