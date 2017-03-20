@@ -19,3 +19,7 @@ export function updateProgress (progress, totalSize) {
 export function stopElapsedTimeRunning (intervalId) {
   return { type: Types.STOP_ELAPSED_TIME_RUNNING, intervalId: intervalId }
 }
+
+export function toggleIcons (toShow) {
+  return { type: Types.TOGGLE_ICONS, show: toShow }
+}
