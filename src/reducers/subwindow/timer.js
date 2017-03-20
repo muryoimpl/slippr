@@ -11,7 +11,8 @@ const initialState = new Immutable.Record({
   minutes: initialTime[1],
   seconds: initialTime[2],
   started: false,
-  intervalId: null
+  intervalId: null,
+  blink: false
 })()
 
 export default function timers (state = initialState, action) {
@@ -34,6 +35,10 @@ export default function timers (state = initialState, action) {
       return state.merge({intervalId: null, started: false})
     case Types.CLEAR_TIMER:
       return state.merge({limit: Settings.TIMER_CLEARED_VALUE, hours: 0, minutes: 0, seconds: 0})
+    case Types.START_BLINK_PAGE:
+      return state.merge({blink: true})
+    case Types.STOP_BLINK_PAGE:
+      return state.merge({blink: false})
     default:
       return state
   }

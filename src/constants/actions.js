@@ -11,8 +11,6 @@ export const SET_FULL_SCREEN = 'SET_FULL_SCREEN'
 // pages
 export const SPLIT_MARKDOWN_AS_PAGES = 'SPLIT_MARKDOWN_AS_PAGES'
 export const UPDATE_PAGE_INDEX = 'UPDATE_PAGE_INDEX'
-export const START_BLINK_PAGE = 'START_BLINK_PAGE'
-export const STOP_BLINK_PAGE = 'STOP_BLINK_PAGE'
 export const CLEAR_PAGES = 'CLEAR_PAGES'
 
 // theme

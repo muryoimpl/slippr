@@ -25,3 +25,11 @@ export function stopTimer (intervalId) {
 export function clearTimer () {
   return { type: Types.CLEAR_TIMER }
 }
+
+export function startBlinkPage () {
+  return { type: Types.START_BLINK_PAGE }
+}
+
+export function stopBlinkPage () {
+  return { type: Types.STOP_BLINK_PAGE }
+}

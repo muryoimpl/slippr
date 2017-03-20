@@ -99,12 +99,6 @@ function createWindow () {
     }
   })
 
-  ipcMain.on('alert-time-limit', (event, arg) => {
-    if (mainWindow) {
-      mainWindow.webContents.send('blink-page')
-    }
-  })
-
   ipcMain.on('transition-page', (event, arg) => {
     if (mainWindow) {
       mainWindow.webContents.send('transition-page', { keyCode: arg.keyCode })
