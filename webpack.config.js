@@ -9,7 +9,7 @@ const common = {
 
   entry: {
     'app': path.resolve(__dirname, 'src/index.jsx'),
-    'child': path.resolve(__dirname, 'src/child.jsx')
+    'timer': path.resolve(__dirname, 'src/timer.jsx')
   },
 
   output: {

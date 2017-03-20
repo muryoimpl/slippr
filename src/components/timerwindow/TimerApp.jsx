@@ -4,7 +4,7 @@ import { ipcRenderer } from 'electron'
 import Timer from './Timer'
 import * as keyCodeConst from '../../constants/keyCode'
 
-class ChildApp extends React.Component {
+class TimerApp extends React.Component {
   componentDidMount () {
     document.addEventListener('keydown', this.handleOnKeyDown)
   }
@@ -34,8 +34,8 @@ class ChildApp extends React.Component {
   }
 }
 
-ChildApp.propType = {
+TimerApp.propType = {
   children: PropTypes.object
 }
 
-export default ChildApp
+export default TimerApp

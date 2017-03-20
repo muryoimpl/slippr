@@ -7,7 +7,7 @@ const Menu = electron.Menu
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
-let mainWindow, childWindow
+let mainWindow, timerWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -85,17 +85,11 @@ function createWindow () {
   })
 
   ipcMain.on('open-child-window', (event, arg) => {
-    if (!childWindow || childWindow.isDestroyed()) {
-      const menu = Menu.buildFromTemplate([{}])
-      childWindow = new BrowserWindow({ frame: true, resizable: true })
-      childWindow.loadURL(`file://${__dirname}/child.html`)
-      childWindow.setMenu(menu)
-      if (!process.env.NODE_ENV) {
-        childWindow.webContents.openDevTools()
-      }
-      childWindow.show()
+    if (!timerWindow || timerWindow.isDestroyed()) {
+      timerWindow = createChildWindow(timerWindow, 'timer')
+      timerWindow.show()
     } else {
-      childWindow.show()
+      timerWindow.show()
     }
   })
 
@@ -119,7 +113,7 @@ function createWindow () {
 
   mainWindow.on('closed', () => {
     mainWindow = null
-    childWindow = null
+    timerWindow = null
   })
 }
 
@@ -139,4 +133,17 @@ app.on('activate', () => {
 
 function getUserHome () {
   return process.env.HOME || process.env.USERPROFILE
+}
+
+function createChildWindow (windowVariable, htmlName) {
+  const menu = Menu.buildFromTemplate([{}])
+  windowVariable = new BrowserWindow({ frame: true, resizable: true })
+  windowVariable.loadURL(`file://${__dirname}/${htmlName}.html`)
+  windowVariable.setMenu(menu)
+
+  if (!process.env.NODE_ENV) {
+    windowVariable.webContents.openDevTools()
+  }
+
+  return windowVariable
 }
