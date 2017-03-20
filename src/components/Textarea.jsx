@@ -35,7 +35,7 @@ class Textarea extends React.Component {
     if (file.type.match('image/')) {
       let tag
       if (e.currentTarget.selectionStart && e.currentTarget.selectionStart !== 0) {
-        tag = `\n---\n${this.imgHTMLTag(file.path, file.name)}`
+        tag = `\n---\n${this.imgHTMLTag(file.path, file.name)}\n---\n`
       } else {
         tag = `${this.imgHTMLTag(file.path, file.name)}`
       }
