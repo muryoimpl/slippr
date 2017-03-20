@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
-import * as timerActions from '../../actions/subwindow/timer'
+import * as timerActions from '../../actions/timerwindow/timer'
 import { zeroPad, calcTotalSeconds, convertTimeToNumber } from '../../utils/timeConverter'
 
 class Timer extends React.Component {
