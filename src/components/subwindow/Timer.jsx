@@ -15,12 +15,14 @@ class Timer extends React.Component {
     e.preventDefault()
     const { store } = this.context
     store.dispatch(timerActions.resetTimer())
+    this.stopTimerInPage()
   }
 
   handleClearTimer (e) {
     e.preventDefault()
     const { store } = this.context
     store.dispatch(timerActions.clearTimer())
+    this.stopTimerInPage()
   }
 
   handleTimerStart (e) {
