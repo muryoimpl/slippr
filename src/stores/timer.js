@@ -1,7 +1,7 @@
 import createLogger from 'redux-logger'
 import { createStore, applyMiddleware, compose } from 'redux'
 
-import childReducer from '../reducers/timerwindow'
+import timerReducer from '../reducers/timerwindow'
 
 const logger = createLogger()
 const finalCreateStore = compose(
@@ -9,5 +9,5 @@ const finalCreateStore = compose(
 )(createStore)
 
 export function configureStore (initialState) {
-  return finalCreateStore(childReducer, initialState)
+  return finalCreateStore(timerReducer, initialState)
 }
