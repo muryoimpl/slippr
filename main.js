@@ -156,27 +156,6 @@ function createWindow () {
         }
       })
     })
-
-      // const options = {
-      //   title: 'save as ...',
-      //   properties: ['openFile', 'createDirectory'],
-      //   defaultPath: `${getUserHome()}`,
-      //   filters: [
-      //     { name: 'pdf', extensions: ['pdf'] }
-      //   ]
-      // }
-      //
-      // dialog.showSaveDialog(printWindow, options, (filename) => {
-      //   if (filename) {
-      //     fs.writeFile(filename, data, (error) => {
-      //       if (error) {
-      //         console.log('error: ' + error)
-      //       }
-      //     })
-      //     event.sender.send('reply-print-page', { filename: filename })
-      //   }
-      // })
-    // })
   })
 
   ipcMain.on('get-print-target', (event, arg) => {
