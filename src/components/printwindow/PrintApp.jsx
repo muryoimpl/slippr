@@ -6,9 +6,7 @@ const PrintApp = React.createClass({
   render () {
     return (
       <div className="window">
-        <div className="window-content">
-          <Print />
-        </div>
+        <Print />
       </div>
     )
   }
