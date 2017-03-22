@@ -130,21 +130,31 @@ function createWindow () {
   ipcMain.on('print-pdf', (event, arg) => {
     const option = {
       printBackground: true,
-      marginsType: 1,
-      landscape: true,
-      printSelectionOnly: false,
-      pageSize: {width: 297000, height: (21000 * 4)}
+      marginsType: 2,
+      landscape: true
+      // pageSize: {width: 294 * 1000, height: 210 * 1000 * 4}
     }
 
     printWindow.webContents.printToPDF(option, (error, data) => {
       if (error) console.log('error: ' + error)
 
-      fs.writeFile('/home/muryoimpl/Desktop/hi3.pdf', data, (error) => {
-        if (error) throw error
+      const options = {
+        title: 'save as ...',
+        defaultPath: `${getUserHome()}`,
+        filters: [
+          { name: 'pdf', extensions: ['pdf'] }
+        ]
+      }
 
-        console.log('hi3')
+      dialog.showSaveDialog(printWindow, options, (filename) => {
+        if (filename) {
+          fs.writeFile(filename, data, (error) => {
+            if (error) {
+              console.log('error: ' + error)
+            }
+          })
+        }
       })
-      printWindow.close()
     })
 
       // const options = {
