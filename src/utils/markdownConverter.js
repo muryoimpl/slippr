@@ -26,10 +26,10 @@ export function renderPrintHtmlPage (markdown, theme) {
 
   md.renderer.rules.hr = (tokens, index, options) => {
     options.idx += 1
-    return (`</div></div><div data-index="${options.idx}" class="p-page ${theme} page-break"><div class="p-page__inner">`)
+    return (`</div></div><div class="p-page ${theme} page-break"><div class="p-page__inner">`)
   }
 
-  return md.render(emojifyInstance().replace(`<div data-index="${md.options.idx}" class="p-page ${theme} page-break"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`))
+  return md.render(emojifyInstance().replace(`<div class="p-page ${theme} page-break"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`))
 }
 
 function emojifyInstance () {
