@@ -4,7 +4,6 @@
   width: 100%;
   overflow: hidden;
   font-size: calc(#{$preview-font-size} * 1.3);
-  page-break-inside: avoid;
 
   &::before {
     display: block;
@@ -23,6 +22,44 @@
   width: 100%;
   overflow: hidden;
   font-size: calc(#{$page-font-size} * 1.3);
+
+  &::before {
+    display: block;
+    content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
+  }
+
+  .hljs {
+    font-size: calc(#{$page-font-size} * 1.3);
+  }
+}
+
+.p-page__print {
+  @include reset-css;
+  position: relative;
+  width: 297mm;
+  overflow: hidden;
+  font-size: calc(#{$page-font-size} * 1.3);
+  page-break-inside: avoid;
+
+  &::before {
+    display: block;
+    content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
+  }
+
+  .hljs {
+    font-size: calc(#{$page-font-size} * 1.3);
+  }
+}
+
+.p-page__print__wide {
+  @include reset-css;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: calc(#{$page-font-size} * 1.3);
+  page-break-before: always;
 
   &::before {
     display: block;

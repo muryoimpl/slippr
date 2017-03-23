@@ -130,7 +130,7 @@ function createWindow () {
   ipcMain.on('print-pdf', (event, arg) => {
     const option = {
       printBackground: true,
-      marginsType: 2,
+      marginsType: 1,
       landscape: true
       // pageSize: {width: 294 * 1000, height: 210 * 1000 * 4}
     }

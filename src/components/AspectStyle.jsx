@@ -13,6 +13,16 @@ class AspectStyle extends React.Component {
       .p-page::before {
         padding-top: ${ratio}%;
       }
+      @media screen {
+        .p-page__print::before {
+          padding-top: ${ratio}%;
+        }
+      }
+      @media print {
+        .p-page__print::before {
+          padding-top: 209.7mm;
+        }
+      }
     `
   }
 

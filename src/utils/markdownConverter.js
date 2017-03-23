@@ -3,6 +3,8 @@ import hljs from 'highlight.js'
 import emojify from 'emojify.js'
 import markdownitLinkTarget from 'markdown-it-link-target'
 
+import { ASPECT_RATIO } from '../constants/settings'
+
 export function renderHtmlPreview (markdown, theme) {
   const md = getMarkdownInstance()
   const dblEvent = `document.getElementById('pv').dataset.index = this.dataset.index; document.getElementById('pv').click();`
@@ -21,15 +23,17 @@ export function renderHtmlPage (markdown) {
   return md.render(emojifyInstance().replace(markdown))
 }
 
-export function renderPrintHtmlPage (markdown, theme) {
+export function renderPrintHtmlPage (markdown, theme, ratio) {
   const md = getMarkdownInstance()
+
+  const pageClass = ratio === 60 ? 'p-page__print__wide' : 'p-page__print'
 
   md.renderer.rules.hr = (tokens, index, options) => {
     options.idx += 1
-    return (`</div></div><div class="p-page ${theme} page-break"><div class="p-page__inner">`)
+    return (`</div></div><div class="${pageClass} ${theme}"><div class="p-page__inner">`)
   }
 
-  return md.render(emojifyInstance().replace(`<div class="p-page ${theme} page-break"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`))
+  return md.render(emojifyInstance().replace(`<div class="${pageClass} ${theme}"><div class="p-page__inner">\n\n${markdown || ''}</div></div>`))
 }
 
 function emojifyInstance () {
