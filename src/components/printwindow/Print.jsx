@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
 
 import AspectStyle from '../../components/AspectStyle'
+import HighlightCssLink from '../../components/HighlightCssLink'
 import { renderPrintHtmlPage } from '../../utils/markdownConverter'
 import * as printActions from '../../actions/printwindow/print'
 import * as aspectRatioActions from '../../actions/aspectRatio'
+import * as codeStyleActions from '../../actions/codeStyle'
 import {WIDE} from '../../constants/settings'
 
 class Print extends React.Component {
@@ -15,6 +17,7 @@ class Print extends React.Component {
     ipcRenderer.on('reply-get-print-target', (event, json) => {
       store.dispatch(printActions.displayPrintPage(json.markdown, json.theme))
       store.dispatch(aspectRatioActions.selectRatio(json.ratio))
+      store.dispatch(codeStyleActions.selectHighlightTheme(json.highlight))
       this.render()
     })
 
@@ -36,6 +39,7 @@ class Print extends React.Component {
     return (
       <div className="p-print-page">
         <AspectStyle />
+        <HighlightCssLink />
         <button className="pull-right print-hidden" onClick={(e) => this.handlePrintPDF(ratio)}>print</button>
         <div className="p-print-page" dangerouslySetInnerHTML={{__html: renderPrintHtmlPage(markdown, theme, ratio)}} />
       </div>
@@ -57,6 +61,7 @@ export default connect((state) => {
   return {
     markdown: state.prints.markdown,
     theme: state.prints.theme,
-    ratio: state.aspectRatio.ratio
+    ratio: state.aspectRatio.ratio,
+    selected: state.codeStyles.selected
   }
 })(Print)

@@ -11,7 +11,8 @@ let mainWindow, timerWindow, printWindow
 let printTargetObject = {
   markdown: '',
   theme: '',
-  ratio: 60
+  ratio: 60,
+  highlight: ''
 }
 
 function createWindow () {
@@ -117,7 +118,7 @@ function createWindow () {
   })
 
   ipcMain.on('open-print-window', (event, arg) => {
-    printTargetObject = Object.assign(printTargetObject, {markdown: arg.markdown, theme: arg.theme, ratio: arg.ratio})
+    printTargetObject = Object.assign(printTargetObject, {markdown: arg.markdown, theme: arg.theme, ratio: arg.ratio, highlight: arg.highlight})
 
     if (!printWindow || printWindow.isDestroyed()) {
       printWindow = createChildWindow(printWindow, 'print')

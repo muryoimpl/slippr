@@ -34,8 +34,8 @@ export default class PageButtons extends React.Component {
   }
 
   handlePrintPDF () {
-    const { markdown, theme, ratio } = this.props
-    ipcRenderer.send('open-print-window', { markdown: markdown, theme: theme, ratio: ratio })
+    const { markdown, theme, ratio, highlight } = this.props
+    ipcRenderer.send('open-print-window', { markdown: markdown, theme: theme, ratio: ratio, highlight: highlight })
   }
 
   render () {
@@ -87,7 +87,8 @@ PageButtons.propTypes = {
   markdown: PropTypes.string,
   showIcons: PropTypes.bool,
   theme: PropTypes.string,
-  ratio: PropTypes.number
+  ratio: PropTypes.number,
+  highlight: PropTypes.string
 }
 
 PageButtons.contextTypes = {

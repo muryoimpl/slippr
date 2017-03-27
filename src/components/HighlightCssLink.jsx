@@ -6,7 +6,7 @@ class HighlightCssLink extends React.Component {
     const { selected } = this.props
 
     return (
-      <link rel="stylesheet" href={`./node_modules/highlight.js/styles/${selected}.css`} />
+      <link rel="stylesheet" href={`./node_modules/highlight.js/styles/${selected}.css`} media="screen,print"/>
     )
   }
 }

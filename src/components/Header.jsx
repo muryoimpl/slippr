@@ -75,7 +75,14 @@ class Header extends React.Component {
 
           <span id="saved" className="mgl hidden">Saved!!</span>
 
-          <PageButtons existMarkdown={!!existMarkdown} markdown={this.props.markdown} showIcons={this.props.showIcons} theme={this.props.theme} ratio={this.props.ratio}/>
+          <PageButtons
+            existMarkdown={!!existMarkdown}
+            markdown={this.props.markdown}
+            showIcons={this.props.showIcons}
+            theme={this.props.theme}
+            ratio={this.props.ratio}
+            highlight={this.props.highlight}
+          />
         </div>
       </header>
     )
@@ -88,7 +95,8 @@ Header.propTypes = {
   fullscreen: PropTypes.bool.isRequired,
   showIcons: PropTypes.bool.isRequired,
   theme: PropTypes.string,
-  ratio: PropTypes.number
+  ratio: PropTypes.number,
+  highlight: PropTypes.string
 }
 
 Header.contextTypes = {
@@ -103,6 +111,7 @@ export default connect((state) => {
     fullscreen: state.headers.fullscreen,
     showIcons: state.progressBar.showIcons,
     theme: state.themes.selected,
-    ratio: state.aspectRatio.ratio
+    ratio: state.aspectRatio.ratio,
+    highlight: state.codeStyles.selected
   }
 })(Header)
