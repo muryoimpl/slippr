@@ -3,7 +3,7 @@ import hljs from 'highlight.js'
 import emojify from 'emojify.js'
 import markdownitLinkTarget from 'markdown-it-link-target'
 
-import { ASPECT_RATIO } from '../constants/settings'
+import { WIDE } from '../constants/settings'
 
 export function renderHtmlPreview (markdown, theme) {
   const md = getMarkdownInstance()
@@ -26,7 +26,7 @@ export function renderHtmlPage (markdown) {
 export function renderPrintHtmlPage (markdown, theme, ratio) {
   const md = getMarkdownInstance()
 
-  const pageClass = ratio === 60 ? 'p-page__print__wide' : 'p-page__print'
+  const pageClass = ratio === WIDE ? 'p-page__print__wide' : 'p-page__print'
 
   md.renderer.rules.hr = (tokens, index, options) => {
     options.idx += 1

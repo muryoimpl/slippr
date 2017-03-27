@@ -6,6 +6,7 @@ import AspectStyle from '../../components/AspectStyle'
 import { renderPrintHtmlPage } from '../../utils/markdownConverter'
 import * as printActions from '../../actions/printwindow/print'
 import * as aspectRatioActions from '../../actions/aspectRatio'
+import {WIDE} from '../../constants/settings'
 
 class Print extends React.Component {
   componentDidMount () {
@@ -24,18 +25,19 @@ class Print extends React.Component {
     ipcRenderer.send('get-print-target')
   }
 
-  handlePrintPDF () {
-    ipcRenderer.send('print-pdf')
+  handlePrintPDF (ratio) {
+    const isWide = (ratio === WIDE)
+    ipcRenderer.send('print-pdf', {isWide: isWide})
   }
 
   render () {
-    const { markdown, theme } = this.props
+    const { markdown, theme, ratio } = this.props
 
     return (
       <div className="p-print-page">
         <AspectStyle />
-        <button className="pull-right print-hidden" onClick={(e) => this.handlePrintPDF()}>print</button>
-        <div className="p-print-page" dangerouslySetInnerHTML={{__html: renderPrintHtmlPage(markdown, theme)}} />
+        <button className="pull-right print-hidden" onClick={(e) => this.handlePrintPDF(ratio)}>print</button>
+        <div className="p-print-page" dangerouslySetInnerHTML={{__html: renderPrintHtmlPage(markdown, theme, ratio)}} />
       </div>
     )
   }
@@ -43,7 +45,8 @@ class Print extends React.Component {
 
 Print.propTypes = {
   theme: PropTypes.string,
-  markdown: PropTypes.string
+  markdown: PropTypes.string,
+  ratio: PropTypes.number
 }
 
 Print.contextTypes = {
@@ -53,6 +56,7 @@ Print.contextTypes = {
 export default connect((state) => {
   return {
     markdown: state.prints.markdown,
-    theme: state.prints.theme
+    theme: state.prints.theme,
+    ratio: state.aspectRatio.ratio
   }
 })(Print)
