@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react'
 import { connect } from 'react-redux'
 
+import * as Settings from '../constants/settings'
+
 class AspectStyle extends React.Component {
   ratioStyle () {
     const { ratio } = this.props
@@ -12,6 +14,21 @@ class AspectStyle extends React.Component {
 
       .p-page::before {
         padding-top: ${ratio}%;
+      }
+      @media screen {
+        .p-page__print::before {
+          padding-top: ${ratio}%;
+        }
+      }
+      @media print {
+        .p-page__print::before {
+          padding-top: ${Settings.PRINT_HEIGHT};
+        }
+      }
+      @media print {
+        .p-page__print__wide::before {
+          padding-top: ${Settings.PRINT_HEIGHT_WIDE};
+        }
       }
     `
   }

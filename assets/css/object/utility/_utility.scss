@@ -25,3 +25,16 @@
 .hidden {
   display: none;
 }
+
+@media print {
+  .print-hidden {
+    display: none;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+}
+
+.page-break {
+  page-break-before: always;
+}

@@ -1,0 +1,7 @@
+.p-print-page {
+  width: 100%;
+
+  &:nth-last-child(1) {
+    page-break-before: avoid;
+  }
+}
