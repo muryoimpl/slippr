@@ -1,21 +1,21 @@
 import { combineReducers } from 'redux'
 
-import textareas from './textarea'
+import aspectRatio from './aspectRatio'
+import codeStyles from './codeStyle'
 import headers from './header'
 import pages from './page'
-import themes from './theme'
-import codeStyles from './codeStyle'
-import aspectRatio from './aspectRatio'
 import progressBar from './progressBar'
+import textareas from './textarea'
+import themes from './theme'
 
 const rootReducer = combineReducers({
-  headers,
-  textareas,
-  pages,
-  themes,
-  codeStyles,
   aspectRatio,
-  progressBar
+  codeStyles,
+  headers,
+  pages,
+  progressBar,
+  textareas,
+  themes
 })
 
 export default rootReducer
