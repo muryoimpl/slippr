@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 import Print from './Print'
 
@@ -11,9 +11,5 @@ const PrintApp = React.createClass({
     )
   }
 })
-
-PrintApp.propTypes = {
-  children: PropTypes.object
-}
 
 export default PrintApp

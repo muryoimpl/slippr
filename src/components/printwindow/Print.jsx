@@ -8,7 +8,6 @@ import { renderPrintHtmlPage } from '../../utils/markdownConverter'
 import * as printActions from '../../actions/printwindow/print'
 import * as aspectRatioActions from '../../actions/aspectRatio'
 import * as codeStyleActions from '../../actions/codeStyle'
-import {WIDE} from '../../constants/settings'
 
 class Print extends React.Component {
   componentDidMount () {
@@ -21,16 +20,7 @@ class Print extends React.Component {
       this.render()
     })
 
-    ipcRenderer.on('reply-print-page', (event, json) => {
-      window.close()
-    })
-
     ipcRenderer.send('get-print-target')
-  }
-
-  handlePrintPDF (ratio) {
-    const isWide = (ratio === WIDE)
-    ipcRenderer.send('print-pdf', {isWide: isWide})
   }
 
   render () {
@@ -40,7 +30,6 @@ class Print extends React.Component {
       <div className="p-print-page">
         <AspectStyle />
         <HighlightCssLink />
-        <button className="pull-right print-hidden" onClick={(e) => this.handlePrintPDF(ratio)}>print</button>
         <div className="p-print-page" dangerouslySetInnerHTML={{__html: renderPrintHtmlPage(markdown, theme, ratio)}} />
       </div>
     )
@@ -61,7 +50,6 @@ export default connect((state) => {
   return {
     markdown: state.prints.markdown,
     theme: state.prints.theme,
-    ratio: state.aspectRatio.ratio,
-    selected: state.codeStyles.selected
+    ratio: state.aspectRatio.ratio
   }
 })(Print)
