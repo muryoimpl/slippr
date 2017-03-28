@@ -120,42 +120,42 @@ function createWindow () {
   ipcMain.on('open-print-window', (event, arg) => {
     printTargetObject = Object.assign(printTargetObject, {markdown: arg.markdown, theme: arg.theme, ratio: arg.ratio, highlight: arg.highlight})
 
-    if (!printWindow || printWindow.isDestroyed()) {
-      printWindow = createChildWindow(printWindow, 'print')
-      printWindow.show()
-    } else {
-      printWindow.show()
-    }
-  })
-
-  ipcMain.on('print-pdf', (event, arg) => {
-    const height = arg.isWide ? 167000 : 210000
-    const option = {
-      printBackground: true,
-      marginsType: 1,
-      landscape: false,
-      pageSize: {width: 297000, height: height}
+    if (printWindow && !printWindow.isDestroyed()) {
+      printWindow.close()
     }
 
-    printWindow.webContents.printToPDF(option, (error, data) => {
-      if (error) console.log('error: ' + error)
+    printWindow = createChildWindow(printWindow, 'print', false)
 
-      const options = {
-        title: 'save as ...',
-        defaultPath: `${getUserHome()}`,
-        filters: [
-          { name: 'pdf', extensions: ['pdf'] }
-        ]
+    printWindow.webContents.on('did-finish-load', (event, url) => {
+      const height = arg.ratio === 60 ? 167000 : 210000
+      const option = {
+        printBackground: true,
+        marginsType: 1,
+        landscape: false,
+        pageSize: {width: 297000, height: height}
       }
 
-      dialog.showSaveDialog(printWindow, options, (filename) => {
-        if (filename) {
-          fs.writeFile(filename, data, (error) => {
-            if (error) {
-              console.log('error: ' + error)
-            }
-          })
+      printWindow.webContents.printToPDF(option, (error, data) => {
+        if (error) console.log('error: ' + error)
+
+        const options = {
+          title: 'save as ...',
+          defaultPath: `${getUserHome()}`,
+          filters: [
+            { name: 'pdf', extensions: ['pdf'] }
+          ]
         }
+
+        dialog.showSaveDialog(printWindow, options, (filename) => {
+          if (filename) {
+            fs.writeFile(filename, data, (error) => {
+              if (error) {
+                console.log('error: ' + error)
+              }
+              printWindow.close()
+            })
+          }
+        })
       })
     })
   })
@@ -189,9 +189,9 @@ function getUserHome () {
   return process.env.HOME || process.env.USERPROFILE
 }
 
-function createChildWindow (windowVariable, htmlName) {
+function createChildWindow (windowVariable, htmlName, toShow = true) {
   const menu = Menu.buildFromTemplate([{}])
-  windowVariable = new BrowserWindow({ frame: true, resizable: true })
+  windowVariable = new BrowserWindow({ frame: true, resizable: true, show: toShow })
   windowVariable.loadURL(`file://${__dirname}/${htmlName}.html`)
   windowVariable.setMenu(menu)
 
