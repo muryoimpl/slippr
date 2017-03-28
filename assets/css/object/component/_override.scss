@@ -1,0 +1,29 @@
+.btn {
+  &:disabled {
+    opacity: .3;
+  }
+}
+
+.p-page__inner {
+  h1,h2,h3,h4,h5 {
+    .emoji {
+      display: inline-block;
+      margin-bottom: .2em;
+      background-size: contain;
+      width: .9em;
+      height: .9em;
+    }
+  }
+
+  .emoji {
+    display: inline-block;
+    margin-bottom: -.25em;
+    background-size: contain;
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
+
+.sey-char {
+  font-size: 1.2em;
+}

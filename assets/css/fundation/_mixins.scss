@@ -1,0 +1,63 @@
+@mixin reset-css {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 10px;
+    overflow: auto;
+    text-overflow: inherit;
+    white-space: normal;
+    font-size: 100%;
+  }
+}
+
+@mixin slide-page {
+  h1,h2,h3,h4,h5 {
+    font-weight: bold;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 3.5em;
+  }
+
+  h3 {
+    font-size: 3em;
+  }
+
+  h4 {
+    font-size: 2em;
+  }
+
+  h5 {
+    font-size: 1.5em;
+  }
+
+  ul, ol {
+    margin: .2em 1em;
+    min-width: 50%;
+    font-size: 1.8em;
+    font-weight: 700;
+
+    ul {
+      margin: 0;
+      width: 100%;
+      font-size: 1em;
+      font-weight: 700;
+      -webkit-padding-start: 1em;
+    }
+  }
+
+  p {
+    margin: .3em 2em;
+    width: 90%;
+    max-width: 85%;
+  }
+}
+
+@mixin selectbox {
+  margin: auto 2px;
+  padding: 2px 6px;
+  font-size: 12px;
+}

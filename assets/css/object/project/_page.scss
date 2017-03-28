@@ -1,0 +1,100 @@
+.p-page-preview {
+  @include reset-css;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: calc(#{$preview-font-size} * 1.3);
+
+  &::before {
+    display: block;
+    content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
+  }
+
+  .hljs {
+    font-size: calc(#{$preview-font-size} * 1.3);
+  }
+}
+
+.p-page {
+  @include reset-css;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: calc(#{$page-font-size} * 1.3);
+
+  &::before {
+    display: block;
+    content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
+  }
+
+  .hljs {
+    font-size: calc(#{$page-font-size} * 1.3);
+  }
+}
+
+.p-page__print {
+  @include reset-css;
+  position: relative;
+  width: 297mm;
+  overflow: hidden;
+  font-size: calc(#{$page-font-size} * 1.3);
+  page-break-inside: avoid;
+
+  &::before {
+    display: block;
+    content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
+  }
+
+  .hljs {
+    font-size: calc(#{$page-font-size} * 1.3);
+  }
+}
+
+.p-page__print__wide {
+  @include reset-css;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: calc(#{$page-font-size} * 1.3);
+  page-break-inside: avoid;
+
+  &::before {
+    display: block;
+    content: '';
+    // NOTE: AspectRatio/AspectStyle で値をstyleタグに入れている
+  }
+
+  .hljs {
+    font-size: calc(#{$page-font-size} * 1.3);
+  }
+}
+
+.p-page__inner {
+  @include slide-page;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+
+  .hljs {
+    margin: 5px 10px;
+    width: 90%;
+  }
+}
+
+.p-page__separator {
+  content: '';
+  page-break-before: always;
+}

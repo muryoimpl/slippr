@@ -1,0 +1,84 @@
+.theBridge,
+.deepFocus,
+.cashemere,
+.fullMoon,
+.flamingo,
+.earlyMorning,
+.nearLight,
+.mirror,
+.backToAlaska,
+.flash,
+.unicorn,
+.tribute,
+.twinPeaks,
+.youngForest,
+.air,
+.tranquility,
+.silverLake,
+.amnesia,
+.greyConnection,
+.theCapsule,
+.hiddenGems,
+.nightSmoothie,
+.goldenLeaf,
+.floatingDream,
+.escape,
+.milkyWay,
+.circular,
+.autumn,
+.northKingdom,
+.whiteNoise,
+.silverSurfer,
+.returnToAir,
+.ice {
+  color: $txt-black;
+
+  h1, h2, h3, h4, h5 {
+    text-shadow: .03em .03em $txt-shadow-white;
+  }
+
+  a {
+    &:link, &:visited, &:hover, &:active {
+      color: $txt-black;
+    }
+
+    &:hover {
+      opacity: .5;
+      cursor: pointer;
+    }
+  }
+}
+
+.blueHour,
+.darkAmber,
+.prelude,
+.saltAndPepper,
+.wolverine,
+.dementor,
+.underTheEarth,
+.silverStone,
+.icarus,
+.flashlight,
+.jupiter,
+.blackSands,
+.greyHound,
+.graphite,
+.cosmos,
+.comet {
+  color: $txt-white;
+
+  h1, h2, h3, h4, h5 {
+    text-shadow: .03em .03em $txt-shadow-black;
+  }
+
+  a {
+    &:link, &:visited, &:hover, &:active {
+      color: $txt-white;
+    }
+
+    &:hover {
+      opacity: .5;
+      cursor: pointer;
+    }
+  }
+}

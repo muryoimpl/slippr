@@ -1,0 +1,5 @@
+.p-aspect-ratio__selectbox {
+  @include selectbox;
+  width: 5%;
+  min-width: 60px;
+}

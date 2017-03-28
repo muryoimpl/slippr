@@ -1,0 +1,33 @@
+{
+  "extends": ["standard"],
+  "globals": {
+      "document": true,
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "mocha": true,
+    "es6": true
+  },
+  "plugins": [
+    "react",
+    "promise"
+  ],
+  "ecmaFeatures": {
+    "globalReturn": false,
+    "jsx": true
+  },
+  "rules": {
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "react/react-in-jsx-scope": 1,
+    "no-unused-vars": [
+      2,
+      {
+        "varsIgnorePattern": "React",
+        "args": "none",
+        "caughtErrors": "none",
+      }
+    ]
+  }
+}

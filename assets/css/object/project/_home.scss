@@ -1,0 +1,30 @@
+// editor
+.p-editor__pane {
+  height: 100%;
+}
+
+.p-editor__textarea {
+  height: 100%;
+}
+
+.p-editor__emoji-candidate {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+// preview
+.p-preview {
+  background-color: $gray;
+  height: 98%;
+  font-size: 50%; // FIXME: Change proper size
+}
+
+.p-preview__pane {
+  padding: 5 5 5 5px;
+}
+
+.p-preview__separator {
+  background-color: $separator;
+  height: 5px;
+  content: '';
+}

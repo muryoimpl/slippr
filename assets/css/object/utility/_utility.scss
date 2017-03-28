@@ -1,0 +1,40 @@
+.mgr {
+  margin-right: 5px;
+}
+
+.mgr-one-btn {
+  margin-right: 32px;
+}
+
+.mgl {
+  margin-left: 5px;
+}
+
+.mgt {
+  margin-top: 5px;
+}
+
+.ma {
+  margin: auto;
+}
+
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+@media print {
+  .print-hidden {
+    display: none;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+}
+
+.page-break {
+  page-break-before: always;
+}
