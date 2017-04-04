@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { ipcRenderer } from 'electron'
 
 import Timer from './Timer'
@@ -32,10 +32,6 @@ class TimerApp extends React.Component {
       </div>
     )
   }
-}
-
-TimerApp.propType = {
-  children: PropTypes.object
 }
 
 export default TimerApp

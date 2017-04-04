@@ -25,7 +25,7 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-  if (!process.env.NODE_ENV) {
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools()
   }
 
@@ -195,7 +195,7 @@ function createChildWindow (windowVariable, htmlName, toShow = true) {
   windowVariable.loadURL(`file://${__dirname}/${htmlName}.html`)
   windowVariable.setMenu(menu)
 
-  if (!process.env.NODE_ENV) {
+  if (process.env.NODE_ENV === 'development') {
     windowVariable.webContents.openDevTools()
   }
 
