@@ -1,4 +1,7 @@
 # Slippr
+
+[![](https://github.com/muryoimpl/slippr/blob/master/assets/images/icons/png/128x128.png)](https://github.com/muryoimpl/slippr)
+
 markdown presentation app by Electron
 
 ## Install
