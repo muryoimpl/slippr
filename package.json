@@ -1,6 +1,6 @@
 {
   "name": "slippr",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "markdown presentation app by Electron",
   "main": "main.js",
   "repository": {
@@ -20,7 +20,11 @@
     "build": "yarn run prepare && webpack --progress --color --config webpack.config.js",
     "start": "yarn run build && yarn run electron",
     "dev": "yarn run build && NODE_ENV=development yarn run electron",
-    "release:build": "yarn run prepare && NODE_ENV=production webpack --progress --color --config webpack.config.js"
+    "release:build": "yarn run prepare && NODE_ENV=production webpack --progress --color --config webpack.config.js",
+    "package:linux": " yarn run release:build && electron-packager . slippr --app-version=0.1.0 --build-version=0.1.0 --platform=linux  --arch=all --icon=./assets/images/icons/icns/1024x1024.png  --out=./packages",
+    "package:darwin": "yarn run release:build && electron-packager . slippr --app-version=0.1.0 --build-version=0.1.0 --platform=darwin --arch=all --icon=./assets/images/icons/icns/1024x1024.icns --out=./packages",
+    "package:win": "   yarn run release:build && electron-packager . slippr --app-version=0.1.0 --build-version=0.1.0 --platform=win32  --arch=all --icon=./assets/images/icons/ico/512x512.ico     --out=./packages",
+    "zip": "node tasks/zip.js 0.1.0"
   },
   "dependencies": {
     "babel": "^6.23.0",
@@ -53,6 +57,7 @@
     "babel-preset-react-app": "^2.2.0",
     "babel-preset-stage-3": "^6.22.0",
     "ejs": "^2.5.6",
+    "electron-packager": "^8.6.0",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",
     "eslint-loader": "^1.6.0",
