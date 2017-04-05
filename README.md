@@ -75,6 +75,13 @@ Slippr uses [Hue.css](https://github.com/evankarageorgos/hue),  [Highlight.js](h
 | Down | next page |
 | Left | previous page |
 
+## exmaple
+
+Please see [exmaple](https://github.com/muryoimpl/slippr/tree/master/example) directory. :eyes:
+
+- [example/pages-16x9.pdf](https://github.com/muryoimpl/slippr/blob/master/example/pages-16x9.pdf)
+- [example/pages-4x3.pdf](https://github.com/muryoimpl/slippr/blob/master/example/pages-4x3.pdf)
+
 
 ## License
 
