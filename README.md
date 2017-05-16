@@ -19,7 +19,7 @@ see also [release page](https://github.com/muryoimpl/slippr/releases) for Slippr
 You can also run Slippr using `yarn run start`.
 
 ```console
-$ yarn run start // build CSS, transpile JavaScript and start Electron
+$ yarn run start # build CSS, transpile JavaScript and start Electron
 ```
 
 ## Usage
