@@ -8,7 +8,7 @@ markdown presentation app by Electron
 
 To install Slippr, use [yarn](https://yarnpkg.com/)
 
-```js
+```console
 $ git clone https://github.com/muryoimpl/slippr.git
 $ cd slippr
 $ yarn
@@ -18,7 +18,7 @@ see also [release page](https://github.com/muryoimpl/slippr/releases) for Slippr
 
 You can also run Slippr using `yarn run start`.
 
-```js
+```console
 $ yarn run start // build CSS, transpile JavaScript and start Electron
 ```
 
