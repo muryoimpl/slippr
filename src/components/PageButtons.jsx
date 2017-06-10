@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import * as headerActions from '../actions/header'
 import * as pageActions from '../actions/page'

@@ -40,6 +40,7 @@
     "markdown-it-link-target": "^1.0.2",
     "node-sass": "^4.5.3",
     "photon": "https://github.com/connors/photon.git",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",

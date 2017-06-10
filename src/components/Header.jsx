@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import * as headerActions from '../actions/header'
 import * as textareaActions from '../actions/textarea'

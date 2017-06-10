@@ -1,6 +1,7 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { HighlightTheme } from '../constants/highlightClass'
+import PropTypes from 'prop-types'
 
 import * as codeStyleActions from '../actions/codeStyle'
 import * as storage from '../utils/localStorage'
