@@ -24,7 +24,8 @@
     "package:linux": " yarn run release:build && electron-packager . slippr --app-version=0.1.0 --build-version=0.1.0 --platform=linux  --arch=all --icon=./assets/images/icons/icns/1024x1024.png  --out=./packages",
     "package:darwin": "yarn run release:build && electron-packager . slippr --app-version=0.1.0 --build-version=0.1.0 --platform=darwin --arch=all --icon=./assets/images/icons/icns/1024x1024.icns --out=./packages",
     "package:win": "   yarn run release:build && electron-packager . slippr --app-version=0.1.0 --build-version=0.1.0 --platform=win32  --arch=all --icon=./assets/images/icons/ico/512x512.ico     --out=./packages",
-    "zip": "node tasks/zip.js 0.1.0"
+    "zip": "node tasks/zip.js 0.1.0",
+    "postinstall": "npm rebuild node-sass --force"
   },
   "dependencies": {
     "babel": "^6.23.0",
