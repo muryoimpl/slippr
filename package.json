@@ -70,7 +70,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "node-sass": "^3.13.0",
     "postcss": "^6.0.1",
-    "postcss-cli": "^4.0.0",
+    "postcss-cli": "^4.1.0",
     "webpack": "^2.6.1",
     "webpack-merge": "^4.1.0"
   }
