@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import * as headerActions from '../actions/header'
 import * as pageActions from '../actions/page'
@@ -18,10 +19,10 @@ class DesignSelectors extends React.Component {
     if (isFullScreen) {
       store.dispatch(pageActions.splitMarkdownAsPages(markdown))
 
-      router.push({ pathname: '/pages/0' })
+      router.history.push('/pages/0')
       ipcRenderer.send('full-screen')
     } else {
-      router.push({ pathname: '/' })
+      router.history.push('/')
       ipcRenderer.send('normal-screen')
     }
   }

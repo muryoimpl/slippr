@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import * as headerActions from '../actions/header'
 import * as textareaActions from '../actions/textarea'
@@ -22,7 +23,6 @@ class Header extends React.Component {
     })
 
     ipcRenderer.on('reply-overwrite-file', (event, json) => {
-      console.log('hi')
       const dom = document.getElementById('saved')
       dom.classList.remove('hidden')
       dom.classList.add('c-btn__saved')
@@ -100,8 +100,7 @@ Header.propTypes = {
 }
 
 Header.contextTypes = {
-  store: PropTypes.object,
-  router: PropTypes.object
+  store: PropTypes.object
 }
 
 export default connect((state) => {

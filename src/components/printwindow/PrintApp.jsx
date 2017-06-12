@@ -2,7 +2,7 @@ import React from 'react'
 
 import Print from './Print'
 
-const PrintApp = React.createClass({
+class PrintApp extends React.Component {
   render () {
     return (
       <div className="window">
@@ -10,6 +10,6 @@ const PrintApp = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default PrintApp

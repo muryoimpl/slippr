@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import * as ratioActions from '../actions/aspectRatio'
 import * as Settings from '../constants/settings'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, IndexRoute, Route, hashHistory } from 'react-router'
+import { Switch, Route, HashRouter as Router } from 'react-router-dom'
 
 import * as components from './components'
 
@@ -10,10 +10,12 @@ const {
 } = components
 
 export default (
-  <Router history={hashHistory}>
-    <Route path='/' component={App}>
-      <IndexRoute component={Home} />
-      <Route path="pages/:idx" component={Page} />
-    </Route>
+  <Router>
+    <Switch>
+      <App>
+        <Route path="" component={Home} />
+        <Route path="/pages/:idx" component={Page} />
+      </App>
+    </Switch>
   </Router>
 )

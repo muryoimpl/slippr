@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import Textarea from './Textarea'
 import * as pageActions from '../actions/page'
@@ -36,7 +37,7 @@ class Home extends React.Component {
     store.dispatch(headerActions.setFullScreen(true))
     store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
 
-    router.push({ pathname: `/pages/${idx}` })
+    router.history.push(`/pages/${idx}`)
     ipcRenderer.send('full-screen')
   }
 

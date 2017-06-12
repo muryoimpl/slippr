@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import ProgressBar from './ProgressBar'
 import { renderHtmlPage } from '../utils/markdownConverter'
@@ -17,7 +18,7 @@ class Page extends React.Component {
   }
 
   componentDidMount () {
-    this.updatePageIndex(this.props.params.idx)
+    this.updatePageIndex(this.props.match.params.idx)
     this.registerIpcEvents()
     document.addEventListener('keydown', this.handleOnKeyDown)
   }
@@ -68,14 +69,14 @@ class Page extends React.Component {
     const { router } = this.context
 
     this.updatePageIndex(nextIdx)
-    return router.push({ pathname: `/pages/${nextIdx}` })
+    router.history.push(`/pages/${nextIdx}`)
   }
 
   backToHome () {
     const { store, router } = this.context
 
     store.dispatch(headerActions.setFullScreen(false))
-    router.push({ pathname: '/' })
+    router.history.push('/')
     ipcRenderer.send('normal-screen')
   }
 

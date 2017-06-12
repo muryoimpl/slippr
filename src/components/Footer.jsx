@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { ipcRenderer } from 'electron'
+import PropTypes from 'prop-types'
 
 import * as pageActions from '../actions/page'
 import * as headerActions from '../actions/header'
@@ -36,7 +37,7 @@ class Footer extends React.Component {
 
     store.dispatch(headerActions.setFullScreen(isFullScreen))
     store.dispatch(pageActions.clearPages())
-    router.push({ pathname: '/' })
+    router.history.push('/')
     ipcRenderer.send('normal-screen')
   }
 
