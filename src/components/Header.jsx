@@ -23,7 +23,6 @@ class Header extends React.Component {
     })
 
     ipcRenderer.on('reply-overwrite-file', (event, json) => {
-      console.log('hi')
       const dom = document.getElementById('saved')
       dom.classList.remove('hidden')
       dom.classList.add('c-btn__saved')
@@ -101,8 +100,7 @@ Header.propTypes = {
 }
 
 Header.contextTypes = {
-  store: PropTypes.object,
-  router: PropTypes.object
+  store: PropTypes.object
 }
 
 export default connect((state) => {

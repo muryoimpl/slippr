@@ -37,7 +37,7 @@ class Home extends React.Component {
     store.dispatch(headerActions.setFullScreen(true))
     store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
 
-    router.push({ pathname: `/pages/${idx}` })
+    router.history.push(`/pages/${idx}`)
     ipcRenderer.send('full-screen')
   }
 

@@ -37,7 +37,7 @@ class Footer extends React.Component {
 
     store.dispatch(headerActions.setFullScreen(isFullScreen))
     store.dispatch(pageActions.clearPages())
-    router.push({ pathname: '/' })
+    router.history.push('/')
     ipcRenderer.send('normal-screen')
   }
 

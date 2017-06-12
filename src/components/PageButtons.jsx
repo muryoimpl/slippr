@@ -17,10 +17,10 @@ export default class PageButtons extends React.Component {
     if (isFullScreen) {
       store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
 
-      router.push({ pathname: '/pages/0' })
+      router.history.push('/pages/0')
       ipcRenderer.send('full-screen')
     } else {
-      router.push({ pathname: '/' })
+      router.history.push('/')
       ipcRenderer.send('normal-screen')
     }
   }
