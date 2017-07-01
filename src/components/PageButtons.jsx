@@ -15,13 +15,22 @@ export default class PageButtons extends React.Component {
     store.dispatch(headerActions.setFullScreen(isFullScreen))
 
     if (isFullScreen) {
-      store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
-
-      router.history.push('/pages/0')
       ipcRenderer.send('full-screen')
     } else {
-      router.history.push('/')
       ipcRenderer.send('normal-screen')
+    }
+  }
+
+  handleTogglePlayScreen(isPlayScreen) {
+    const { store, router } = this.context
+
+    store.dispatch(headerActions.setPlayScreen(isPlayScreen))
+
+    if (isPlayScreen) {
+      store.dispatch(pageActions.splitMarkdownAsPages(this.props.markdown))
+      router.history.push('/pages/0')
+    } else {
+      router.history.push('/')
     }
   }
 
@@ -68,12 +77,23 @@ export default class PageButtons extends React.Component {
           open timer
         </button>
 
-        { this.props.fullscreen &&
+        { !this.props.playscreen &&
+          <button className={`${classNames(btnStyle)}`} onClick={(e) => this.handleTogglePlayScreen(true)} disabled={!existMarkdown} title="Transition to play screen">
+            <span className="icon icon-play"></span>
+          </button>
+        }
+        { this.props.playscreen &&
+          <button className={`${classNames(btnStyle)}`} onClick={(e) => this.handleTogglePlayScreen(false)} disabled={!existMarkdown} title="Back to edit screen">
+            <span className="icon icon-stop"></span>
+          </button>
+        }
+
+        { this.props.fullscreen && this.props.playscreen &&
           <button className="btn btn-default" onClick={(e) => this.handleFullScreen(false)} title="Normal screen">
             <span className="icon icon-resize-small"></span>
           </button>
         }
-        { !this.props.fullscreen &&
+        { !this.props.fullscreen && this.props.playscreen &&
           <button className={`${classNames(btnStyle)}`} onClick={(e) => this.handleFullScreen(true)} disabled={!existMarkdown} title="Full screen">
             <span className="icon icon-resize-full"></span>
           </button>
@@ -89,7 +109,9 @@ PageButtons.propTypes = {
   showIcons: PropTypes.bool,
   theme: PropTypes.string,
   ratio: PropTypes.number,
-  highlight: PropTypes.string
+  highlight: PropTypes.string,
+  fullscreen: PropTypes.bool,
+  playscreen: PropTypes.bool
 }
 
 PageButtons.contextTypes = {

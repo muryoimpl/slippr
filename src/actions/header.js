@@ -7,3 +7,7 @@ export function setFileName (filename) {
 export function setFullScreen (isFullScreen) {
   return { type: Types.SET_FULL_SCREEN, fullscreen: isFullScreen }
 }
+
+export function setPlayScreen (isPlayScreen) {
+  return { type: Types.SET_PLAY_SCREEN, playscreen: isPlayScreen }
+}
