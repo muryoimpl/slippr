@@ -82,6 +82,8 @@ class Header extends React.Component {
             theme={this.props.theme}
             ratio={this.props.ratio}
             highlight={this.props.highlight}
+            fullscreen={this.props.fullscreen}
+            playscreen={this.props.playscreen}
           />
         </div>
       </header>
@@ -93,6 +95,7 @@ Header.propTypes = {
   filename: PropTypes.string,
   markdown: PropTypes.string,
   fullscreen: PropTypes.bool.isRequired,
+  playscreen: PropTypes.bool.isRequired,
   showIcons: PropTypes.bool.isRequired,
   theme: PropTypes.string,
   ratio: PropTypes.number,
@@ -108,6 +111,7 @@ export default connect((state) => {
     filename: state.headers.filename,
     markdown: state.textareas.markdown,
     fullscreen: state.headers.fullscreen,
+    playscreen: state.headers.playscreen,
     showIcons: state.progressBar.showIcons,
     theme: state.themes.selected,
     ratio: state.aspectRatio.ratio,

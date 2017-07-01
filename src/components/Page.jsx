@@ -53,6 +53,7 @@ class Page extends React.Component {
 
     if (keyCodeChecker.isEscapeKey(keyCode)) {
       store.dispatch(pageActions.clearPages())
+      store.dispatch(headerActions.setPlayScreen(false))
       this.backToHome()
     }
   }
