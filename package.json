@@ -24,8 +24,7 @@
     "package:linux": " yarn run release:build && electron-packager . slippr --app-version=0.2.0 --build-version=0.2.0 --platform=linux  --arch=all --icon=./assets/images/icons/icns/1024x1024.png  --out=./packages",
     "package:darwin": "yarn run release:build && electron-packager . slippr --app-version=0.2.0 --build-version=0.2.0 --platform=darwin --arch=all --icon=./assets/images/icons/icns/1024x1024.icns --out=./packages",
     "package:win": "   yarn run release:build && electron-packager . slippr --app-version=0.2.0 --build-version=0.2.0 --platform=win32  --arch=all --icon=./assets/images/icons/ico/512x512.ico     --out=./packages",
-    "zip": "node tasks/zip.js 0.2.0",
-    "postinstall": "npm rebuild node-sass --force"
+    "zip": "node tasks/zip.js 0.2.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -39,7 +38,6 @@
     "jquery-textcomplete": "^1.8.0",
     "markdown-it": "^8.3.1",
     "markdown-it-link-target": "^1.0.2",
-    "node-sass": "^4.5.3",
     "photon": "https://github.com/connors/photon.git",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
@@ -65,7 +63,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "node-sass": "^3.13.0",
+    "node-sass": "^4.5.3",
     "postcss": "^6.0.1",
     "postcss-cli": "^4.1.0",
     "webpack": "^4.22.0",
