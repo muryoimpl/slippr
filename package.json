@@ -24,7 +24,8 @@
     "package:linux": " yarn run release:build && electron-packager . slippr --app-version=0.2.0 --build-version=0.2.0 --platform=linux  --arch=all --icon=./assets/images/icons/icns/1024x1024.png  --out=./packages",
     "package:darwin": "yarn run release:build && electron-packager . slippr --app-version=0.2.0 --build-version=0.2.0 --platform=darwin --arch=all --icon=./assets/images/icons/icns/1024x1024.icns --out=./packages",
     "package:win": "   yarn run release:build && electron-packager . slippr --app-version=0.2.0 --build-version=0.2.0 --platform=win32  --arch=all --icon=./assets/images/icons/ico/512x512.ico     --out=./packages",
-    "zip": "node tasks/zip.js 0.2.0"
+    "zip": "node tasks/zip.js 0.2.0",
+    "test": "jest ./src"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -55,6 +56,8 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^7.1.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "ejs": "^2.5.6",
     "electron-packager": "^8.7.1",
@@ -63,9 +66,11 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0",
     "node-sass": "^4.5.3",
     "postcss": "^6.0.1",
     "postcss-cli": "^4.1.0",
+    "regenerator-runtime": "^0.12.1",
     "webpack": "^4.22.0",
     "webpack-cli": "^3.1.2",
     "webpack-merge": "^4.1.4"
