@@ -28,6 +28,7 @@
     "postinstall": "npm rebuild node-sass --force"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "classnames": "^2.2.5",
     "electron": "^3.0.5",
     "emojify.js": "^1.1.0",
@@ -51,6 +52,10 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^7.1.1",
     "babel-loader": "^7.0.0",
     "ejs": "^2.5.6",
