@@ -19,16 +19,7 @@ const common = {
   },
 
   module: {
-    rules: [
-      {
-        test: /\.(jsx?|json)$/,
-        loader: 'babel-loader',
-        options: JSON.stringify({
-          presets: ['react', 'es2015', 'stage-3']
-        }),
-        exclude: path.resolve(__dirname, 'node_modules')
-      }
-    ]
+    rules: [{ test: /\.(jsx?|json)$/, loader: 'babel-loader', exclude: path.resolve(__dirname, 'node_modules') }],
   },
 
   resolve: {
@@ -44,19 +35,16 @@ const common = {
 
 if (nodeEnv === 'production') {
   module.exports = merge.smart(common, {
+    mode: 'production',
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        }
-      })
     ]
   })
 } else {
   module.exports = merge.smart(common, {
+    mode: 'development',
     devtool: 'inline-source-map',
 
     plugins: [
