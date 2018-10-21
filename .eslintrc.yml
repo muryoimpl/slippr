@@ -1,0 +1,45 @@
+extends:
+  - 'airbnb'
+  - 'plugin:react/recommended'
+
+plugins:
+  - react
+
+globals:
+  document: true
+  window: true
+  React: true
+  test: true
+  it: true
+  expect: true
+  jest: true
+  sessionStorage: false
+  API_ROOT: true
+  API_KEY: true
+  describe: false
+  beforeEach: true
+
+rules:
+  react/prefer-stateless-function: 0
+  react/jsx-filename-extension: 0
+  react/forbid-prop-types:
+    - 2
+    - forbid:
+      - 'array'
+      - 'any'
+  max-len: [2, 160, {"ignoreUrls": true}]
+  class-methods-use-this: 0
+  jsx-a11y/href-no-hash: 0
+  jsx-a11y/label-has-for: 0
+  jsx-a11y/anchor-is-valid:
+    - 2
+    - components:
+        - Link
+      specialLink:
+        - to
+        - hrefLeft
+        - hrefRight
+      aspects:
+        - noHref
+        - invalidHref
+        - preferButton
