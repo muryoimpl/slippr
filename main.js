@@ -23,7 +23,7 @@ function createWindow () {
     icon: path.join(__dirname, 'assets/images/icons/png/1024x1024.png')
   })
 
-  mainWindow.loadURL(`file://${__dirname}/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/internals/index.html`)
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools()
@@ -192,7 +192,7 @@ function getUserHome () {
 function createChildWindow (windowVariable, htmlName, toShow = true) {
   const menu = Menu.buildFromTemplate([{}])
   windowVariable = new BrowserWindow({ frame: true, resizable: true, show: toShow })
-  windowVariable.loadURL(`file://${__dirname}/${htmlName}.html`)
+  windowVariable.loadURL(`file://${__dirname}/internals/${htmlName}.html`)
   windowVariable.setMenu(menu)
 
   if (process.env.NODE_ENV === 'development') {

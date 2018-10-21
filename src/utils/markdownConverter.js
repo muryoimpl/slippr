@@ -37,7 +37,7 @@ export function renderPrintHtmlPage (markdown, theme, ratio) {
 }
 
 function emojifyInstance () {
-  emojify.setConfig({img_dir: 'assets/images/emoji', ignore_emoticons: true})
+  emojify.setConfig({img_dir: '../assets/images/emoji', ignore_emoticons: true})
   return emojify
 }
 
