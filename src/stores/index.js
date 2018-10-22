@@ -1,13 +1,13 @@
-import logger from 'redux-logger'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+import logger from 'redux-logger';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 
-import rootReducer from '../reducers'
+import rootReducer from '../reducers';
 
 const finalCreateStore = compose(
   applyMiddleware(logger, thunk),
-)(createStore)
+)(createStore);
 
-export function configureStore (initialState) {
-  return finalCreateStore(rootReducer, initialState)
+export function configureStore(initialState) {
+  return finalCreateStore(rootReducer, initialState);
 }

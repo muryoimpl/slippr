@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import timers from './timer'
+import timers from './timer';
 
 const timerReducer = combineReducers({
-  timers
-})
+  timers,
+});
 
-export default timerReducer
+export default timerReducer;

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Switch, Route, HashRouter as Router } from 'react-router-dom'
+import React from 'react';
+import { Switch, Route, HashRouter as Router } from 'react-router-dom';
 
-import * as components from './components'
+import * as components from './components';
 
 const {
   App,
   Home,
-  Page
-} = components
+  Page,
+} = components;
 
 export default (
   <Router>
@@ -18,4 +18,4 @@ export default (
       </App>
     </Switch>
   </Router>
-)
+);

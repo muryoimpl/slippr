@@ -47,5 +47,5 @@ export const ThemeClasses = [
   'graphite',
   'cosmos',
   'ice',
-  'comet'
-]
+  'comet',
+];

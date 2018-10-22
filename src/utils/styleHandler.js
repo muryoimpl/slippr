@@ -1,7 +1,7 @@
-export function buttonDisabledStyle (existMarkdown) {
+export function buttonDisabledStyle(existMarkdown) {
   return {
-    'btn': true,
+    btn: true,
     'btn-default': true,
-    'c-btn__disabled': !existMarkdown
-  }
+    'c-btn__disabled': !existMarkdown,
+  };
 }

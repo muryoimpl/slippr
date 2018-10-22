@@ -1,28 +1,22 @@
-import $ from 'jquery'
-import 'jquery-textcomplete'
+import $ from 'jquery';
+import 'jquery-textcomplete';
 
-import { emojiList } from '../constants/emojiConst'
+import { emojiList } from '../constants/emojiConst';
 
-export function registerEmojiAutoComplete (selector) {
+export function registerEmojiAutoComplete(selector) {
   $(selector).textcomplete([
     {
       match: /\B:([-+\w]*)$/,
       search: (term, callback) => {
-        callback($.map(emojiList, (emoji) => {
-          return emoji.text.indexOf(term) === 0 ? emoji.text : null
-        }))
+        callback($.map(emojiList, emoji => (emoji.text.indexOf(term) === 0 ? emoji.text : null)));
       },
-      template: (emojiName) => {
-        return `<img class="p-editor__emoji-candidate" src="assets/images/emoji/${emojiName}.png" /> ${emojiName}`
-      },
-      replace: (emojiName) => {
-        return `:${emojiName}: `
-      },
-      index: 1
-    }
-  ])
+      template: emojiName => `<img class="p-editor__emoji-candidate" src="assets/images/emoji/${emojiName}.png" /> ${emojiName}`,
+      replace: emojiName => `:${emojiName}: `,
+      index: 1,
+    },
+  ]);
 }
 
-export function removeEmojiAutoComplete (selector) {
-  $(selector).remove()
+export function removeEmojiAutoComplete(selector) {
+  $(selector).remove();
 }

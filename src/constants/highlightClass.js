@@ -75,5 +75,5 @@ export const HighlightTheme = [
   'vs',
   'xcode',
   'xt255',
-  'zenburn'
-]
+  'zenburn',
+];

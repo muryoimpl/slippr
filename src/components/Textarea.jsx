@@ -1,66 +1,69 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import * as textareaActions from '../actions/textarea'
-import * as storage from '../utils/localStorage'
-import { registerEmojiAutoComplete, removeEmojiAutoComplete } from '../utils/emojiAutoComplete'
+import * as textareaActions from '../actions/textarea';
+import * as storage from '../utils/localStorage';
+import { registerEmojiAutoComplete, removeEmojiAutoComplete } from '../utils/emojiAutoComplete';
 
 class Textarea extends React.Component {
-  componentDidMount () {
-    const previousValue = storage.get('markdown')
+  componentDidMount() {
+    const { store } = this.context;
+    const { markdown } = this.props;
+    const previousValue = storage.get('markdown');
     if (!document.querySelector('#markdown-textarea').value && previousValue) {
-      this.context.store.dispatch(textareaActions.editTextareaValue(previousValue))
+      store.dispatch(textareaActions.editTextareaValue(previousValue));
     }
 
-    registerEmojiAutoComplete('#markdown-textarea')
+    registerEmojiAutoComplete('#markdown-textarea');
 
     window.onbeforeunload = () => {
-      storage.set('markdown', this.props.markdown)
-    }
+      storage.set('markdown', markdown);
+    };
   }
 
-  componentWillUnmount () {
-    storage.set('markdown', this.props.markdown)
-    removeEmojiAutoComplete('ul.dropdown-menu.textcomplete-dropdown')
+  componentWillUnmount() {
+    const { markdown } = this.props;
+    storage.set('markdown', markdown);
+    removeEmojiAutoComplete('ul.dropdown-menu.textcomplete-dropdown');
   }
 
-  handleTextaraChange (e) {
-    const { store } = this.context
+  handleTextaraChange(e) {
+    const { store } = this.context;
 
-    store.dispatch(textareaActions.editTextareaValue(e.target.value))
+    store.dispatch(textareaActions.editTextareaValue(e.target.value));
   }
 
   // TODO: drag&drop 中に移動した位置に挿入されないのでなんとかしたい
-  handleDropImage (e) {
-    e.stopPropagation()
-    e.preventDefault()
+  handleDropImage(e) {
+    e.stopPropagation();
+    e.preventDefault();
 
-    const file = e.dataTransfer.files[0]
+    const file = e.dataTransfer.files[0];
     if (file.type.match('image/')) {
-      let tag
+      let tag;
       if (e.currentTarget.selectionStart && e.currentTarget.selectionStart !== 0) {
-        tag = `\n---\n${this.imgHTMLTag(file.path, file.name)}\n---\n`
+        tag = `\n---\n${this.imgHTMLTag(file.path, file.name)}\n---\n`;
       } else {
-        tag = `${this.imgHTMLTag(file.path, file.name)}`
+        tag = `${this.imgHTMLTag(file.path, file.name)}`;
       }
 
-      const posStart = e.currentTarget.selectionStart
-      const posEnd = e.currentTarget.selectionEnd
+      const posStart = e.currentTarget.selectionStart;
+      const posEnd = e.currentTarget.selectionEnd;
 
-      let text = e.currentTarget.value
-      e.currentTarget.value = `${text.substring(0, posStart)}\n${tag}\n${text.substring(posEnd, text.length)}`
+      const text = e.currentTarget.value;
+      e.currentTarget.value = `${text.substring(0, posStart)}\n${tag}\n${text.substring(posEnd, text.length)}`;
 
-      this.handleTextaraChange(e)
+      this.handleTextaraChange(e);
     }
   }
 
-  imgHTMLTag (path, name) {
-    return `<img src="file://${path}" height="100%" width="100%" alt="${name}">\n`
+  imgHTMLTag(path, name) {
+    return `<img src="file://${path}" height="100%" width="100%" alt="${name}">\n`;
   }
 
-  render () {
-    const { markdown } = this.props
+  render() {
+    const { markdown } = this.props;
 
     return (
       <form className="p-editor__pane">
@@ -70,26 +73,27 @@ class Textarea extends React.Component {
             className="form-control p-editor__textarea"
             rows="10"
             value={markdown}
-            autoFocus="true"
             onDrop={e => this.handleDropImage(e)}
             onChange={e => this.handleTextaraChange(e)}
-          ></textarea>
+          />
         </div>
       </form>
-    )
+    );
   }
 }
 
 Textarea.contextTypes = {
-  store: PropTypes.object
-}
+  store: PropTypes.object,
+};
 
 Textarea.propTypes = {
-  markdown: PropTypes.string
-}
+  markdown: PropTypes.string,
+};
 
-export default connect((state) => {
-  return {
-    markdown: state.textareas.markdown
-  }
-})(Textarea)
+Textarea.defaultProps = {
+  markdown: '',
+};
+
+export default connect(state => ({
+  markdown: state.textareas.markdown,
+}))(Textarea);

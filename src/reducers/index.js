@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import aspectRatio from './aspectRatio'
-import codeStyles from './codeStyle'
-import headers from './header'
-import pages from './page'
-import progressBar from './progressBar'
-import textareas from './textarea'
-import themes from './theme'
+import aspectRatio from './aspectRatio';
+import codeStyles from './codeStyle';
+import headers from './header';
+import pages from './page';
+import progressBar from './progressBar';
+import textareas from './textarea';
+import themes from './theme';
 
 const rootReducer = combineReducers({
   aspectRatio,
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   pages,
   progressBar,
   textareas,
-  themes
-})
+  themes,
+});
 
-export default rootReducer
+export default rootReducer;

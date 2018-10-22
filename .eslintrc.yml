@@ -18,6 +18,7 @@ globals:
   API_KEY: true
   describe: false
   beforeEach: true
+  localStorage: true
 
 rules:
   react/prefer-stateless-function: 0
@@ -43,3 +44,4 @@ rules:
         - noHref
         - invalidHref
         - preferButton
+  import/prefer-default-export: 0

@@ -1,16 +1,16 @@
-import Immutable from 'immutable'
-import * as Types from '../../constants/printwindow/actions'
+import Immutable from 'immutable';
+import * as Types from '../../constants/printwindow/actions';
 
 const initialState = new Immutable.Record({
   markdown: '',
-  theme: ''
-})()
+  theme: '',
+})();
 
-export default function prints (state = initialState, action) {
+export default function prints(state = initialState, action) {
   switch (action.type) {
     case Types.DISPLAY_PRINT_PAGE:
-      return state.merge({markdown: action.markdown, theme: action.theme})
+      return state.merge({ markdown: action.markdown, theme: action.theme });
     default:
-      return state
+      return state;
   }
 }

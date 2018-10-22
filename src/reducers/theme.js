@@ -1,13 +1,13 @@
-import Immutable from 'immutable'
-import * as Types from '../constants/actions'
+import Immutable from 'immutable';
+import * as Types from '../constants/actions';
 
-const initialState = new Immutable.Record({ selected: 'theBridge' })()
+const initialState = new Immutable.Record({ selected: 'theBridge' })();
 
-export default function themes (state = initialState, action) {
+export default function themes(state = initialState, action) {
   switch (action.type) {
     case Types.SELECT_THEME:
-      return state.merge({selected: action.theme})
+      return state.merge({ selected: action.theme });
     default:
-      return state
+      return state;
   }
 }

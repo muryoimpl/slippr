@@ -1,12 +1,12 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import * as Settings from '../constants/settings'
+import * as Settings from '../constants/settings';
 
 class AspectStyle extends React.Component {
-  ratioStyle () {
-    const { ratio } = this.props
+  ratioStyle() {
+    const { ratio } = this.props;
 
     return `
       .p-page-preview::before {
@@ -31,24 +31,22 @@ class AspectStyle extends React.Component {
           padding-top: ${Settings.PRINT_HEIGHT_WIDE};
         }
       }
-    `
+    `;
   }
 
-  render () {
+  render() {
     return (
       <style type="text/css">
-      { this.ratioStyle() }
+        { this.ratioStyle() }
       </style>
-    )
+    );
   }
 }
 
 AspectStyle.propTypes = {
-  ratio: PropTypes.number
-}
+  ratio: PropTypes.number.isRequired,
+};
 
-export default connect((state) => {
-  return {
-    ratio: state.aspectRatio.ratio
-  }
-})(AspectStyle)
+export default connect(state => ({
+  ratio: state.aspectRatio.ratio,
+}))(AspectStyle);

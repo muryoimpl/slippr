@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import Print from './Print'
+import Print from './Print';
 
 class PrintApp extends React.Component {
-  render () {
+  render() {
     return (
       <div className="window">
         <Print />
       </div>
-    )
+    );
   }
 }
 
-export default PrintApp
+export default PrintApp;

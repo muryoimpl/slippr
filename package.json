@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "electron": "electron .",
-    "lint": "eslint ./src --color",
+    "lint": "eslint ./src --color --ext .jsx,.js",
     "scss": "node-sass --source-map-embed assets/css/main.scss dist/main.css",
     "postcss": "postcss --use autoprefixer -o dist/main.css dist/main.css",
     "image": "rm -rf assets/images/emoji && mkdir -p assets/images/emoji && cp -rf ./node_modules/emojify.js/dist/images/basic/** ./assets/images/emoji/",
