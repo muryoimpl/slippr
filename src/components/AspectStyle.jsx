@@ -1,52 +1,29 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { createGlobalStyle } from 'styled-components';
 
-import * as Settings from '../constants/settings';
-
-class AspectStyle extends React.Component {
-  ratioStyle() {
-    const { ratio } = this.props;
-
-    return `
-      .p-page-preview::before {
-        padding-top: ${ratio}%;
-      }
-
-      .p-page::before {
-        padding-top: ${ratio}%;
-      }
-      @media screen {
-        .p-page__print::before {
-          padding-top: ${ratio}%;
-        }
-      }
-      @media print {
-        .p-page__print::before {
-          padding-top: ${Settings.PRINT_HEIGHT};
-        }
-      }
-      @media print {
-        .p-page__print__wide::before {
-          padding-top: ${Settings.PRINT_HEIGHT_WIDE};
-        }
-      }
-    `;
+const PRINT_HEIGHT_WIDE = '166.6mm';
+const PRINT_HEIGHT = '209.7mm';
+const AspectStyle = createGlobalStyle`
+  .p-page-preview::before {
+    padding-top: ${props => props.ratio}%;
   }
-
-  render() {
-    return (
-      <style type="text/css">
-        { this.ratioStyle() }
-      </style>
-    );
+  .p-page::before {
+    padding-top: ${props => props.ratio}%;
   }
-}
+  @media screen {
+    .p-page__print::before {
+      padding-top: ${props => props.ratio}%;
+    }
+  }
+  @media print {
+    .p-page__print::before {
+      padding-top: ${PRINT_HEIGHT};
+    }
+  }
+  @media print {
+    .p-page__print__wide::before {
+      padding-top: ${PRINT_HEIGHT_WIDE};
+    }
+  }
+`;
 
-AspectStyle.propTypes = {
-  ratio: PropTypes.number.isRequired,
-};
-
-export default connect(state => ({
-  ratio: state.aspectRatio.ratio,
-}))(AspectStyle);
+export default AspectStyle;

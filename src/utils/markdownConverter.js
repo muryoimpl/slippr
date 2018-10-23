@@ -4,7 +4,7 @@ import hljs from 'highlight.js';
 import emojify from 'emojify.js';
 import markdownitLinkTarget from 'markdown-it-link-target';
 
-import { WIDE } from '../constants/settings';
+import { WIDE } from '../containers/AspectRatioSelector/constant';
 
 function getMarkdownInstance() {
   return new MarkdownIt({

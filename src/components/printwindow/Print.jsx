@@ -7,8 +7,8 @@ import AspectStyle from '../AspectStyle';
 import HighlightCssLink from '../HighlightCssLink';
 import { renderPrintHtmlPage } from '../../utils/markdownConverter';
 import * as printActions from '../../actions/printwindow/print';
-import * as aspectRatioActions from '../../actions/aspectRatio';
-import * as codeStyleActions from '../../actions/codeStyle';
+import * as aspectRatioActions from '../../containers/AspectRatioSelector/action';
+import * as codeStyleActions from '../../containers/CodeStyle/action';
 
 class Print extends React.Component {
   componentDidMount() {

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
 import prints from './print';
-import aspectRatio from '../aspectRatio';
-import codeStyles from '../codeStyle';
+import aspectRatio from '../../containers/AspectRatioSelector/reducer';
+import codeStyles from '../../containers/CodeStyle/reducer';
 
 const printReducer = combineReducers({
   prints,
