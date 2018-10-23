@@ -59,4 +59,4 @@ class App extends React.Component {
 
 You can drag & drop image to here and it adds img tag.
 
-<img src="./assets/images/icons/png/256x256.png" height="50%" width="50%" alt="256x256.png">
+<img src="../assets/images/icons/png/256x256.png" height="50%" width="50%" alt="256x256.png">
