@@ -21,7 +21,7 @@ class AppContent extends React.Component {
       <div className="window">
         <Header />
         <DesignSelectors fullscreen={fullscreen} />
-        <HighlightCssLink selected={selectedCodeStyle} />
+        <HighlightCssLink highlight={selectedCodeStyle} />
         <AspectStyle ratio={ratio} />
         <div className="window-content">
           { children }
