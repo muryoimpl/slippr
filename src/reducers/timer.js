@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import timers from './timer';
+import timers from '../containers/TimerWindow/reducer';
 
 const timerReducer = combineReducers({
   timers,

@@ -1,12 +1,13 @@
 import Immutable from 'immutable';
-import * as Types from '../../constants/timerwindow/actions';
-import * as Settings from '../../constants/settings';
+import * as Types from './constant';
 
 import { convertTimeToNumber, timerCalculator } from '../../utils/timeConverter';
 
-const initialTime = convertTimeToNumber(Settings.DEFAULT_TIMER_VALUE);
+const DEFAULT_TIMER_VALUE = '00:05:00';
+const TIMER_CLEARED_VALUE = '00:00:00';
+const initialTime = convertTimeToNumber(DEFAULT_TIMER_VALUE);
 const initialState = new Immutable.Record({
-  limit: Settings.DEFAULT_TIMER_VALUE,
+  limit: DEFAULT_TIMER_VALUE,
   hours: initialTime[0],
   minutes: initialTime[1],
   seconds: initialTime[2],
@@ -18,9 +19,9 @@ const initialState = new Immutable.Record({
 export default function timers(state = initialState, action) {
   switch (action.type) {
     case Types.RESET_TIMER: {
-      const time = convertTimeToNumber(Settings.DEFAULT_TIMER_VALUE);
+      const time = convertTimeToNumber(DEFAULT_TIMER_VALUE);
       return state.merge({
-        limit: Settings.DEFAULT_TIMER_VALUE, hours: time[0], minutes: time[1], seconds: time[2],
+        limit: DEFAULT_TIMER_VALUE, hours: time[0], minutes: time[1], seconds: time[2],
       });
     }
     case Types.CHANGE_VALUE:
@@ -41,7 +42,7 @@ export default function timers(state = initialState, action) {
 
     case Types.CLEAR_TIMER:
       return state.merge({
-        limit: Settings.TIMER_CLEARED_VALUE, hours: 0, minutes: 0, seconds: 0,
+        limit: TIMER_CLEARED_VALUE, hours: 0, minutes: 0, seconds: 0,
       });
 
     case Types.START_BLINK_PAGE:
