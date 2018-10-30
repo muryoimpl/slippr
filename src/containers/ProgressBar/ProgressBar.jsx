@@ -3,7 +3,7 @@ import React from 'react';
 import { ipcRenderer } from 'electron';
 import PropTypes from 'prop-types';
 
-import { calcTimeProgress } from '../../utils/timeConverter';
+import { calcTimeProgress } from './utils';
 
 class ProgressBar extends React.Component {
   componentDidMount() {

@@ -3,22 +3,10 @@ import React from 'react';
 import { ipcRenderer } from 'electron';
 import PropTypes from 'prop-types';
 
-// import * as timerActions from '../action';
-import { zeroPad, calcTotalSeconds, convertTimeToNumber } from '../../../utils/timeConverter';
+import { zeroPad, calcTotalSeconds, convertTimeToNumber } from '../utils';
+import Button from './Button';
 
 class TimerContent extends React.Component {
-  handleTimerReset() {
-    const { resetTimer } = this.props;
-    resetTimer();
-    this.stopTimerInPage();
-  }
-
-  handleClearTimer() {
-    const { clearTimer } = this.props;
-    clearTimer();
-    this.stopTimerInPage();
-  }
-
   handleTimerStart() {
     const { limit, startTimer } = this.props;
 
@@ -36,28 +24,34 @@ class TimerContent extends React.Component {
     stopTimer(intervalId);
   }
 
+  notifyTimeUp() {
+    const {
+      limit,
+      startBlinkPage,
+      stopBlinkPage,
+      changeValue,
+    } = this.props;
+
+    startBlinkPage();
+    setTimeout(() => {
+      stopBlinkPage();
+      changeValue(limit);
+    }, 5000);
+  }
+
   tick() {
     const {
       hours,
       minutes,
       seconds,
       intervalId,
-      limit,
       stopTimer,
-      startBlinkPage,
-      stopBlinkPage,
       runTicker,
-      changeValue,
     } = this.props;
 
     if (hours === 0 && minutes === 0 && seconds === 0) {
       stopTimer(intervalId);
-      startBlinkPage();
-
-      setTimeout(() => {
-        stopBlinkPage();
-        changeValue(limit);
-      }, 5000);
+      this.notifyTimeUp();
     } else {
       runTicker(hours, minutes, seconds);
     }
@@ -81,6 +75,8 @@ class TimerContent extends React.Component {
       started,
       blink,
       changeValue,
+      resetTimer,
+      clearTimer,
     } = this.props;
     const isLimitInvalid = (convertTimeToNumber(limit).length !== 3);
 
@@ -106,8 +102,8 @@ class TimerContent extends React.Component {
               disabled={started}
               step="1"
             />
-            <button type="button" className="btn btn-default mgl" onClick={() => this.handleTimerReset()} disabled={started}>RESET</button>
-            <button type="button" className="btn btn-default mgl" onClick={() => this.handleClearTimer()} disabled={started}>CLEAR</button>
+            <Button onClick={resetTimer} started={started} label="RESET" />
+            <Button onClick={clearTimer} started={started} label="CLEAR" />
             { !started
               && <button type="button" className="btn btn-primary mgl p-timer__start" onClick={() => this.handleTimerStart()} disabled={isLimitInvalid}>START</button>
             }

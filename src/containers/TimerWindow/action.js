@@ -1,5 +1,5 @@
 import * as Types from './constant';
-import { convertTimeToNumber } from '../../utils/timeConverter';
+import { convertTimeToNumber } from './utils';
 
 export function resetTimer() {
   return { type: Types.RESET_TIMER };

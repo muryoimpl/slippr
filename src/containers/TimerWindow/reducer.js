@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import * as Types from './constant';
 
-import { convertTimeToNumber, timerCalculator } from '../../utils/timeConverter';
+import { convertTimeToNumber, timerCalculator } from './utils';
 
 const DEFAULT_TIMER_VALUE = '00:05:00';
 const TIMER_CLEARED_VALUE = '00:00:00';
