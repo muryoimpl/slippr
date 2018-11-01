@@ -12,10 +12,6 @@ export function updateElapsedSeconds(elapsedSeconds) {
   return { type: Types.UPDATE_ELAPSED_SECONDS, elapsedSeconds };
 }
 
-export function updateProgress(progress, totalSize) {
-  return { type: Types.UPDATE_PROGRESS, index: progress, size: totalSize };
-}
-
 export function stopElapsedTimeRunning(intervalId) {
   return { type: Types.STOP_ELAPSED_TIME_RUNNING, intervalId };
 }

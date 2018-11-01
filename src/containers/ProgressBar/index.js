@@ -5,13 +5,13 @@ import {
   setTotalSeconds,
   setElapsedIntervalId,
   updateElapsedSeconds,
-  updateProgress,
   stopElapsedTimeRunning,
   toggleIcons,
 } from './action';
+import { updateProgress } from '../Page/action';
 
 const mapStateToProps = state => ({
-  progress: state.progressBar.progress,
+  progress: state.pages.progress,
   elapsedSeconds: state.progressBar.elapsedSeconds,
   totalSeconds: state.progressBar.totalSeconds,
   intervalId: state.progressBar.intervalId,

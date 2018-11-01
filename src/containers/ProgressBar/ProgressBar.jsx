@@ -60,14 +60,14 @@ class ProgressBar extends React.Component {
         { totalSeconds !== 0 && showIcons
           && (
             <span className="p-progress-icon-area" style={{ width: `${progress}%` }}>
-              <img alt="koko" src="assets/images/emoji/koko.png" className="p-progress-icon" />
+              <img alt="koko" src="../assets/images/emoji/koko.png" className="p-progress-icon" />
             </span>
           )
         }
         { totalSeconds !== 0 && showIcons
           && (
             <span className="p-progress-icon-area" style={{ width: `${calcTimeProgress(elapsedSeconds, totalSeconds)}%` }}>
-              <img alt="hourglass" src="assets/images/emoji/hourglass_flowing_sand.png" className="p-progress-icon" />
+              <img alt="hourglass" src="../assets/images/emoji/hourglass_flowing_sand.png" className="p-progress-icon" />
             </span>
           )
         }
